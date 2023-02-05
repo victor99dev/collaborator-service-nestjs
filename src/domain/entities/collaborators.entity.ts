@@ -2,13 +2,7 @@ import { randomUUID } from 'crypto';
 import { Address, Documents, SocialMedia } from '../value-object';
 import { Departments } from './department.entity';
 import { Replace } from 'src/helpers';
-
-export enum GroupsType {
-  CLT = 'clt',
-  PJ = 'PJ',
-  FREELANCER = 'freelancer',
-  PARTNER = 'partner',
-}
+import { GroupsType } from '../enum';
 
 export interface CollaboratorsProps {
   name: string;

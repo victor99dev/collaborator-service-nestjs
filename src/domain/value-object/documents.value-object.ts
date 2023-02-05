@@ -1,9 +1,4 @@
-export enum DocumentsType {
-  CPF = 'cpf',
-  RG = 'rg',
-  CNH = 'cnh',
-  OTHERS = 'others',
-}
+import { DocumentsType } from '../enum';
 
 export interface DocumentsProps {
   number: number;
