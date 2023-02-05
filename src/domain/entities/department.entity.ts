@@ -15,8 +15,8 @@ export class Departments {
   private props: DepartmentsProps;
 
   constructor(
-    id: string,
     props: Replace<DepartmentsProps, { createdAt?: Date }>,
+    id?: string,
   ) {
     this._id = id ?? randomUUID();
     this.props = {
@@ -27,6 +27,13 @@ export class Departments {
 
   public get id() {
     return this._id;
+  }
+
+  public get name(): string {
+    return this.props.name;
+  }
+  public set name(name: string) {
+    this.props.name = name;
   }
 
   public get description(): string {
