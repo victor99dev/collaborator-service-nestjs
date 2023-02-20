@@ -1,1 +1,1 @@
-export * from './register-deparment.DTO';
+export * from './register-deparment.dto';

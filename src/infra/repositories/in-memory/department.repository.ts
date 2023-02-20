@@ -7,17 +7,26 @@ import { Departments } from 'src/domain/entities';
 export class IMemoryDepartmentRepository
   implements IDepartmentsReadRepository, IDepartmentsWriteRepository
 {
-  save(data: Departments): Promise<void> {
-    throw new Error('Method not implemented.');
+  private departdb: Departments[];
+  constructor() {
+    this.departdb = [];
   }
-  getAll(): Promise<Departments[]> {
-    throw new Error('Method not implemented.');
+
+  async save(data: Departments): Promise<void> {
+    this.departdb.push(data);
+    console.log(data);
+    console.table(data);
   }
-  count(): Promise<number> {
-    throw new Error('Method not implemented.');
+
+  async getAll(): Promise<Departments[]> {
+    return this.departdb.slice();
   }
+
+  async count(): Promise<number> {
+    return this.departdb.length;
+  }
+
   findByCode(code: string): Promise<Departments> {
     throw new Error('Method not implemented.');
   }
-
 }

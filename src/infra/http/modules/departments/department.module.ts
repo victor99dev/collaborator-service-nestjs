@@ -1,3 +1,4 @@
+import { ListDepartmentUseCase } from '../../../../application/usecases/department/list-department.usecase';
 import { TOKENS } from './../../../container/tokens';
 import { Module } from '@nestjs/common';
 import { DepartmentController } from './department.controller';
@@ -14,6 +15,7 @@ import { IMemoryDepartmentRepository } from 'src/infra/repositories/in-memory';
     },
     DepartmentService,
     CreateDepartmentUseCase,
+    ListDepartmentUseCase,
   ],
 })
 export class DepartmentModule {}

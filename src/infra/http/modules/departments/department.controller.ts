@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RegisterDepartmentDto } from './dto';
 import { DepartmentService } from './department.service';
@@ -15,4 +15,11 @@ export class DepartmentController {
   async registerNewDepartment(@Body() body: RegisterDepartmentDto) {
     this._departmentService.createDepartment({ ...body });
   }
+
+  @ApiOperation({ summary: 'List Departments' })
+  @Get('list')
+  async getAll() {
+    const result = await this._departmentService.getAll();
+    return result;
+    }
 }

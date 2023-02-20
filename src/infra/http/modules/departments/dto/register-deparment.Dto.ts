@@ -11,8 +11,5 @@ export class RegisterDepartmentDto {
   active: boolean;
 
   @ApiProperty()
-  createdAt: Date;
-
-  @ApiProperty()
-  updatedAt: Date;
+  created_at: Date;
 }
