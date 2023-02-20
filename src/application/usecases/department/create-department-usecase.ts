@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { TOKENS } from './../../../infra/container/tokens';
+import { Inject, Injectable } from '@nestjs/common';
 import { IDepartmentsReadRepository } from 'src/application/contracts/repository';
 import { UseCaseInterface } from 'src/application/contracts/usecase';
 import { Departments } from 'src/domain/entities';
@@ -15,10 +16,9 @@ export type DepartmentsOutput = {
 };
 
 @Injectable()
-export class CreateDepartmentUseCase
-  implements UseCaseInterface<DepartmentsInput, void>
-{
+export class CreateDepartmentUseCase{
   constructor(
+    @Inject(TOKENS.repositories.DEPARTMENTS)
     private readonly _departmentRepository: IDepartmentsReadRepository,
   ) {}
 
