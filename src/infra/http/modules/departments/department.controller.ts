@@ -21,5 +21,5 @@ export class DepartmentController {
   async getAll() {
     const result = await this._departmentService.getAll();
     return result;
-    }
+  }
 }

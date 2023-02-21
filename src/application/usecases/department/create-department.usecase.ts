@@ -1,8 +1,6 @@
 import { TOKENS } from '../../../infra/container/tokens';
 import { Inject, Injectable } from '@nestjs/common';
-import {
-  IDepartmentsRepository,
-} from 'src/application/contracts/repository';
+import { IDepartmentsRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
 
 export interface DepartmentsInput {
