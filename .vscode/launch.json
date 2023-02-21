@@ -6,7 +6,7 @@
     "configurations": [
       {
         "command": "npm run start:dev",
-        "name": "Run npm start",
+        "name": "Run Nest Debug",
         "request": "launch",
         "type": "node-terminal"
       },
