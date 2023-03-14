@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
   CreateDepartmentUseCase,
-  ListDepartmentInput,
   ListDepartmentOutput,
   ListDepartmentUseCase,
 } from 'src/application/usecases/department';

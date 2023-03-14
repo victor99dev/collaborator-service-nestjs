@@ -1,8 +1,9 @@
 import { randomUUID } from 'crypto';
-import { Address, Documents, SocialMedia } from '../value-object';
+import { Address, SocialMedia } from '../value-object';
 import { Departments } from './department.entity';
 import { Replace } from 'src/helpers';
 import { GroupsType } from '../enum';
+import { Documents } from './document.entity';
 
 export interface CollaboratorsProps {
   name: string;
@@ -18,7 +19,6 @@ export interface CollaboratorsProps {
   status: boolean;
   description?: string | null;
   active: boolean;
-  isDeleted: boolean;
   createdAt: Date;
   updatedAt?: Date | null;
 }
@@ -131,13 +131,6 @@ export class Collaborators {
   }
   public set active(active: boolean) {
     this.props.active = active;
-  }
-
-  public get isDeleted(): boolean {
-    return this.props.isDeleted;
-  }
-  public set isDeleted(isDeleted: boolean) {
-    this.props.isDeleted = isDeleted;
   }
 
   public get createdAt(): Date {

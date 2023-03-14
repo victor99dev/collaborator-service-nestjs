@@ -7,7 +7,6 @@ export interface DepartmentsInput {
   name: string;
   description: string;
   active: boolean;
-  isDeleted: boolean;
 }
 
 export type DepartmentsOutput = {
@@ -26,7 +25,6 @@ export class CreateDepartmentUseCase {
       name: param.name,
       description: param.description,
       active: true,
-      isDeleted: false,
     });
 
     this._departmentRepository.save(output);
