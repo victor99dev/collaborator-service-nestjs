@@ -3,10 +3,6 @@ import { IDepartmentsRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
-export interface ListDepartmentInput {
-  //TODO: Pagination
-}
-
 export type ListDepartmentOutput = {
   metadata: {
     [key: string]: unknown;

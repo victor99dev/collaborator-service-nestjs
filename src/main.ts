@@ -35,7 +35,9 @@ async function bootstrap() {
   SwaggerModule.setup('swagger-ui', app, document);
 
   app.enableCors();
-  await app.listen(3000);
+  await app.listen(3000, () => {
+    console.log('Server is listening on http://localhost:3000/swagger-ui');
+  });
 }
 
 bootstrap();
