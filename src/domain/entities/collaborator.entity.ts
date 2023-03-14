@@ -11,7 +11,7 @@ export interface CollaboratorsProps {
   age: number;
   documents: Documents[];
   department: Departments[];
-  group: GroupsType[];
+  group: GroupsType;
   address?: Address | null;
   socialMedia?: SocialMedia[] | null;
   login: string;
@@ -77,10 +77,10 @@ export class Collaborators {
     this.props.department = department;
   }
 
-  public get group(): GroupsType[] {
+  public get group(): GroupsType {
     return this.props.group;
   }
-  public set group(group: GroupsType[]) {
+  public set group(group: GroupsType) {
     this.props.group = group;
   }
 
