@@ -1,6 +1,6 @@
 import { TOKENS } from '../../../infra/container/tokens';
 import { Inject, Injectable } from '@nestjs/common';
-import { IDepartmentsRepository } from 'src/application/contracts/repository';
+import { IDepartmentRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
 
 export interface DepartmentsInput {
@@ -17,7 +17,7 @@ export type DepartmentsOutput = {
 export class CreateDepartmentUseCase {
   constructor(
     @Inject(TOKENS.repositories.DEPARTMENTS)
-    private readonly _departmentRepository: IDepartmentsRepository,
+    private readonly _departmentRepository: IDepartmentRepository,
   ) {}
 
   async execute(param: DepartmentsInput): Promise<void> {
