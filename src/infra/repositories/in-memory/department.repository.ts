@@ -1,12 +1,7 @@
-import {
-  IDepartmentsReadRepository,
-  IDepartmentsWriteRepository,
-} from 'src/application/contracts/repository';
+import { IDepartmentRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
 
-export class IMemoryDepartmentRepository
-  implements IDepartmentsReadRepository, IDepartmentsWriteRepository
-{
+export class IMemoryDepartmentRepository implements IDepartmentRepository {
   private departdb: Departments[];
   constructor() {
     this.departdb = [];
@@ -18,15 +13,23 @@ export class IMemoryDepartmentRepository
     console.table(data);
   }
 
-  async getAll(): Promise<Departments[]> {
-    return this.departdb.slice();
+  update(code: string, data: Departments): Promise<Departments> {
+    throw new Error('Method not implemented.');
+  }
+
+  findByCode(code: string): Promise<Departments> {
+    throw new Error('Method not implemented.');
   }
 
   async count(): Promise<number> {
     return this.departdb.length;
   }
 
-  findByCode(code: string): Promise<Departments> {
+  async getAll(): Promise<Departments[]> {
+    return this.departdb.slice();
+  }
+
+  delete(code: string): Promise<void> {
     throw new Error('Method not implemented.');
   }
 }
