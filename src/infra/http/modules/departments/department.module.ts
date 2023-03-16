@@ -3,7 +3,10 @@ import { TOKENS } from './../../../container/tokens';
 import { Module } from '@nestjs/common';
 import { DepartmentController } from './department.controller';
 import { DepartmentService } from './department.service';
-import { CreateDepartmentUseCase } from 'src/application/usecases/department';
+import {
+  CreateDepartmentUseCase,
+  GetDepartmentByCode,
+} from 'src/application/usecases/department';
 import { IMemoryDepartmentRepository } from 'src/infra/repositories/in-memory';
 
 @Module({
@@ -16,6 +19,7 @@ import { IMemoryDepartmentRepository } from 'src/infra/repositories/in-memory';
     DepartmentService,
     CreateDepartmentUseCase,
     ListDepartmentUseCase,
+    GetDepartmentByCode,
   ],
 })
 export class DepartmentModule {}

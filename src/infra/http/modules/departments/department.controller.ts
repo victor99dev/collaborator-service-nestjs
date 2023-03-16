@@ -1,6 +1,6 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
-import { RegisterDepartmentDto } from './dto';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { RegisterDepartmentDto } from '../../../../application/dtos/departments';
 import { DepartmentService } from './department.service';
 
 @ApiTags('Department Environment')
@@ -20,6 +20,16 @@ export class DepartmentController {
   @Get('list')
   async getAll() {
     const result = await this._departmentService.getAll();
+    return result;
+  }
+
+  @ApiOperation({ summary: 'Get Department by code' })
+  @ApiParam({ name: 'code', required: true })
+  @Get(':code')
+  async findByCode(@Param() params) {
+    const result = await this._departmentService.findByCode({
+      code: params.code,
+    });
     return result;
   }
 }

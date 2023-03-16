@@ -17,8 +17,12 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
     throw new Error('Method not implemented.');
   }
 
-  findByCode(code: string): Promise<Departments> {
-    throw new Error('Method not implemented.');
+  async findByCode(code: string): Promise<Departments> {
+    const departmentbyid = this.departdb.find(
+      (department) => department.id === code,
+    );
+
+    return departmentbyid;
   }
 
   async count(): Promise<number> {
