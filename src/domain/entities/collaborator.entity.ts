@@ -1,15 +1,14 @@
 import { randomUUID } from 'crypto';
-import { Address, SocialMedia } from '../value-object';
+import { Address, Documents, SocialMedia } from '../value-object';
 import { Departments } from './department.entity';
 import { Replace } from 'src/helpers';
 import { GroupsType } from '../enum';
-import { Documents } from './document.entity';
 
 export interface CollaboratorsProps {
   name: string;
   email: string;
   age: number;
-  documents: Documents[];
+  documents: Documents;
   department: Departments[];
   group: GroupsType;
   address?: Address | null;
@@ -63,10 +62,10 @@ export class Collaborators {
     this.props.age = age;
   }
 
-  public get documents(): Documents[] {
+  public get documents(): Documents {
     return this.props.documents;
   }
-  public set documents(documents: Documents[]) {
+  public set documents(documents: Documents) {
     this.props.documents = documents;
   }
 
