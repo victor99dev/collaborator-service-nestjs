@@ -1,7 +1,11 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { RegisterDepartmentDto } from '../../../../application/dtos/departments';
 import { DepartmentService } from './department.service';
+import {
+  GetDepartmentIdViewModel,
+  ListdepartmentViewModels,
+} from '../../view-models/department';
+import { RegisterDepartmentDto } from './dtos';
 
 @ApiTags('Department Environment')
 @Controller({
@@ -19,17 +23,22 @@ export class DepartmentController {
   @ApiOperation({ summary: 'List Departments' })
   @Get('list')
   async getAll() {
-    const result = await this._departmentService.getAll();
-    return result;
+    const department = await this._departmentService.getAll();
+    return {
+      data: ListdepartmentViewModels.toHttpList(department.data),
+    };
   }
 
   @ApiOperation({ summary: 'Get Department by code' })
   @ApiParam({ name: 'code', required: true })
   @Get(':code')
   async findByCode(@Param() params) {
-    const result = await this._departmentService.findByCode({
+    const departmentById = await this._departmentService.findByCode({
       code: params.code,
     });
-    return result;
+
+    return {
+      data: GetDepartmentIdViewModel.toHttp(departmentById.data),
+    };
   }
 }
