@@ -1,17 +1,8 @@
-import { TOKENS } from '../../../infra/container/tokens';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
-
-export interface DepartmentsInput {
-  name: string;
-  description: string;
-  active: boolean;
-}
-
-export type DepartmentsOutput = {
-  output: Departments;
-};
+import { TOKENS } from 'src/infra/container';
 
 @Injectable()
 export class CreateDepartmentUseCase {
@@ -30,3 +21,13 @@ export class CreateDepartmentUseCase {
     this._departmentRepository.save(output);
   }
 }
+
+export interface DepartmentsInput {
+  name: string;
+  description: string;
+  active: boolean;
+}
+
+export type DepartmentsOutput = {
+  output: Departments;
+};

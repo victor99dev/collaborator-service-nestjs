@@ -3,13 +3,6 @@ import { IDepartmentRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
-export type ListDepartmentOutput = {
-  metadata: {
-    [key: string]: unknown;
-  };
-  data: Departments[];
-};
-
 export class ListDepartmentUseCase {
   constructor(
     @Inject(TOKENS.repositories.DEPARTMENTS)
@@ -30,3 +23,10 @@ export class ListDepartmentUseCase {
     };
   }
 }
+
+export type ListDepartmentOutput = {
+  metadata: {
+    [key: string]: unknown;
+  };
+  data: Departments[];
+};
