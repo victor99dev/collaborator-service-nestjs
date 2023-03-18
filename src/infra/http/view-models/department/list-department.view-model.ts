@@ -1,6 +1,6 @@
 import { Departments } from 'src/domain/entities';
 
-export class ListdepartmentViewModels {
+export class ListdepartmentViewModel {
   static toHttpList(department: Departments[]) {
     const _departments: unknown[] = [];
     department.forEach((_department) => {
