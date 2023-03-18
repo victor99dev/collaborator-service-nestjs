@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class RegisterDepartmentDto {
+export class UpdateDepartmentDto {
   @ApiProperty()
   name: string;
 
@@ -9,9 +9,6 @@ export class RegisterDepartmentDto {
 
   @ApiProperty()
   active: boolean;
-
-  @ApiProperty()
-  created_at: Date;
 
   @ApiProperty()
   updated_at: Date;
