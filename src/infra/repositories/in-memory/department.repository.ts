@@ -13,8 +13,16 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
     console.table(data);
   }
 
-  update(code: string, data: Departments): Promise<Departments> {
-    throw new Error('Method not implemented.');
+  //TODO: REVIEW AND IMPLEMENT THE REPOSITORY CACHE
+  async update(code: string, data: Departments): Promise<Departments> {
+    await this.departdb.find((department) => department.id === code);
+
+    this.departdb.push(data);
+
+    console.log(data);
+    console.table(data);
+
+    return data;
   }
 
   async findByCode(code: string): Promise<Departments> {
@@ -30,7 +38,7 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
   }
 
   async getAll(): Promise<Departments[]> {
-    return this.departdb.slice();
+    return this.departdb;
   }
 
   delete(code: string): Promise<void> {
