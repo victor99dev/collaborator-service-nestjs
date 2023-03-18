@@ -1,13 +1,14 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { DepartmentService } from './department.service';
 import {
   GetDepartmentIdViewModel,
   ListdepartmentViewModels,
 } from '../../view-models/department';
 import { RegisterDepartmentDto } from './dtos';
+import { DepartmentService } from './department.service';
+import { UpdateDepartmentDto } from './dtos/update-department.dto';
 
-@ApiTags('Department Environment')
+@ApiTags('Department')
 @Controller({
   path: 'departments',
 })
@@ -40,5 +41,12 @@ export class DepartmentController {
     return {
       data: GetDepartmentIdViewModel.toHttp(departmentById.data),
     };
+  }
+
+  @ApiOperation({ summary: 'Updated a Department' })
+  @ApiParam({ name: 'code', required: true })
+  @Put(':code')
+  async update(@Param() params, @Body() body: UpdateDepartmentDto) {
+    await this._departmentService.update(params.code, body);
   }
 }
