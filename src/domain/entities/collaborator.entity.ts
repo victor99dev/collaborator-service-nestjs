@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import { Address, Documents, SocialMedia } from '../value-object';
 import { Departments } from './department.entity';
 import { Replace } from 'src/helpers';
-import { GroupsType } from '../enum';
+import { Group } from './group.entity';
 
 export interface CollaboratorsProps {
   name: string;
@@ -10,7 +10,7 @@ export interface CollaboratorsProps {
   age: number;
   documents: Documents;
   department: Departments[];
-  group: GroupsType;
+  group: Group;
   address?: Address | null;
   socialMedia?: SocialMedia[] | null;
   login: string;
@@ -76,10 +76,10 @@ export class Collaborators {
     this.props.department = department;
   }
 
-  public get group(): GroupsType {
+  public get group(): Group {
     return this.props.group;
   }
-  public set group(group: GroupsType) {
+  public set group(group: Group) {
     this.props.group = group;
   }
 
