@@ -1,8 +1,11 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { GroupService } from './group.service';
 import { RegisterGroupDto } from './dtos/register-group.dto';
-import { ListGroupViewModel } from '../../view-models/group';
+import {
+  GetGroupIdViewModel,
+  ListGroupViewModel,
+} from '../../view-models/group';
 
 @ApiTags('Group')
 @Controller({
@@ -23,6 +26,19 @@ export class GroupController {
     const group = await this._groupService.getAll();
     return {
       data: ListGroupViewModel.toHttpList(group.data),
+    };
+  }
+
+  @ApiOperation({ summary: 'Get Group by code' })
+  @ApiParam({ name: 'code', required: true })
+  @Get(':code')
+  async findByCode(@Param() params) {
+    const groupById = await this._groupService.findByCode({
+      code: params.code,
+    });
+
+    return {
+      data: GetGroupIdViewModel.toHttp(groupById.data),
     };
   }
 }
