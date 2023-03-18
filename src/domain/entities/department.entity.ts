@@ -6,7 +6,7 @@ export interface DepartmentsProps {
   description: string;
   active: boolean;
   createdAt: Date;
-  updatedAt?: Date | null;
+  updatedAt?: Date;
 }
 
 export class Departments {
@@ -14,13 +14,14 @@ export class Departments {
   private props: DepartmentsProps;
 
   constructor(
-    props: Replace<DepartmentsProps, { createdAt?: Date }>,
+    props: Replace<DepartmentsProps, { createdAt?: Date; updatedAt?: Date }>,
     id?: string,
   ) {
     this._id = id ?? randomUUID();
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
     };
   }
 
@@ -38,6 +39,7 @@ export class Departments {
   public get description(): string {
     return this.props.description;
   }
+
   public set description(description: string) {
     this.props.description = description;
   }
@@ -49,13 +51,11 @@ export class Departments {
   public get updatedAt(): Date {
     return this.props.updatedAt;
   }
-  public update() {
-    this.props.updatedAt = new Date() || null;
-  }
 
   public get active(): boolean {
     return this.props.active;
   }
+
   public set active(active: boolean) {
     this.props.active = active;
   }

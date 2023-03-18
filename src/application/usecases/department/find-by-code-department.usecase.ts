@@ -1,9 +1,10 @@
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
-export class GetDepartmentByCode {
+@Injectable()
+export class GetDepartmentByCodeUseCase {
   constructor(
     @Inject(TOKENS.repositories.DEPARTMENTS)
     private readonly _grdRepository: IDepartmentRepository,
