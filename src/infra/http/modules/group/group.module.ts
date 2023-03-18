@@ -3,7 +3,10 @@ import { Module } from '@nestjs/common';
 import { GroupController } from './group.controller';
 import { IMemoryGroupRepository } from 'src/infra/repositories/in-memory';
 import { GroupService } from './group.service';
-import { CreateGroupUseCase } from 'src/application/usecases/group';
+import {
+  CreateGroupUseCase,
+  ListGroupUseCase,
+} from 'src/application/usecases/group';
 
 @Module({
   controllers: [GroupController],
@@ -14,6 +17,7 @@ import { CreateGroupUseCase } from 'src/application/usecases/group';
     },
     GroupService,
     CreateGroupUseCase,
+    ListGroupUseCase,
   ],
 })
 export class GroupModule {}

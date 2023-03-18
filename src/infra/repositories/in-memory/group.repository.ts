@@ -17,16 +17,18 @@ export class IMemoryGroupRepository implements IGroupRepository {
     throw new Error('Method not implemented.');
   }
 
-  findByCode(code: string): Promise<Group> {
-    throw new Error('Method not implemented.');
+  async findByCode(code: string): Promise<Group> {
+    const groupbyid = this.groupdb.find((group) => group.id === code);
+
+    return groupbyid;
   }
 
-  count(): Promise<number> {
-    throw new Error('Method not implemented.');
+  async count(): Promise<number> {
+    return this.groupdb.length;
   }
 
-  getAll(): Promise<Group[]> {
-    throw new Error('Method not implemented.');
+  async getAll(): Promise<Group[]> {
+    return this.groupdb;
   }
 
   delete(code: string): Promise<void> {
