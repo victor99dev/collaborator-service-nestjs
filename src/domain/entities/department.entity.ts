@@ -6,7 +6,7 @@ export interface DepartmentsProps {
   description: string;
   active: boolean;
   createdAt: Date;
-  updatedAt?: Date;
+  updatedAt?: Date | null;
 }
 
 export class Departments {
