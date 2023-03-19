@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { GroupService } from './group.service';
 import { RegisterGroupDto } from './dtos/register-group.dto';
@@ -40,5 +48,12 @@ export class GroupController {
   @Put(':code')
   async update(@Param() params, @Body() body: UpdateGroupDto) {
     this._groupService.update(params.code, body);
+  }
+
+  @ApiOperation({ summary: 'Deleted a Group' })
+  @ApiParam({ name: 'code', required: true })
+  @Delete(':code')
+  async remove(@Param() params) {
+    this._groupService.remove(params.code);
   }
 }

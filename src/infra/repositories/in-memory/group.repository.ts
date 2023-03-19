@@ -34,7 +34,9 @@ export class IMemoryGroupRepository implements IGroupRepository {
     return this.groupdb;
   }
 
-  delete(code: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(code: string): Promise<void> {
+    const findGroupId = this.groupdb.find((group) => group.id === code);
+
+    this.groupdb = this.groupdb.filter((group) => group.id !== findGroupId.id);
   }
 }
