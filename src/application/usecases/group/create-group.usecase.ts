@@ -15,6 +15,8 @@ export class CreateGroupUseCase {
       name: param.name,
       description: param.description,
       active: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     this._groupRepository.save(output);

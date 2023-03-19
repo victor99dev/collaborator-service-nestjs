@@ -9,12 +9,15 @@ export class IMemoryGroupRepository implements IGroupRepository {
 
   async save(data: Group): Promise<void> {
     this.groupdb.push(data);
-    console.log(data);
-    console.table(data);
   }
 
-  update(code: string, data: Group): Promise<void> {
-    throw new Error('Method not implemented.');
+  async update(code: string, data: Group): Promise<void> {
+    const findGroupId = this.groupdb.find((group) => group.id === code);
+
+    findGroupId.name = data.name;
+    findGroupId.description = data.description;
+    findGroupId.active = data.active;
+    findGroupId.updatedAt = data.updatedAt;
   }
 
   async findByCode(code: string): Promise<Group> {

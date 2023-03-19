@@ -6,6 +6,7 @@ import {
   GetGroupByCodeUseCase,
   ListGroupOutput,
   ListGroupUseCase,
+  UpdateGroupUsecase,
 } from 'src/application/usecases/group';
 
 @Injectable()
@@ -14,6 +15,7 @@ export class GroupService {
     private _createGroupUseCase: CreateGroupUseCase,
     private _lisGroupUseCase: ListGroupUseCase,
     private _getByCodeGroupUseCase: GetGroupByCodeUseCase,
+    private _updateGroupUseCase: UpdateGroupUsecase,
   ) {}
 
   async createGroup(input: any): Promise<void> {
@@ -26,5 +28,9 @@ export class GroupService {
 
   async findByCode(input: GetGroupByCodeInput): Promise<GetGroupByCodeOutput> {
     return this._getByCodeGroupUseCase.execute(input);
+  }
+
+  async update(code, input: any): Promise<void> {
+    return this._updateGroupUseCase.execute(code, input);
   }
 }

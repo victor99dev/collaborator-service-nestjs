@@ -7,6 +7,7 @@ import {
   CreateGroupUseCase,
   GetGroupByCodeUseCase,
   ListGroupUseCase,
+  UpdateGroupUsecase,
 } from 'src/application/usecases/group';
 
 @Module({
@@ -20,6 +21,7 @@ import {
     CreateGroupUseCase,
     ListGroupUseCase,
     GetGroupByCodeUseCase,
+    UpdateGroupUsecase,
   ],
 })
 export class GroupModule {}
