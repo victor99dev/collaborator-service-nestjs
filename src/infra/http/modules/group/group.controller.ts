@@ -9,8 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { GroupService } from './group.service';
-import { RegisterGroupDto } from './dtos/register-group.dto';
-import { UpdateGroupDto } from './dtos';
+import { RegisterGroupDto, UpdateGroupDto } from '../../dtos/groups';
 
 @ApiTags('Group')
 @Controller({

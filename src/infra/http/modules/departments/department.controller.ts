@@ -8,9 +8,11 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { RegisterDepartmentDto } from './dtos';
 import { DepartmentService } from './department.service';
-import { UpdateDepartmentDto } from './dtos/update-department.dto';
+import {
+  RegisterDepartmentDto,
+  UpdateDepartmentDto,
+} from '../../dtos/departments';
 
 @ApiTags('Department')
 @Controller({
