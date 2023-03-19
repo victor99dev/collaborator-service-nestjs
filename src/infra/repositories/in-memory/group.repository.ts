@@ -13,7 +13,7 @@ export class IMemoryGroupRepository implements IGroupRepository {
     console.table(data);
   }
 
-  update(code: string, data: Group): Promise<Group> {
+  update(code: string, data: Group): Promise<void> {
     throw new Error('Method not implemented.');
   }
 

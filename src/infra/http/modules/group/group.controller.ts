@@ -23,22 +23,18 @@ export class GroupController {
   @ApiOperation({ summary: 'List Groups' })
   @Get('list')
   async getAll() {
-    const group = await this._groupService.getAll();
-    return {
-      data: ListGroupViewModel.toHttpList(group.data),
-    };
+    const getGroupAll = await this._groupService.getAll();
+    return getGroupAll;
   }
 
   @ApiOperation({ summary: 'Get Group by code' })
   @ApiParam({ name: 'code', required: true })
   @Get(':code')
   async findByCode(@Param() params) {
-    const groupById = await this._groupService.findByCode({
+    const getGroupById = await this._groupService.findByCode({
       code: params.code,
     });
 
-    return {
-      data: GetGroupIdViewModel.toHttp(groupById.data),
-    };
+    return getGroupById;
   }
 }

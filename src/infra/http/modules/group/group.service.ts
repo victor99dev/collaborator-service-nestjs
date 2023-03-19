@@ -25,8 +25,6 @@ export class GroupService {
   }
 
   async findByCode(input: GetGroupByCodeInput): Promise<GetGroupByCodeOutput> {
-    const output = await this._getByCodeGroupUseCase.execute(input);
-
-    return output;
+    return this._getByCodeGroupUseCase.execute(input);
   }
 }

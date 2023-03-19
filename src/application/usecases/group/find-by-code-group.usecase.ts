@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { group } from 'console';
 import { IGroupRepository } from 'src/application/contracts/repository';
 import { Group } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
+import { GetGroupIdViewModel } from 'src/infra/http/view-models/group';
 
 @Injectable()
 export class GetGroupByCodeUseCase {
@@ -11,9 +13,9 @@ export class GetGroupByCodeUseCase {
   ) {}
 
   async execute({ code }: GetGroupByCodeInput): Promise<GetGroupByCodeOutput> {
-    const data = await this._grdRepository.findByCode(code);
+    const group = await this._grdRepository.findByCode(code);
 
-    return { data: data };
+    return { data: GetGroupIdViewModel.toHttp(group) };
   }
 }
 
@@ -22,5 +24,5 @@ export type GetGroupByCodeInput = {
 };
 
 export type GetGroupByCodeOutput = {
-  data: Group;
+  data: GetGroupIdViewModel;
 };
