@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { RegisterDepartmentDto } from './dtos';
 import { DepartmentService } from './department.service';
@@ -48,12 +40,5 @@ export class DepartmentController {
   @Put(':code')
   async update(@Param() params, @Body() body: UpdateDepartmentDto) {
     this._departmentService.update(params.code, body);
-  }
-
-  @ApiOperation({ summary: 'Deleted a Department' })
-  @ApiParam({ name: 'code', required: true })
-  @Delete(':code')
-  async remove(@Param() params) {
-    this._departmentService.remove(params.code);
   }
 }

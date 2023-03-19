@@ -5,7 +5,6 @@ import { DepartmentController } from './department.controller';
 import { DepartmentService } from './department.service';
 import {
   CreateDepartmentUseCase,
-  DeleteDepartmentUsecase,
   GetDepartmentByCodeUseCase,
   UpdateDepartmentUsecase,
 } from 'src/application/usecases/department';
@@ -23,7 +22,6 @@ import { IMemoryDepartmentRepository } from 'src/infra/repositories/in-memory';
     ListDepartmentUseCase,
     GetDepartmentByCodeUseCase,
     UpdateDepartmentUsecase,
-    DeleteDepartmentUsecase,
   ],
 })
 export class DepartmentModule {}
