@@ -38,7 +38,13 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
     return this.departdb;
   }
 
-  delete(code: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(code: string): Promise<void> {
+    const findDepartmentId = this.departdb.find(
+      (department) => department.id === code,
+    );
+
+    this.departdb = this.departdb.filter(
+      (department) => department.id !== findDepartmentId.id,
+    );
   }
 }
