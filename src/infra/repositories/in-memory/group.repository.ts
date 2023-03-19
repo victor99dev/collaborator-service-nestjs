@@ -1,4 +1,4 @@
-import { IGroupRepository } from 'src/application/contracts/repository';
+import { IGroupRepository } from 'src/application/contracts';
 import { Group } from 'src/domain/entities/group.entity';
 
 export class IMemoryGroupRepository implements IGroupRepository {

@@ -1,6 +1,6 @@
 import { Inject } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
-import { IDepartmentRepository } from 'src/application/contracts/repository';
+import { IDepartmentRepository } from 'src/application/contracts';
 import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 

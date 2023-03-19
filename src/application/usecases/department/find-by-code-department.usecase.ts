@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IDepartmentRepository } from 'src/application/contracts/repository';
+import { IDepartmentRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
 import { GetDepartmentIdViewModel } from 'src/infra/http/view-models/department';
 

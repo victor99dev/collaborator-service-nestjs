@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IGroupRepository } from 'src/application/contracts/repository';
+import { IGroupRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
 import { GetGroupIdViewModel } from 'src/infra/http/view-models/group';
 

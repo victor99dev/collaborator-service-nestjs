@@ -1,4 +1,4 @@
-import { IDepartmentRepository } from 'src/application/contracts/repository';
+import { IDepartmentRepository } from 'src/application/contracts';
 import { Departments } from 'src/domain/entities';
 
 export class IMemoryDepartmentRepository implements IDepartmentRepository {
