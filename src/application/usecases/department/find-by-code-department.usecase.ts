@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts/repository';
-import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
+import { GetDepartmentIdViewModel } from 'src/infra/http/view-models/department';
 
 @Injectable()
 export class GetDepartmentByCodeUseCase {
@@ -13,9 +13,9 @@ export class GetDepartmentByCodeUseCase {
   async execute({
     code,
   }: GetDepartmentByCodeInput): Promise<GetDepartmentByCodeOutput> {
-    const data = await this._grdRepository.findByCode(code);
+    const department = await this._grdRepository.findByCode(code);
 
-    return { data: data };
+    return { data: GetDepartmentIdViewModel.toHttp(department) };
   }
 }
 
@@ -24,5 +24,5 @@ export type GetDepartmentByCodeInput = {
 };
 
 export type GetDepartmentByCodeOutput = {
-  data: Departments;
+  data: GetDepartmentIdViewModel;
 };

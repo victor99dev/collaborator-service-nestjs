@@ -2,6 +2,7 @@ import { Inject } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
+import { ListdepartmentViewModel } from 'src/infra/http/view-models/department';
 
 export class ListDepartmentUseCase {
   constructor(
@@ -15,7 +16,7 @@ export class ListDepartmentUseCase {
     const total = await this._departmentRepository.count();
 
     return {
-      data: department,
+      data: ListdepartmentViewModel.toHttpList(department),
       metadata: {
         total,
         length: department.length,
@@ -28,5 +29,5 @@ export type ListDepartmentOutput = {
   metadata: {
     [key: string]: unknown;
   };
-  data: Departments[];
+  data: ListdepartmentViewModel[];
 };
