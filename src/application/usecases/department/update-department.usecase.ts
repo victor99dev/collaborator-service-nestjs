@@ -11,7 +11,9 @@ export class UpdateDepartmentUsecase {
   ) {}
 
   async execute(code: string, data: Departments) {
-    await this._departmentRepository.findByCode(code);
+    const codeReturn = await this._departmentRepository.findByCode(code);
+
+    if (!codeReturn) throw new Error(`Not Found Department with code ${code}`);
 
     data.name;
     data.description;

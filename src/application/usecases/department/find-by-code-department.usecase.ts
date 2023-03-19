@@ -15,6 +15,8 @@ export class GetDepartmentByCodeUseCase {
   }: GetDepartmentByCodeInput): Promise<GetDepartmentByCodeOutput> {
     const department = await this._grdRepository.findByCode(code);
 
+    if (!department) throw new Error(`Not Found Department with code ${code}`);
+
     return { data: GetDepartmentIdViewModel.toHttp(department) };
   }
 }
