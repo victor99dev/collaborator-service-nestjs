@@ -3,7 +3,6 @@ import { IDepartmentRepository } from 'src/application/contracts/repository';
 import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
-//TODO: REVIEW AND IMPLEMENT THE UPDATE USECASE
 @Injectable()
 export class UpdateDepartmentUsecase {
   constructor(
@@ -11,11 +10,14 @@ export class UpdateDepartmentUsecase {
     private readonly _departmentRepository: IDepartmentRepository,
   ) {}
 
-  async execute(code, data: Departments): Promise<Departments> {
+  async execute(code: string, data: Departments) {
     await this._departmentRepository.findByCode(code);
 
-    const updatedUser = await this._departmentRepository.update(code, data);
+    data.name;
+    data.description;
+    data.active;
+    data.updatedAt = new Date();
 
-    return updatedUser;
+    return await this._departmentRepository.update(code, data);
   }
 }

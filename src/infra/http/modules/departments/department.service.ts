@@ -23,22 +23,16 @@ export class DepartmentService {
   }
 
   async getAll(): Promise<ListDepartmentOutput> {
-    return this._listDepartmentUsecase.execute();
+    return await this._listDepartmentUsecase.execute();
   }
 
   async findByCode(
     input: GetDepartmentByCodeInput,
   ): Promise<GetDepartmentByCodeOutput> {
-    const output = await this._getByCodeDepartmentUsecase.execute(input);
-
-    return output;
+    return this._getByCodeDepartmentUsecase.execute(input);
   }
 
   async update(code, input: any): Promise<void> {
-    const getDepartmentId = await this._getByCodeDepartmentUsecase.execute({
-      code,
-    });
-
-    await this._updateDepartmentUseCase.execute(getDepartmentId, input);
+    return this._updateDepartmentUseCase.execute(code, input);
   }
 }

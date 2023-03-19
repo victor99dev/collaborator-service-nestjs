@@ -16,6 +16,8 @@ export class CreateDepartmentUseCase {
       name: param.name,
       description: param.description,
       active: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
     });
 
     this._departmentRepository.save(output);

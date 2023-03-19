@@ -1,7 +1,7 @@
 export abstract class Repository<TEntity> {
   abstract save(data: TEntity): Promise<void>;
 
-  abstract update(code: string, data: TEntity): Promise<TEntity>;
+  abstract update(code: string, data: TEntity): Promise<void>;
 
   abstract findByCode(code: string): Promise<TEntity>;
 

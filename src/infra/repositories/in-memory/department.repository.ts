@@ -9,20 +9,17 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
 
   async save(data: Departments): Promise<void> {
     this.departdb.push(data);
-    console.log(data);
-    console.table(data);
   }
 
-  //TODO: REVIEW AND IMPLEMENT THE REPOSITORY CACHE
-  async update(code: string, data: Departments): Promise<Departments> {
-    await this.departdb.find((department) => department.id === code);
+  async update(code: string, data: Departments): Promise<void> {
+    const findDepartmentId = this.departdb.find(
+      (department) => department.id === code,
+    );
 
-    this.departdb.push(data);
-
-    console.log(data);
-    console.table(data);
-
-    return data;
+    findDepartmentId.name = data.name;
+    findDepartmentId.description = data.description;
+    findDepartmentId.active = data.active;
+    findDepartmentId.updatedAt = data.updatedAt;
   }
 
   async findByCode(code: string): Promise<Departments> {

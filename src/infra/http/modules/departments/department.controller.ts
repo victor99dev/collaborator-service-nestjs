@@ -24,29 +24,25 @@ export class DepartmentController {
   @ApiOperation({ summary: 'List Departments' })
   @Get('list')
   async getAll() {
-    const department = await this._departmentService.getAll();
-    return {
-      data: ListdepartmentViewModel.toHttpList(department.data),
-    };
+    const getDepartmentAll = await this._departmentService.getAll();
+    return getDepartmentAll;
   }
 
   @ApiOperation({ summary: 'Get Department by code' })
   @ApiParam({ name: 'code', required: true })
   @Get(':code')
   async findByCode(@Param() params) {
-    const departmentById = await this._departmentService.findByCode({
+    const getDepartmentById = await this._departmentService.findByCode({
       code: params.code,
     });
 
-    return {
-      data: GetDepartmentIdViewModel.toHttp(departmentById.data),
-    };
+    return getDepartmentById;
   }
 
   @ApiOperation({ summary: 'Updated a Department' })
   @ApiParam({ name: 'code', required: true })
   @Put(':code')
   async update(@Param() params, @Body() body: UpdateDepartmentDto) {
-    await this._departmentService.update(params.code, body);
+    this._departmentService.update(params.code, body);
   }
 }

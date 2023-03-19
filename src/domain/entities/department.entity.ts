@@ -21,7 +21,6 @@ export class Departments {
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
-      updatedAt: props.updatedAt ?? new Date(),
     };
   }
 
@@ -50,6 +49,10 @@ export class Departments {
 
   public get updatedAt(): Date {
     return this.props.updatedAt;
+  }
+
+  public set updatedAt(updatedAt: Date) {
+    this.props.updatedAt = updatedAt;
   }
 
   public get active(): boolean {
