@@ -1,6 +1,5 @@
 import { Inject } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts/repository';
-import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 import { ListdepartmentViewModel } from 'src/infra/http/view-models/department';
 

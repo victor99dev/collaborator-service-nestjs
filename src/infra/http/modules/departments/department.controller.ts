@@ -1,9 +1,5 @@
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import {
-  GetDepartmentIdViewModel,
-  ListdepartmentViewModel,
-} from '../../view-models/department';
 import { RegisterDepartmentDto } from './dtos';
 import { DepartmentService } from './department.service';
 import { UpdateDepartmentDto } from './dtos/update-department.dto';

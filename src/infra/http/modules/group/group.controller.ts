@@ -2,10 +2,6 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { GroupService } from './group.service';
 import { RegisterGroupDto } from './dtos/register-group.dto';
-import {
-  GetGroupIdViewModel,
-  ListGroupViewModel,
-} from '../../view-models/group';
 
 @ApiTags('Group')
 @Controller({
