@@ -1,5 +1,5 @@
-export type DocumentsDto = {
+export type DocumentDto = {
   number: number;
-  dateOfIssue: Date;
-  documentsType: string;
+  date_of_issue: Date;
+  documents_type: string;
 };

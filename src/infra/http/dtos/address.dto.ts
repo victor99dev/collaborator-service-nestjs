@@ -1,5 +1,5 @@
 export type AddressDto = {
-  streetAddress: string;
+  street_address: string;
   number: number;
   city: string;
   state: string;
