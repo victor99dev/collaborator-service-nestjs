@@ -9,13 +9,14 @@ export interface CollaboratorsProps {
   email: string;
   age: number;
   documents: Documents;
+  departmentId: string[];
   department: Departments[];
+  groupId: string;
   group: Group;
   address?: Address | null;
   socialMedia?: SocialMedia[] | null;
   login: string;
   password: string;
-  status: boolean;
   description?: string | null;
   active: boolean;
   createdAt: Date;
@@ -109,13 +110,6 @@ export class Collaborators {
   }
   public set password(password: string) {
     this.props.password = password;
-  }
-
-  public get status(): boolean {
-    return this.props.status;
-  }
-  public set status(status: boolean) {
-    this.props.status = status;
   }
 
   public get description(): string {
