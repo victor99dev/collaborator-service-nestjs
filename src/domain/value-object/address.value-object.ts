@@ -1,6 +1,6 @@
 export interface AddressProps {
   streetAddress: string;
-  number: number;
+  number: string;
   city: string;
   state: string;
   country: string;
@@ -20,10 +20,10 @@ export class Address {
     this.props.streetAddress = streetAddress;
   }
 
-  public get number(): number {
+  public get number(): string {
     return this.props.number;
   }
-  public set number(number: number) {
+  public set number(number: string) {
     this.props.number = number;
   }
 

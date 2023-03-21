@@ -7,11 +7,9 @@ import { Group } from './group.entity';
 export interface CollaboratorsProps {
   name: string;
   email: string;
-  age: number;
+  age: string;
   documents: Documents;
-  departmentId: string[];
   department: Departments[];
-  groupId: string;
   group: Group;
   address?: Address | null;
   socialMedia?: SocialMedia[] | null;
@@ -56,10 +54,10 @@ export class Collaborators {
     this.props.email = email;
   }
 
-  public get age(): number {
+  public get age(): string {
     return this.props.age;
   }
-  public set age(age: number) {
+  public set age(age: string) {
     this.props.age = age;
   }
 

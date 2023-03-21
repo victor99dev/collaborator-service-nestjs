@@ -6,7 +6,7 @@ export class DocumentDto {
   type: string;
 
   @ApiProperty()
-  number: number;
+  number: string;
 
   @ApiProperty()
   date_of_issue: Date;

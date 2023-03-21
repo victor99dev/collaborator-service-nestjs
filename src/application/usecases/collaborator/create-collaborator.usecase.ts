@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ICollaboratorsRepository } from 'src/application/contracts';
-import { Collaborators } from 'src/domain/entities';
+import { Collaborators, Group } from 'src/domain/entities';
 import { DocumentsType } from 'src/domain/enum';
 import { Documents } from 'src/domain/value-object';
 import { TOKENS } from 'src/infra/container';
@@ -29,9 +29,7 @@ export class CreateCollaboratorUseCase {
       email: param.email,
       age: param.age,
       documents: new Documents(document) || null,
-      departmentId: param.departmentId,
       department: null,
-      groupId: param.groupId,
       group: null,
       address: null,
       socialMedia: null,
@@ -50,7 +48,7 @@ export class CreateCollaboratorUseCase {
 export interface CollaboratorInput {
   name: string;
   email: string;
-  age: number;
+  age: string;
   documents: DocumentDto | null;
   departmentId: string[];
   groupId: string;

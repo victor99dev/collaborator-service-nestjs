@@ -1,6 +1,6 @@
 export type AddressDto = {
   street_address: string;
-  number: number;
+  number: string;
   city: string;
   state: string;
   country: string;

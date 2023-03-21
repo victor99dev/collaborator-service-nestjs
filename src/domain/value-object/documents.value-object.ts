@@ -1,7 +1,7 @@
 import { DocumentsType } from '../enum';
 
 export interface DocumentsProps {
-  number: number;
+  number: string;
   dateOfIssue: Date;
   documentsType: DocumentsType;
 }
@@ -13,10 +13,10 @@ export class Documents {
     this.props = { ...props };
   }
 
-  public get number(): number {
+  public get number(): string {
     return this.props.number;
   }
-  public set number(number: number) {
+  public set number(number: string) {
     this.props.number = number;
   }
 

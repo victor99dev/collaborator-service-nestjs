@@ -9,7 +9,7 @@ export class RegisterCollaboratorDto {
   email: string;
 
   @ApiProperty()
-  age: number;
+  age: string;
 
   @ApiProperty({ type: DocumentDto })
   documents: DocumentDto;
