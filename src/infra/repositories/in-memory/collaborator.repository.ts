@@ -9,7 +9,6 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
 
   async save(data: Collaborators): Promise<void> {
     this.collaboratordb.push(data);
-    console.log(data);
   }
 
   update(code: string, data: Collaborators): Promise<void> {
@@ -32,7 +31,13 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     return this.collaboratordb;
   }
 
-  delete(code: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(code: string): Promise<void> {
+    const findCollaboratorId = this.collaboratordb.find(
+      (collaborator) => collaborator.id === code,
+    );
+
+    this.collaboratordb = this.collaboratordb.filter(
+      (collaborator) => collaborator.id !== findCollaboratorId.id,
+    );
   }
 }

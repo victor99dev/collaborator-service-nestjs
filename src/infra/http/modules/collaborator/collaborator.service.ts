@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import {
   CreateCollaboratorUseCase,
+  DeleteCollaboratorUseCase,
   GetCollaboratorByCodeInput,
   GetCollaboratorByCodeOutput,
   GetCollaboratorByCodeUseCase,
@@ -14,6 +15,7 @@ export class CollaboratorService {
     private _createCollaboratorUseCase: CreateCollaboratorUseCase,
     private _listCollaboratorUseCase: ListCollaboratorUseCase,
     private _getByCodeCollaborator: GetCollaboratorByCodeUseCase,
+    private _deleteCollaborator: DeleteCollaboratorUseCase,
   ) {}
 
   async createCollaborator(input: any): Promise<void> {
@@ -28,5 +30,13 @@ export class CollaboratorService {
     input: GetCollaboratorByCodeInput,
   ): Promise<GetCollaboratorByCodeOutput> {
     return this._getByCodeCollaborator.execute(input);
+  }
+
+  update(code, input: any): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  async remove(code): Promise<void> {
+    return this._deleteCollaborator.execute(code);
   }
 }

@@ -5,6 +5,7 @@ import { TOKENS } from 'src/infra/container';
 import { IMemoryCollaboratorRepository } from 'src/infra/repositories/in-memory';
 import {
   CreateCollaboratorUseCase,
+  DeleteCollaboratorUseCase,
   GetCollaboratorByCodeUseCase,
   ListCollaboratorUseCase,
 } from 'src/application/usecases/collaborator';
@@ -20,6 +21,7 @@ import {
     CreateCollaboratorUseCase,
     ListCollaboratorUseCase,
     GetCollaboratorByCodeUseCase,
+    DeleteCollaboratorUseCase,
   ],
 })
 export class CollaboratorModule {}
