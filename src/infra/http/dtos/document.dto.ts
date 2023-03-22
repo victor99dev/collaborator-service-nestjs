@@ -5,9 +5,9 @@ export class DocumentDto {
   @ApiProperty({ enum: DocumentsType })
   type: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   number: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: Date })
   date_of_issue: Date;
 }

@@ -1,15 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateGroupDto {
-  @ApiProperty()
+  @ApiProperty({ type: String })
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   description: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: Boolean })
   active: boolean;
 
-  @ApiProperty()
+  @ApiProperty({ type: Date })
   updated_at: Date;
 }

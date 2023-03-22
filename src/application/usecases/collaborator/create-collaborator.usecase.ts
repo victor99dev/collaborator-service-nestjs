@@ -37,7 +37,7 @@ export class CreateCollaboratorUseCase {
       login: param.login,
       password: param.password,
       description: param.description,
-      active: true,
+      active: param.active,
       createdAt: new Date(),
       updatedAt: new Date(),
     });

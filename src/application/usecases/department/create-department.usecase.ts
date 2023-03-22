@@ -15,7 +15,7 @@ export class CreateDepartmentUseCase {
     const output = new Departments({
       name: param.name,
       description: param.description,
-      active: true,
+      active: param.active,
       createdAt: new Date(),
       updatedAt: new Date(),
     });

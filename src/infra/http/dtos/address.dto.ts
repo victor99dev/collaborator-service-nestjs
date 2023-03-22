@@ -1,18 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class AddressDto {
-  @ApiProperty()
+  @ApiProperty({ type: String })
   street_address: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   number: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   city: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   state: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   country: string;
 }

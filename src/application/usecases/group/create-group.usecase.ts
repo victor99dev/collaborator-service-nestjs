@@ -14,7 +14,7 @@ export class CreateGroupUseCase {
     const output = new Group({
       name: param.name,
       description: param.description,
-      active: true,
+      active: param.active,
       createdAt: new Date(),
       updatedAt: new Date(),
     });

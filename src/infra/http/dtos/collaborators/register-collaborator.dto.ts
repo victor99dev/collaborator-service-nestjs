@@ -3,42 +3,42 @@ import { DocumentDto } from '../document.dto';
 import { AddressDto } from '../address.dto';
 
 export class RegisterCollaboratorDto {
-  @ApiProperty()
+  @ApiProperty({ type: String })
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   email: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   age: string;
 
   @ApiProperty({ type: DocumentDto })
   documents: DocumentDto;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   department_id: string[];
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   group_id: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: AddressDto })
   address: AddressDto;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   login: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   password: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: String })
   description: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: Boolean })
   active: boolean;
 
-  @ApiProperty()
+  @ApiProperty({ type: Date })
   created_at: Date;
 
-  @ApiProperty()
+  @ApiProperty({ type: Date })
   updated_at: Date;
 }
