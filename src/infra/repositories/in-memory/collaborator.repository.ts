@@ -16,8 +16,12 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     throw new Error('Method not implemented.');
   }
 
-  findByCode(code: string): Promise<Collaborators> {
-    throw new Error('Method not implemented.');
+  async findByCode(code: string): Promise<Collaborators> {
+    const collaboratorById = this.collaboratordb.find(
+      (collaborator) => collaborator.id === code,
+    );
+
+    return collaboratorById;
   }
 
   async count(): Promise<number> {

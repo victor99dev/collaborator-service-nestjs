@@ -23,11 +23,11 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
   }
 
   async findByCode(code: string): Promise<Departments> {
-    const departmentbyid = this.departdb.find(
+    const departmentByid = this.departdb.find(
       (department) => department.id === code,
     );
 
-    return departmentbyid;
+    return departmentByid;
   }
 
   async count(): Promise<number> {
