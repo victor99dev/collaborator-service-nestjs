@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
 @Injectable()
-export class DeleteDepartmentUsecase {
+export class DeleteDepartmentUseCase {
   constructor(
     @Inject(TOKENS.repositories.DEPARTMENTS)
     private readonly _departmentRepository: IDepartmentRepository,

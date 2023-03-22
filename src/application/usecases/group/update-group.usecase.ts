@@ -4,7 +4,7 @@ import { Group } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
 @Injectable()
-export class UpdateGroupUsecase {
+export class UpdateGroupUseCase {
   constructor(
     @Inject(TOKENS.repositories.GROUP)
     private readonly _groupRepository: IGroupRepository,

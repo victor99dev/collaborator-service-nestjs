@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import {
   CreateGroupUseCase,
-  DeleteGroupUsecase,
+  DeleteGroupUseCase,
   GetGroupByCodeInput,
   GetGroupByCodeOutput,
   GetGroupByCodeUseCase,
   ListGroupOutput,
   ListGroupUseCase,
-  UpdateGroupUsecase,
+  UpdateGroupUseCase,
 } from 'src/application/usecases/group';
 
 @Injectable()
@@ -16,8 +16,8 @@ export class GroupService {
     private _createGroupUseCase: CreateGroupUseCase,
     private _lisGroupUseCase: ListGroupUseCase,
     private _getByCodeGroupUseCase: GetGroupByCodeUseCase,
-    private _updateGroupUseCase: UpdateGroupUsecase,
-    private _deleteGroupUseCase: DeleteGroupUsecase,
+    private _updateGroupUseCase: UpdateGroupUseCase,
+    private _deleteGroupUseCase: DeleteGroupUseCase,
   ) {}
 
   async createGroup(input: any): Promise<void> {

@@ -6,8 +6,8 @@ import {
   GetDepartmentByCodeOutput,
   ListDepartmentOutput,
   ListDepartmentUseCase,
-  UpdateDepartmentUsecase,
-  DeleteDepartmentUsecase,
+  UpdateDepartmentUseCase,
+  DeleteDepartmentUseCase,
 } from 'src/application/usecases/department';
 
 @Injectable()
@@ -16,8 +16,8 @@ export class DepartmentService {
     private _createDepartmentUseCase: CreateDepartmentUseCase,
     private _listDepartmentUsecase: ListDepartmentUseCase,
     private _getByCodeDepartmentUsecase: GetDepartmentByCodeUseCase,
-    private _updateDepartmentUseCase: UpdateDepartmentUsecase,
-    private _deleteDepartmentUseCase: DeleteDepartmentUsecase,
+    private _updateDepartmentUseCase: UpdateDepartmentUseCase,
+    private _deleteDepartmentUseCase: DeleteDepartmentUseCase,
   ) {}
 
   async createDepartment(input: any): Promise<void> {

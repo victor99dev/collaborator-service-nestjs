@@ -3,7 +3,7 @@ import { IGroupRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
 
 @Injectable()
-export class DeleteGroupUsecase {
+export class DeleteGroupUseCase {
   constructor(
     @Inject(TOKENS.repositories.GROUP)
     private readonly _groupRepository: IGroupRepository,

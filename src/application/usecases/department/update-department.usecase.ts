@@ -4,7 +4,7 @@ import { Departments } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
 @Injectable()
-export class UpdateDepartmentUsecase {
+export class UpdateDepartmentUseCase {
   constructor(
     @Inject(TOKENS.repositories.DEPARTMENTS)
     private readonly _departmentRepository: IDepartmentRepository,

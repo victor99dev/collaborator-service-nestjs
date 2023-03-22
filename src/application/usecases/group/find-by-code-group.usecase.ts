@@ -7,11 +7,11 @@ import { GetGroupIdViewModel } from 'src/infra/http/view-models/group';
 export class GetGroupByCodeUseCase {
   constructor(
     @Inject(TOKENS.repositories.GROUP)
-    private readonly _grdRepository: IGroupRepository,
+    private readonly _groupRepository: IGroupRepository,
   ) {}
 
   async execute({ code }: GetGroupByCodeInput): Promise<GetGroupByCodeOutput> {
-    const group = await this._grdRepository.findByCode(code);
+    const group = await this._groupRepository.findByCode(code);
 
     return { data: GetGroupIdViewModel.toHttp(group) };
   }

@@ -5,10 +5,10 @@ import { IMemoryGroupRepository } from 'src/infra/repositories/in-memory';
 import { GroupService } from './group.service';
 import {
   CreateGroupUseCase,
-  DeleteGroupUsecase,
+  DeleteGroupUseCase,
   GetGroupByCodeUseCase,
   ListGroupUseCase,
-  UpdateGroupUsecase,
+  UpdateGroupUseCase,
 } from 'src/application/usecases/group';
 
 @Module({
@@ -22,8 +22,8 @@ import {
     CreateGroupUseCase,
     ListGroupUseCase,
     GetGroupByCodeUseCase,
-    UpdateGroupUsecase,
-    DeleteGroupUsecase,
+    UpdateGroupUseCase,
+    DeleteGroupUseCase,
   ],
 })
 export class GroupModule {}
