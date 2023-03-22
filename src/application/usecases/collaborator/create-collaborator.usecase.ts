@@ -6,8 +6,6 @@ import { Address, Documents } from 'src/domain/value-object';
 import { TOKENS } from 'src/infra/container';
 import { AddressDto, DocumentDto } from 'src/infra/http/dtos';
 
-//TODO: Check, refactor and deploy what is null
-
 @Injectable()
 export class CreateCollaboratorUseCase {
   constructor(
@@ -16,8 +14,6 @@ export class CreateCollaboratorUseCase {
   ) {}
 
   async execute(param: CollaboratorInput): Promise<void> {
-    //TODO: Check if it will work, if yes, apply to
-
     const document = new Documents({
       documentsType: 'type' as DocumentsType,
       number: param.documents.number,
@@ -37,8 +33,8 @@ export class CreateCollaboratorUseCase {
       email: param.email,
       age: param.age,
       documents: new Documents(document) || null,
-      departmentId: param.departmentId,
-      groupId: param.groupId,
+      departmentId: param.department_id,
+      groupId: param.group_id,
       address: new Address(address) || null,
       login: param.login,
       password: param.password,
@@ -57,8 +53,8 @@ export interface CollaboratorInput {
   email: string;
   age: string;
   documents: DocumentDto | null;
-  departmentId: string[];
-  groupId: string;
+  department_id: string[];
+  group_id: string;
   address: AddressDto | null;
   login: string;
   password: string;
