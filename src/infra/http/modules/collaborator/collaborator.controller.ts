@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { RegisterCollaboratorDto } from '../../dtos/collaborators';
@@ -14,5 +14,12 @@ export class CollaboratorController {
   @Post('')
   async registerNewCollaborator(@Body() body: RegisterCollaboratorDto) {
     this._collaboratorService.createCollaborator({ ...body });
+  }
+
+  @ApiOperation({ summary: 'List Collaborator' })
+  @Get('list')
+  async getAll() {
+    const getCollaboratorAll = await this._collaboratorService.getAll();
+    return getCollaboratorAll;
   }
 }
