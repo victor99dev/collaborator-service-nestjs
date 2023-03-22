@@ -2,9 +2,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ICollaboratorsRepository } from 'src/application/contracts';
 import { Collaborators } from 'src/domain/entities';
 import { DocumentsType } from 'src/domain/enum';
-import { Address, Documents, SocialMedia } from 'src/domain/value-object';
+import { Address, Documents } from 'src/domain/value-object';
 import { TOKENS } from 'src/infra/container';
-import { AddressDto, DocumentDto, SocialMediaDto } from 'src/infra/http/dtos';
+import { AddressDto, DocumentDto } from 'src/infra/http/dtos';
 
 //TODO: Check, refactor and deploy what is null
 
@@ -19,7 +19,7 @@ export class CreateCollaboratorUseCase {
     //TODO: Check if it will work, if yes, apply to
 
     const document = new Documents({
-      documentsType: 'cpf' as DocumentsType,
+      documentsType: 'type' as DocumentsType,
       number: param.documents.number,
       dateOfIssue: param.documents.date_of_issue,
     });
@@ -32,14 +32,6 @@ export class CreateCollaboratorUseCase {
       country: param.address.country,
     });
 
-    const _socialMedia: SocialMedia[] = [];
-    param.socialMedia.forEach((_socialMedia) => {
-      new SocialMedia({
-        name: _socialMedia.name,
-        url: _socialMedia.url,
-      });
-    });
-
     const output = new Collaborators({
       name: param.name,
       email: param.email,
@@ -48,7 +40,6 @@ export class CreateCollaboratorUseCase {
       departmentId: param.departmentId,
       groupId: param.groupId,
       address: new Address(address) || null,
-      socialMedia: _socialMedia || null,
       login: param.login,
       password: param.password,
       description: param.description,
@@ -69,7 +60,6 @@ export interface CollaboratorInput {
   departmentId: string[];
   groupId: string;
   address: AddressDto | null;
-  socialMedia: SocialMediaDto[] | null;
   login: string;
   password: string;
   description: string;

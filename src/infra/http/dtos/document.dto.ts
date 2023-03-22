@@ -10,7 +10,4 @@ export class DocumentDto {
 
   @ApiProperty()
   date_of_issue: Date;
-
-  @ApiProperty()
-  documents_type: string;
 }
