@@ -20,12 +20,12 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     throw new Error('Method not implemented.');
   }
 
-  count(): Promise<number> {
-    throw new Error('Method not implemented.');
+  async count(): Promise<number> {
+    return this.collaboratordb.length;
   }
 
-  getAll(): Promise<Collaborators[]> {
-    throw new Error('Method not implemented.');
+  async getAll(): Promise<Collaborators[]> {
+    return this.collaboratordb;
   }
 
   delete(code: string): Promise<void> {
