@@ -1,6 +1,6 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param } from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { RegisterCollaboratorDto } from '../../dtos/collaborators';
 
 @ApiTags('Collaborator')
@@ -21,5 +21,16 @@ export class CollaboratorController {
   async getAll() {
     const getCollaboratorAll = await this._collaboratorService.getAll();
     return getCollaboratorAll;
+  }
+
+  @ApiOperation({ summary: 'Get Collaborator by code' })
+  @ApiParam({ name: 'code', required: true })
+  @Get(':code')
+  async findByCode(@Param() params) {
+    const getCollaboratorById = await this._collaboratorService.findByCode({
+      code: params.code,
+    });
+
+    return getCollaboratorById;
   }
 }
