@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, Param } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { RegisterCollaboratorDto } from '../../dtos/collaborators';
@@ -32,5 +32,12 @@ export class CollaboratorController {
     });
 
     return getCollaboratorById;
+  }
+
+  @ApiOperation({ summary: 'Deleted a Collaborator' })
+  @ApiParam({ name: 'code', required: true })
+  @Delete(':code')
+  async remove(@Param() params) {
+    this._collaboratorService.remove(params.code);
   }
 }
