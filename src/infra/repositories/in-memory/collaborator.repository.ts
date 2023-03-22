@@ -10,7 +10,6 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
   async save(data: Collaborators): Promise<void> {
     this.collaboratordb.push(data);
     console.log(data);
-    console.table(data);
   }
 
   update(code: string, data: Collaborators): Promise<void> {

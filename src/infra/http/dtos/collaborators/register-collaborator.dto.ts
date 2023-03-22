@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { AddressDto, DocumentDto, SocialMediaDto } from '..';
+import { DocumentDto } from '../document.dto';
+import { AddressDto, SocialMediaDto } from '..';
 
 export class RegisterCollaboratorDto {
   @ApiProperty()
@@ -20,11 +21,11 @@ export class RegisterCollaboratorDto {
   @ApiProperty()
   group_id: string;
 
-  // @ApiProperty()
-  // address: AddressDto;
+  @ApiProperty()
+  address: AddressDto;
 
-  // @ApiProperty()
-  // social_media: SocialMediaDto;
+  @ApiProperty()
+  social_media: SocialMediaDto[];
 
   @ApiProperty()
   login: string;

@@ -1,16 +1,14 @@
 import { randomUUID } from 'crypto';
 import { Address, Documents, SocialMedia } from '../value-object';
-import { Departments } from './department.entity';
 import { Replace } from 'src/helpers';
-import { Group } from './group.entity';
 
 export interface CollaboratorsProps {
   name: string;
   email: string;
   age: string;
   documents: Documents;
-  department: Departments[];
-  group: Group;
+  departmentId: string[];
+  groupId: string;
   address?: Address | null;
   socialMedia?: SocialMedia[] | null;
   login: string;
@@ -68,18 +66,18 @@ export class Collaborators {
     this.props.documents = documents;
   }
 
-  public get department(): Departments[] {
-    return this.props.department;
+  public get department(): string[] {
+    return this.props.departmentId;
   }
-  public set department(department: Departments[]) {
-    this.props.department = department;
+  public set department(department: string[]) {
+    this.props.departmentId = department;
   }
 
-  public get group(): Group {
-    return this.props.group;
+  public get group(): string {
+    return this.props.groupId;
   }
-  public set group(group: Group) {
-    this.props.group = group;
+  public set group(group: string) {
+    this.props.groupId = group;
   }
 
   public get address(): Address {
