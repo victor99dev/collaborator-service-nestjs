@@ -6,10 +6,8 @@ export interface CollaboratorsProps {
   name: string;
   email: string;
   age: string;
-  documents: Documents;
   departmentId: string[];
   groupId: string;
-  address?: Address | null;
   login: string;
   password: string;
   description?: string | null;
@@ -20,13 +18,19 @@ export interface CollaboratorsProps {
 
 export class Collaborators {
   private _id: string;
+  private _documents: Documents;
+  private _address: Address;
   private props: CollaboratorsProps;
 
   constructor(
     props: Replace<CollaboratorsProps, { createdAt?: Date }>,
+    documents?: Documents,
+    address?: Address,
     id?: string,
   ) {
     this._id = id ?? randomUUID();
+    this._documents = documents;
+    this._address = address;
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
@@ -59,10 +63,13 @@ export class Collaborators {
   }
 
   public get documents(): Documents {
-    return this.props.documents;
+    return this._documents;
   }
   public set documents(documents: Documents) {
-    this.props.documents = documents;
+    this._documents = documents;
+  }
+  public SetDocuments(documents: Documents) {
+    this._documents = documents;
   }
 
   public get departmentId(): string[] {
@@ -80,10 +87,13 @@ export class Collaborators {
   }
 
   public get address(): Address {
-    return this.props.address;
+    return this._address;
   }
   public set address(address: Address) {
-    this.props.address = address || null;
+    this._address = address || null;
+  }
+  public SetAnddress(address: Address) {
+    this._address = address;
   }
 
   public get login(): string {

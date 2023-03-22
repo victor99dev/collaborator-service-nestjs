@@ -15,7 +15,7 @@ export class CreateCollaboratorUseCase {
 
   async execute(param: CollaboratorInput): Promise<void> {
     const document = new Documents({
-      documentsType: 'type' as DocumentsType,
+      documentsType: param.documents.type as DocumentsType,
       number: param.documents.number,
       dateOfIssue: param.documents.date_of_issue,
     });
@@ -32,10 +32,8 @@ export class CreateCollaboratorUseCase {
       name: param.name,
       email: param.email,
       age: param.age,
-      documents: new Documents(document) || null,
       departmentId: param.department_id,
       groupId: param.group_id,
-      address: new Address(address) || null,
       login: param.login,
       password: param.password,
       description: param.description,
@@ -43,6 +41,9 @@ export class CreateCollaboratorUseCase {
       createdAt: new Date(),
       updatedAt: new Date(),
     });
+
+    output.SetDocuments(document);
+    output.SetAnddress(address);
 
     this._collaboratorRepository.save(output);
   }
