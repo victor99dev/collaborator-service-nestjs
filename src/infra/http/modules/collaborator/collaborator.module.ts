@@ -8,6 +8,7 @@ import {
   DeleteCollaboratorUseCase,
   GetCollaboratorByCodeUseCase,
   ListCollaboratorUseCase,
+  UpdateCollaboratorUseCase,
 } from 'src/application/usecases/collaborator';
 
 @Module({
@@ -21,6 +22,7 @@ import {
     CreateCollaboratorUseCase,
     ListCollaboratorUseCase,
     GetCollaboratorByCodeUseCase,
+    UpdateCollaboratorUseCase,
     DeleteCollaboratorUseCase,
   ],
 })

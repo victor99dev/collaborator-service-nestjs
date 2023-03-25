@@ -11,8 +11,29 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     this.collaboratordb.push(data);
   }
 
-  update(code: string, data: Collaborators): Promise<void> {
-    throw new Error('Method not implemented.');
+  async update(code: string, data: Collaborators): Promise<void> {
+    const findCollaboratorId = this.collaboratordb.find(
+      (collaborator) => collaborator.id === code,
+    );
+
+    findCollaboratorId.name = data.name;
+    findCollaboratorId.email = data.email;
+    findCollaboratorId.age = data.age;
+    findCollaboratorId.departmentId = data.departmentId;
+    findCollaboratorId.groupId = data.groupId;
+    findCollaboratorId.description = data.description;
+    findCollaboratorId.active = data.active;
+    findCollaboratorId.updatedAt = data.updatedAt;
+    findCollaboratorId.documents.number = data.documents.number;
+    findCollaboratorId.documents.documentsType = data.documents.documentsType;
+    findCollaboratorId.documents.dateOfIssue = data.documents.dateOfIssue;
+    findCollaboratorId.address.city = data.address.city;
+    findCollaboratorId.address.country = data.address.country;
+    findCollaboratorId.address.number = data.address.number;
+    findCollaboratorId.address.state = data.address.state;
+    findCollaboratorId.address.streetAddress = data.address.streetAddress;
+
+    console.log(findCollaboratorId);
   }
 
   async findByCode(code: string): Promise<Collaborators> {

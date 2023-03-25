@@ -131,7 +131,7 @@ export class Collaborators {
   public get updatedAt(): Date {
     return this.props.updatedAt;
   }
-  public update() {
-    this.props.updatedAt = new Date() || null;
+  public set updatedAt(updatedAt: Date) {
+    this.props.updatedAt = updatedAt;
   }
 }

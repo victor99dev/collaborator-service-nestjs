@@ -1,7 +1,18 @@
-import { Controller, Post, Body, Get, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Param,
+  Delete,
+  Put,
+} from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { RegisterCollaboratorDto } from '../../dtos/collaborators';
+import {
+  RegisterCollaboratorDto,
+  UpdateCollaboratorDto,
+} from '../../dtos/collaborators';
 
 @ApiTags('Collaborator')
 @Controller({
@@ -32,6 +43,13 @@ export class CollaboratorController {
     });
 
     return getCollaboratorById;
+  }
+
+  @ApiOperation({ summary: 'Updated a Department' })
+  @ApiParam({ name: 'code', required: true })
+  @Put(':code')
+  async update(@Param() params, @Body() body: UpdateCollaboratorDto) {
+    this._collaboratorService.update(params.code, body);
   }
 
   @ApiOperation({ summary: 'Deleted a Collaborator' })

@@ -7,6 +7,7 @@ import {
   GetCollaboratorByCodeUseCase,
   ListCollaboratorOutput,
   ListCollaboratorUseCase,
+  UpdateCollaboratorUseCase,
 } from 'src/application/usecases/collaborator';
 
 @Injectable()
@@ -14,8 +15,9 @@ export class CollaboratorService {
   constructor(
     private _createCollaboratorUseCase: CreateCollaboratorUseCase,
     private _listCollaboratorUseCase: ListCollaboratorUseCase,
-    private _getByCodeCollaborator: GetCollaboratorByCodeUseCase,
-    private _deleteCollaborator: DeleteCollaboratorUseCase,
+    private _getByCodeCollaboratorUseCase: GetCollaboratorByCodeUseCase,
+    private _updateCollaboratorUseCase: UpdateCollaboratorUseCase,
+    private _deleteCollaboratorUseCase: DeleteCollaboratorUseCase,
   ) {}
 
   async createCollaborator(input: any): Promise<void> {
@@ -29,14 +31,14 @@ export class CollaboratorService {
   async findByCode(
     input: GetCollaboratorByCodeInput,
   ): Promise<GetCollaboratorByCodeOutput> {
-    return this._getByCodeCollaborator.execute(input);
+    return this._getByCodeCollaboratorUseCase.execute(input);
   }
 
-  update(code, input: any): Promise<void> {
-    throw new Error('Method not implemented.');
+  async update(code, input: any): Promise<void> {
+    return this._updateCollaboratorUseCase.execute(code, input);
   }
 
   async remove(code): Promise<void> {
-    return this._deleteCollaborator.execute(code);
+    return this._deleteCollaboratorUseCase.execute(code);
   }
 }
