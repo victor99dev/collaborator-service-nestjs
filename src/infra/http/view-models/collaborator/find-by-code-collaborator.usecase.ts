@@ -7,6 +7,7 @@ export class GetCollaboratorIdViewModel {
     return {
       id: collaborator.id,
       name: collaborator.name,
+      email: collaborator.email,
       age: collaborator.age,
       documents: GetDocumentViewModel.toHttp(collaborator.documents),
       departments: collaborator.departmentId,

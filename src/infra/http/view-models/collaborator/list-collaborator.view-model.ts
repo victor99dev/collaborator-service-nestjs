@@ -9,6 +9,7 @@ export class ListCollaboratorViewModel {
       const viewModel = {
         id: _collaborator.id,
         name: _collaborator.name,
+        email: _collaborator.email,
         age: _collaborator.age,
         documents: GetDocumentViewModel.toHttp(_collaborator.documents),
         departments: _collaborator.departmentId,
@@ -22,7 +23,6 @@ export class ListCollaboratorViewModel {
         updated_at: _collaborator.updatedAt,
       };
       _collaborators.push(viewModel);
-      console.log(_collaborators);
     });
     return _collaborators;
   }
