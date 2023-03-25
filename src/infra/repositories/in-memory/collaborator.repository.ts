@@ -1,5 +1,7 @@
 import { ICollaboratorsRepository } from 'src/application/contracts';
 import { Collaborators } from 'src/domain/entities';
+import { DocumentsType } from 'src/domain/enum';
+import { UpdateCollaboratorDto } from 'src/infra/http/dtos/collaborators';
 
 export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
   private collaboratordb: Collaborators[];
@@ -11,7 +13,7 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     this.collaboratordb.push(data);
   }
 
-  async update(code: string, data: Collaborators): Promise<void> {
+  async update(code: string, data: UpdateCollaboratorDto): Promise<void> {
     const findCollaboratorId = this.collaboratordb.find(
       (collaborator) => collaborator.id === code,
     );
@@ -19,21 +21,22 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     findCollaboratorId.name = data.name;
     findCollaboratorId.email = data.email;
     findCollaboratorId.age = data.age;
-    findCollaboratorId.departmentId = data.departmentId;
-    findCollaboratorId.groupId = data.groupId;
+    findCollaboratorId.departmentId = data.department_id;
+    findCollaboratorId.groupId = data.group_id;
     findCollaboratorId.description = data.description;
     findCollaboratorId.active = data.active;
-    findCollaboratorId.updatedAt = data.updatedAt;
+    findCollaboratorId.updatedAt = data.updated_at;
+
     findCollaboratorId.documents.number = data.documents.number;
-    findCollaboratorId.documents.documentsType = data.documents.documentsType;
-    findCollaboratorId.documents.dateOfIssue = data.documents.dateOfIssue;
+    findCollaboratorId.documents.documentsType = data.documents
+      .type as DocumentsType;
+    findCollaboratorId.documents.dateOfIssue = data.documents.date_of_issue;
+
     findCollaboratorId.address.city = data.address.city;
     findCollaboratorId.address.country = data.address.country;
     findCollaboratorId.address.number = data.address.number;
     findCollaboratorId.address.state = data.address.state;
-    findCollaboratorId.address.streetAddress = data.address.streetAddress;
-
-    console.log(findCollaboratorId);
+    findCollaboratorId.address.streetAddress = data.address.street_address;
   }
 
   async findByCode(code: string): Promise<Collaborators> {
