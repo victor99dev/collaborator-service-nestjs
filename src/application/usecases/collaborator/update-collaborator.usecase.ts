@@ -1,4 +1,4 @@
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { ICollaboratorsRepository } from 'src/application/contracts';
 import { Collaborators } from 'src/domain/entities';
 import { DocumentsType } from 'src/domain/enum';

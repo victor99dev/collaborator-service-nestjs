@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  UseFilters,
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { DepartmentService } from './department.service';
@@ -13,6 +14,7 @@ import {
   RegisterDepartmentDto,
   UpdateDepartmentDto,
 } from '../../dtos/departments';
+import { HttpExceptionFilter } from '../../Exeptions';
 
 @ApiTags('Department')
 @Controller({
@@ -36,6 +38,7 @@ export class DepartmentController {
 
   @ApiOperation({ summary: 'Get Department by code' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Get(':code')
   async findByCode(@Param() params) {
     const getDepartmentById = await this._departmentService.findByCode({
@@ -47,15 +50,21 @@ export class DepartmentController {
 
   @ApiOperation({ summary: 'Updated a Department' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Put(':code')
   async update(@Param() params, @Body() body: UpdateDepartmentDto) {
-    this._departmentService.update(params.code, body);
+    const updateDepartment = this._departmentService.update(params.code, body);
+
+    return updateDepartment;
   }
 
   @ApiOperation({ summary: 'Deleted a Department' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Delete(':code')
   async remove(@Param() params) {
-    this._departmentService.remove(params.code);
+    const deleteDepartment = this._departmentService.remove(params.code);
+
+    return deleteDepartment;
   }
 }

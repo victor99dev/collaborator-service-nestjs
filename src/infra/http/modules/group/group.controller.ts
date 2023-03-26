@@ -6,10 +6,12 @@ import {
   Param,
   Post,
   Put,
+  UseFilters,
 } from '@nestjs/common';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { GroupService } from './group.service';
 import { RegisterGroupDto, UpdateGroupDto } from '../../dtos/groups';
+import { HttpExceptionFilter } from '../../Exeptions';
 
 @ApiTags('Group')
 @Controller({
@@ -33,6 +35,7 @@ export class GroupController {
 
   @ApiOperation({ summary: 'Get Group by code' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Get(':code')
   async findByCode(@Param() params) {
     const getGroupById = await this._groupService.findByCode({
@@ -44,15 +47,21 @@ export class GroupController {
 
   @ApiOperation({ summary: 'Updated a Group' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Put(':code')
   async update(@Param() params, @Body() body: UpdateGroupDto) {
-    this._groupService.update(params.code, body);
+    const updateGroup = this._groupService.update(params.code, body);
+
+    return updateGroup;
   }
 
   @ApiOperation({ summary: 'Deleted a Group' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Delete(':code')
   async remove(@Param() params) {
-    this._groupService.remove(params.code);
+    const deleteGroup = this._groupService.remove(params.code);
+
+    return deleteGroup;
   }
 }

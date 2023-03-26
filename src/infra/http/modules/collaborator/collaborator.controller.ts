@@ -6,6 +6,7 @@ import {
   Param,
   Delete,
   Put,
+  UseFilters,
 } from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
@@ -13,6 +14,7 @@ import {
   RegisterCollaboratorDto,
   UpdateCollaboratorDto,
 } from '../../dtos/collaborators';
+import { HttpExceptionFilter } from '../../Exeptions';
 
 @ApiTags('Collaborator')
 @Controller({
@@ -36,6 +38,7 @@ export class CollaboratorController {
 
   @ApiOperation({ summary: 'Get Collaborator by code' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Get(':code')
   async findByCode(@Param() params) {
     const getCollaboratorById = await this._collaboratorService.findByCode({
@@ -47,15 +50,24 @@ export class CollaboratorController {
 
   @ApiOperation({ summary: 'Updated a Department' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Put(':code')
   async update(@Param() params, @Body() body: UpdateCollaboratorDto) {
-    this._collaboratorService.update(params.code, body);
+    const updateCollaborator = this._collaboratorService.update(
+      params.code,
+      body,
+    );
+
+    return updateCollaborator;
   }
 
   @ApiOperation({ summary: 'Deleted a Collaborator' })
   @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionFilter)
   @Delete(':code')
   async remove(@Param() params) {
-    this._collaboratorService.remove(params.code);
+    const deleteCollaborator = this._collaboratorService.remove(params.code);
+
+    return deleteCollaborator;
   }
 }

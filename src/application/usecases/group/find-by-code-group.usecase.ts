@@ -13,6 +13,8 @@ export class GetGroupByCodeUseCase {
   async execute({ code }: GetGroupByCodeInput): Promise<GetGroupByCodeOutput> {
     const group = await this._groupRepository.findByCode(code);
 
+    if (!group) throw new Error(`Not Found group with code ${code}`);
+
     return { data: GetGroupIdViewModel.toHttp(group) };
   }
 }
