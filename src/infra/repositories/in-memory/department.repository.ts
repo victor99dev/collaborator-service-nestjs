@@ -7,6 +7,10 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
     this.departdb = [];
   }
 
+  findByLogin(login: string): Promise<Departments> {
+    throw new Error('Method not implemented.');
+  }
+
   async save(data: Departments): Promise<void> {
     this.departdb.push(data);
   }

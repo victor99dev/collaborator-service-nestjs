@@ -5,6 +5,8 @@ export abstract class Repository<TEntity> {
 
   abstract findByCode(code: string): Promise<TEntity>;
 
+  abstract findByLogin(login: string): Promise<TEntity>;
+
   abstract count(): Promise<number>;
 
   abstract getAll(): Promise<TEntity[]>;

@@ -7,6 +7,10 @@ export class IMemoryGroupRepository implements IGroupRepository {
     this.groupdb = [];
   }
 
+  findByLogin(login: string): Promise<Group> {
+    throw new Error('Method not implemented.');
+  }
+
   async save(data: Group): Promise<void> {
     this.groupdb.push(data);
   }
