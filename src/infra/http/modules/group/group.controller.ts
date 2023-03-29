@@ -11,7 +11,7 @@ import {
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { GroupService } from './group.service';
 import { RegisterGroupDto, UpdateGroupDto } from '../../dtos/groups';
-import { HttpExceptionNotFound } from '../../Exeptions';
+import { HttpExceptionNotFound } from '../../exeptions';
 
 @ApiTags('Group')
 @Controller({

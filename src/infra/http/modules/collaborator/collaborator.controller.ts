@@ -17,7 +17,7 @@ import {
 import {
   HttpExceptionExistingLogin,
   HttpExceptionNotFound,
-} from '../../Exeptions';
+} from '../../exeptions';
 
 @ApiTags('Collaborator')
 @Controller({
