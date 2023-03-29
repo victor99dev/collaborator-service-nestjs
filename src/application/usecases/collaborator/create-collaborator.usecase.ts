@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { create } from 'domain';
 import { ICollaboratorsRepository } from 'src/application/contracts';
 import { Collaborators } from 'src/domain/entities';
 import { DocumentsType } from 'src/domain/enum';
@@ -44,6 +45,12 @@ export class CreateCollaboratorUseCase {
 
     output.SetDocuments(document);
     output.SetAnddress(address);
+
+    const login = await this._collaboratorRepository.findByLogin(param.login);
+
+    if (login) {
+      throw new Error(`Login already exists: ${param.login}`);
+    }
 
     this._collaboratorRepository.save(output);
   }

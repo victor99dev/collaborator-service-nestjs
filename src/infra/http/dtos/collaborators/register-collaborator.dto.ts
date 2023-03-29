@@ -10,6 +10,12 @@ export class RegisterCollaboratorDto {
   email: string;
 
   @ApiProperty({ type: String })
+  login: string;
+
+  @ApiProperty({ type: String })
+  password: string;
+
+  @ApiProperty({ type: String })
   age: string;
 
   @ApiProperty({ type: DocumentDto })
@@ -23,12 +29,6 @@ export class RegisterCollaboratorDto {
 
   @ApiProperty({ type: AddressDto })
   address: AddressDto;
-
-  @ApiProperty({ type: String })
-  login: string;
-
-  @ApiProperty({ type: String })
-  password: string;
 
   @ApiProperty({ type: String })
   description: string;

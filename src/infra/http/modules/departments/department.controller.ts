@@ -14,7 +14,7 @@ import {
   RegisterDepartmentDto,
   UpdateDepartmentDto,
 } from '../../dtos/departments';
-import { HttpExceptionFilter } from '../../Exeptions';
+import { HttpExceptionNotFound } from '../../Exeptions';
 
 @ApiTags('Department')
 @Controller({
@@ -38,7 +38,7 @@ export class DepartmentController {
 
   @ApiOperation({ summary: 'Get Department by code' })
   @ApiParam({ name: 'code', required: true })
-  @UseFilters(HttpExceptionFilter)
+  @UseFilters(HttpExceptionNotFound)
   @Get(':code')
   async findByCode(@Param() params) {
     const getDepartmentById = await this._departmentService.findByCode({
@@ -50,7 +50,7 @@ export class DepartmentController {
 
   @ApiOperation({ summary: 'Updated a Department' })
   @ApiParam({ name: 'code', required: true })
-  @UseFilters(HttpExceptionFilter)
+  @UseFilters(HttpExceptionNotFound)
   @Put(':code')
   async update(@Param() params, @Body() body: UpdateDepartmentDto) {
     const updateDepartment = this._departmentService.update(params.code, body);
@@ -60,7 +60,7 @@ export class DepartmentController {
 
   @ApiOperation({ summary: 'Deleted a Department' })
   @ApiParam({ name: 'code', required: true })
-  @UseFilters(HttpExceptionFilter)
+  @UseFilters(HttpExceptionNotFound)
   @Delete(':code')
   async remove(@Param() params) {
     const deleteDepartment = this._departmentService.remove(params.code);
