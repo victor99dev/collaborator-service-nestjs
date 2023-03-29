@@ -5,6 +5,9 @@ import {
   GetCollaboratorByCodeInput,
   GetCollaboratorByCodeOutput,
   GetCollaboratorByCodeUseCase,
+  GetCollaboratorByLoginInput,
+  GetCollaboratorByLoginOutput,
+  GetCollaboratorByLoginUseCase,
   ListCollaboratorOutput,
   ListCollaboratorUseCase,
   UpdateCollaboratorUseCase,
@@ -16,6 +19,7 @@ export class CollaboratorService {
     private _createCollaboratorUseCase: CreateCollaboratorUseCase,
     private _listCollaboratorUseCase: ListCollaboratorUseCase,
     private _getByCodeCollaboratorUseCase: GetCollaboratorByCodeUseCase,
+    private _getByLoginCollaboratorUseCase: GetCollaboratorByLoginUseCase,
     private _updateCollaboratorUseCase: UpdateCollaboratorUseCase,
     private _deleteCollaboratorUseCase: DeleteCollaboratorUseCase,
   ) {}
@@ -40,5 +44,11 @@ export class CollaboratorService {
 
   async remove(code): Promise<void> {
     return this._deleteCollaboratorUseCase.execute(code);
+  }
+
+  async findByLogin(
+    input: GetCollaboratorByLoginInput,
+  ): Promise<GetCollaboratorByLoginOutput> {
+    return this._getByLoginCollaboratorUseCase.execute(input);
   }
 }

@@ -9,8 +9,12 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     this.collaboratordb = [];
   }
 
-  findByLogin(login: string): Promise<Collaborators> {
-    throw new Error('Method not implemented.');
+  async findByLogin(login: string): Promise<Collaborators> {
+    const collaboratorByLogin = this.collaboratordb.find(
+      (collaborator) => collaborator.login === login,
+    );
+
+    return collaboratorByLogin;
   }
 
   async save(data: Collaborators): Promise<void> {

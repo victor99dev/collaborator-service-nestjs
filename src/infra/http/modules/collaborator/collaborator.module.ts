@@ -7,6 +7,7 @@ import {
   CreateCollaboratorUseCase,
   DeleteCollaboratorUseCase,
   GetCollaboratorByCodeUseCase,
+  GetCollaboratorByLoginUseCase,
   ListCollaboratorUseCase,
   UpdateCollaboratorUseCase,
 } from 'src/application/usecases/collaborator';
@@ -22,6 +23,7 @@ import {
     CreateCollaboratorUseCase,
     ListCollaboratorUseCase,
     GetCollaboratorByCodeUseCase,
+    GetCollaboratorByLoginUseCase,
     UpdateCollaboratorUseCase,
     DeleteCollaboratorUseCase,
   ],
