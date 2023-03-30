@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Departments {
+  id         String    @id @default(uuid())
+  name       String
+  active     Boolean
+  created_at DateTime
+  updated_at DateTime?
+
+  collaborator Collaborators[]
+
+  @@map("departments")
+}
+
+model Groups {
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  active      Boolean
+  created_at  DateTime
+  updated_at  DateTime?
+
+  collaborator Collaborators?
+
+  @@map("groups")
+}
+
+model Collaborators {
+  id            String    @id @default(uuid())
+  name          String
+  email         String
+  age           String
+  department_id String
+  group_id      String    @unique
+  login         String
+  password      String
+  description   String?
+  active        Boolean
+  created_at    DateTime
+  updated_at    DateTime?
+
+  departments Departments @relation(fields: [department_id], references: [id])
+
+  groups Groups @relation(fields: [group_id], references: [id])
+
+  @@map("collaborators")
+}

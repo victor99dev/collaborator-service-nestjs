@@ -20,5 +20,5 @@
         "protocol": "inspector"
       }
     ],
-    "dotenv.enableAutocloaking": false
+    "dotenv.enableAutocloaking": true
   }
