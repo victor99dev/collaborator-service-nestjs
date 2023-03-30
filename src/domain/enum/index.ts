@@ -1,1 +1,1 @@
-export * from './DocumentsType.enum';
+export * from './documentsType.enum';
