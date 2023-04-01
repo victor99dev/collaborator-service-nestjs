@@ -10,13 +10,19 @@ import {
   ListGroupUseCase,
   UpdateGroupUseCase,
 } from 'src/application/usecases/group';
+import { IPrismaGroupRepository } from 'src/infra/repositories/prisma';
+import { connection } from 'src/infra/database';
 
 @Module({
   controllers: [GroupController],
   providers: [
+    // {
+    //   provide: TOKENS.repositories.GROUP,
+    //   useFactory: () => new IMemoryGroupRepository(),
+    // },
     {
       provide: TOKENS.repositories.GROUP,
-      useFactory: () => new IMemoryGroupRepository(),
+      useFactory: () => new IPrismaGroupRepository(connection),
     },
     GroupService,
     CreateGroupUseCase,
