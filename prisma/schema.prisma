@@ -11,11 +11,12 @@ datasource db {
 }
 
 model Departments {
-  id         String    @id @default(uuid())
-  name       String
-  active     Boolean
-  created_at DateTime
-  updated_at DateTime?
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  active      Boolean
+  created_at  DateTime
+  updated_at  DateTime?
 
   collaborator Collaborators[]
 
