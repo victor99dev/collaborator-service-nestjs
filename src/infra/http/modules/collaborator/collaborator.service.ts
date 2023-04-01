@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import {
+  CollaboratorOutput,
   CreateCollaboratorUseCase,
   DeleteCollaboratorUseCase,
   GetCollaboratorByCodeInput,
@@ -24,7 +25,7 @@ export class CollaboratorService {
     private _deleteCollaboratorUseCase: DeleteCollaboratorUseCase,
   ) {}
 
-  async createCollaborator(input: any): Promise<void> {
+  async createCollaborator(input: any): Promise<CollaboratorOutput> {
     return this._createCollaboratorUseCase.execute(input);
   }
 

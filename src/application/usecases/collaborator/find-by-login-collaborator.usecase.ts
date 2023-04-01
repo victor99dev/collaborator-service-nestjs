@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ICollaboratorRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
-import { GetCollaboratorIdViewModel } from 'src/infra/http/view-models/collaborator';
+import { CollaboratorViewModel } from 'src/infra/http/view-models/collaborator';
 
 @Injectable()
 export class GetCollaboratorByLoginUseCase {
@@ -18,7 +18,7 @@ export class GetCollaboratorByLoginUseCase {
     if (!Collaborator)
       throw new Error(`There is no collaborator with this login ${login}`);
 
-    return { data: GetCollaboratorIdViewModel.toHttp(Collaborator) };
+    return { data: CollaboratorViewModel.toHttp(Collaborator) };
   }
 }
 
@@ -27,5 +27,5 @@ export type GetCollaboratorByLoginInput = {
 };
 
 export type GetCollaboratorByLoginOutput = {
-  data: GetCollaboratorIdViewModel;
+  data: CollaboratorViewModel;
 };

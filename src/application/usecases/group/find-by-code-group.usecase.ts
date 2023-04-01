@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IGroupRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
-import { GetGroupIdViewModel } from 'src/infra/http/view-models/group';
+import { GroupViewModel } from 'src/infra/http/view-models/group';
 
 @Injectable()
 export class GetGroupByCodeUseCase {
@@ -15,7 +15,7 @@ export class GetGroupByCodeUseCase {
 
     if (!group) throw new Error(`Not Found group with code ${code}`);
 
-    return { data: GetGroupIdViewModel.toHttp(group) };
+    return { data: GroupViewModel.toHttp(group) };
   }
 }
 
@@ -24,5 +24,5 @@ export type GetGroupByCodeInput = {
 };
 
 export type GetGroupByCodeOutput = {
-  data: GetGroupIdViewModel;
+  data: GroupViewModel;
 };

@@ -5,6 +5,7 @@ import {
   GetGroupByCodeInput,
   GetGroupByCodeOutput,
   GetGroupByCodeUseCase,
+  GroupOutput,
   ListGroupOutput,
   ListGroupUseCase,
   UpdateGroupUseCase,
@@ -20,7 +21,7 @@ export class GroupService {
     private _deleteGroupUseCase: DeleteGroupUseCase,
   ) {}
 
-  async createGroup(input: any): Promise<void> {
+  async createGroup(input: any): Promise<GroupOutput> {
     return this._createGroupUseCase.execute(input);
   }
 

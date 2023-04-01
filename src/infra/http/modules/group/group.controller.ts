@@ -23,13 +23,15 @@ export class GroupController {
   @ApiOperation({ summary: 'Create a new Group' })
   @Post('')
   async registerNewGroup(@Body() body: RegisterGroupDto) {
-    this._groupService.createGroup({ ...body });
+    const create = this._groupService.createGroup({ ...body });
+    return create;
   }
 
   @ApiOperation({ summary: 'List Groups' })
   @Get('list')
   async getAll() {
     const getGroupAll = await this._groupService.getAll();
+
     return getGroupAll;
   }
 

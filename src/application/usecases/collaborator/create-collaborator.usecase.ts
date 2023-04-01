@@ -5,6 +5,7 @@ import { DocumentType } from 'src/domain/enums';
 import { Address, Document } from 'src/domain/value-objects';
 import { TOKENS } from 'src/infra/container';
 import { AddressDto, DocumentDto } from 'src/infra/http/dtos';
+import { CollaboratorViewModel } from 'src/infra/http/view-models/collaborator';
 
 @Injectable()
 export class CreateCollaboratorUseCase {
@@ -13,7 +14,7 @@ export class CreateCollaboratorUseCase {
     private readonly _collaboratorRepository: ICollaboratorRepository,
   ) {}
 
-  async execute(param: CollaboratorInput): Promise<void> {
+  async execute(param: CollaboratorInput): Promise<CollaboratorOutput> {
     const document = new Document({
       documentsType: param.documents.type as DocumentType,
       number: param.documents.number,
@@ -52,6 +53,8 @@ export class CreateCollaboratorUseCase {
     }
 
     this._collaboratorRepository.save(output);
+
+    return { data: CollaboratorViewModel.toHttp(output) };
   }
 }
 
@@ -70,5 +73,5 @@ export interface CollaboratorInput {
 }
 
 export type CollaboratorOutput = {
-  output: Collaborator;
+  data: CollaboratorViewModel;
 };

@@ -1,6 +1,6 @@
 import { Group } from 'src/domain/entities';
 
-export class GetGroupIdViewModel {
+export class GroupViewModel {
   static toHttp(group: Group) {
     return {
       id: group.id,

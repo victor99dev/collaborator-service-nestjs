@@ -1,6 +1,6 @@
 import { Department } from 'src/domain/entities';
 
-export class GetDepartmentIdViewModel {
+export class DepartmentViewModel {
   static toHttp(department: Department) {
     return {
       id: department.id,

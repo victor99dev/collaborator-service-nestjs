@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
-import { GetDepartmentIdViewModel } from 'src/infra/http/view-models/department';
+import { DepartmentViewModel } from 'src/infra/http/view-models/department';
 
 @Injectable()
 export class GetDepartmentByCodeUseCase {
@@ -17,7 +17,7 @@ export class GetDepartmentByCodeUseCase {
 
     if (!department) throw new Error(`Not Found Department with code ${code}`);
 
-    return { data: GetDepartmentIdViewModel.toHttp(department) };
+    return { data: DepartmentViewModel.toHttp(department) };
   }
 }
 
@@ -26,5 +26,5 @@ export type GetDepartmentByCodeInput = {
 };
 
 export type GetDepartmentByCodeOutput = {
-  data: GetDepartmentIdViewModel;
+  data: DepartmentViewModel;
 };

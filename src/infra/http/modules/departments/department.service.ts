@@ -8,6 +8,7 @@ import {
   ListDepartmentUseCase,
   UpdateDepartmentUseCase,
   DeleteDepartmentUseCase,
+  DepartmentOutput,
 } from 'src/application/usecases/department';
 
 @Injectable()
@@ -20,7 +21,7 @@ export class DepartmentService {
     private _deleteDepartmentUseCase: DeleteDepartmentUseCase,
   ) {}
 
-  async createDepartment(input: any): Promise<void> {
+  async createDepartment(input: any): Promise<DepartmentOutput> {
     return this._createDepartmentUseCase.execute(input);
   }
 

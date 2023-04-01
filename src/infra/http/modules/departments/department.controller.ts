@@ -26,7 +26,8 @@ export class DepartmentController {
   @ApiOperation({ summary: 'Create a new Department' })
   @Post('')
   async registerNewDepartment(@Body() body: RegisterDepartmentDto) {
-    this._departmentService.createDepartment({ ...body });
+    const create = this._departmentService.createDepartment({ ...body });
+    return create;
   }
 
   @ApiOperation({ summary: 'List Departments' })

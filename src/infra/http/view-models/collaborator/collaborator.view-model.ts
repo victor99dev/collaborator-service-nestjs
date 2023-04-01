@@ -2,7 +2,7 @@ import { Collaborator } from 'src/domain/entities';
 import { GetDocumentViewModel } from '../get-document.view-model';
 import { GetAddressViewModel } from '../get-address.view-model';
 
-export class GetCollaboratorIdViewModel {
+export class CollaboratorViewModel {
   static toHttp(collaborator: Collaborator) {
     return {
       id: collaborator.id,

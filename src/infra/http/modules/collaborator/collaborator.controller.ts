@@ -30,7 +30,7 @@ export class CollaboratorController {
   @UseFilters(HttpExceptionExistingLogin)
   @Post('')
   async registerNewCollaborator(@Body() body: RegisterCollaboratorDto) {
-    const create = await this._collaboratorService.createCollaborator({
+    const create = this._collaboratorService.createCollaborator({
       ...body,
     });
     return create;

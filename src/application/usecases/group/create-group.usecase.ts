@@ -2,6 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { IGroupRepository } from 'src/application/contracts';
 import { Group } from 'src/domain/entities/group.entity';
 import { TOKENS } from 'src/infra/container';
+import { GroupViewModel } from 'src/infra/http/view-models/group';
 
 @Injectable()
 export class CreateGroupUseCase {
@@ -10,7 +11,7 @@ export class CreateGroupUseCase {
     private readonly _groupRepository: IGroupRepository,
   ) {}
 
-  async execute(param: GroupInput): Promise<void> {
+  async execute(param: GroupInput): Promise<GroupOutput> {
     const output = new Group({
       name: param.name,
       description: param.description,
@@ -20,6 +21,8 @@ export class CreateGroupUseCase {
     });
 
     this._groupRepository.save(output);
+
+    return { data: GroupViewModel.toHttp(output) };
   }
 }
 
@@ -30,5 +33,5 @@ export interface GroupInput {
 }
 
 export type GroupOutput = {
-  output: Group;
+  data: GroupViewModel;
 };
