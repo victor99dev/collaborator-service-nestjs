@@ -1,7 +1,7 @@
 import { Inject } from '@nestjs/common';
 import { Injectable } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts';
-import { Departments } from 'src/domain/entities';
+import { Department } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class CreateDepartmentUseCase {
   ) {}
 
   async execute(param: DepartmentsInput): Promise<void> {
-    const output = new Departments({
+    const output = new Department({
       name: param.name,
       description: param.description,
       active: param.active,
@@ -31,5 +31,5 @@ export interface DepartmentsInput {
 }
 
 export type DepartmentsOutput = {
-  output: Departments;
+  output: Department;
 };

@@ -1,16 +1,16 @@
 import { Inject, Injectable, NotFoundException } from '@nestjs/common';
-import { ICollaboratorsRepository } from 'src/application/contracts';
-import { Collaborators } from 'src/domain/entities';
-import { DocumentsType } from 'src/domain/enum';
+import { ICollaboratorRepository } from 'src/application/contracts';
+import { Collaborator } from 'src/domain/entities';
+import { DocumentType } from 'src/domain/enums';
 import { TOKENS } from 'src/infra/container';
 
 @Injectable()
 export class UpdateCollaboratorUseCase {
   constructor(
     @Inject(TOKENS.repositories.COLLABORATORS)
-    private readonly _collaboratorRepository: ICollaboratorsRepository,
+    private readonly _collaboratorRepository: ICollaboratorRepository,
   ) {}
-  async execute(code: string, data: Collaborators) {
+  async execute(code: string, data: Collaborator) {
     const codeReturn = await this._collaboratorRepository.findByCode(code);
 
     if (!codeReturn)
@@ -26,7 +26,7 @@ export class UpdateCollaboratorUseCase {
     data.updatedAt = new Date();
 
     data.documents.number;
-    data.documents.documentsType as DocumentsType;
+    data.documents.documentsType as DocumentType;
     data.documents.dateOfIssue;
 
     data.address.city;

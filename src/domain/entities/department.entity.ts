@@ -1,7 +1,7 @@
 import { randomUUID } from 'crypto';
 import { Replace } from 'src/helpers';
 
-export interface DepartmentsProps {
+export interface DepartmentProps {
   name: string;
   description: string;
   active: boolean;
@@ -9,12 +9,12 @@ export interface DepartmentsProps {
   updatedAt?: Date | null;
 }
 
-export class Departments {
+export class Department {
   private _id: string;
-  private props: DepartmentsProps;
+  private props: DepartmentProps;
 
   constructor(
-    props: Replace<DepartmentsProps, { createdAt?: Date; updatedAt?: Date }>,
+    props: Replace<DepartmentProps, { createdAt?: Date; updatedAt?: Date }>,
     id?: string,
   ) {
     this._id = id ?? randomUUID();

@@ -30,7 +30,7 @@ export class HttpExceptionExistingLogin implements ExceptionFilter {
             status: HttpStatus.CONFLICT,
             body: {
               statusCode: HttpStatus.CONFLICT,
-              timestamp: new Date().toISOString(),
+              time: new Date().toISOString(),
               message: exception.message,
               path: request.path,
             },

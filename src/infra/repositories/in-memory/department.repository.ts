@@ -1,21 +1,21 @@
 import { IDepartmentRepository } from 'src/application/contracts';
-import { Departments } from 'src/domain/entities';
+import { Department } from 'src/domain/entities';
 
 export class IMemoryDepartmentRepository implements IDepartmentRepository {
-  private departdb: Departments[];
+  private departdb: Department[];
   constructor() {
     this.departdb = [];
   }
 
-  findByLogin(login: string): Promise<Departments> {
+  findByLogin(login: string): Promise<Department> {
     throw new Error('Method not implemented.');
   }
 
-  async save(data: Departments): Promise<void> {
+  async save(data: Department): Promise<void> {
     this.departdb.push(data);
   }
 
-  async update(code: string, data: Departments): Promise<void> {
+  async update(code: string, data: Department): Promise<void> {
     const findDepartmentId = this.departdb.find(
       (department) => department.id === code,
     );
@@ -26,7 +26,7 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
     findDepartmentId.updatedAt = data.updatedAt;
   }
 
-  async findByCode(code: string): Promise<Departments> {
+  async findByCode(code: string): Promise<Department> {
     const departmentByid = this.departdb.find(
       (department) => department.id === code,
     );
@@ -38,7 +38,7 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
     return this.departdb.length;
   }
 
-  async getAll(): Promise<Departments[]> {
+  async getAll(): Promise<Department[]> {
     return this.departdb;
   }
 

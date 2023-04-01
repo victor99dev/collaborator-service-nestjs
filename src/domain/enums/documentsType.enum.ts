@@ -1,4 +1,4 @@
-export enum DocumentsType {
+export enum DocumentType {
   CPF = 'cpf',
   RG = 'rg',
   CNH = 'cnh',

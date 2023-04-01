@@ -1,9 +1,9 @@
-import { Collaborators } from 'src/domain/entities';
+import { Collaborator } from 'src/domain/entities';
 import { GetAddressViewModel } from '../get-address.view-model';
 import { GetDocumentViewModel } from '../get-document.view-model';
 
 export class ListCollaboratorViewModel {
-  static toHttpList(collaborator: Collaborators[]) {
+  static toHttpList(collaborator: Collaborator[]) {
     const _collaborators: unknown[] = [];
     collaborator.forEach((_collaborator) => {
       const viewModel = {

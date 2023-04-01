@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ICollaboratorsRepository } from 'src/application/contracts';
+import { ICollaboratorRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
 import { GetCollaboratorIdViewModel } from 'src/infra/http/view-models/collaborator';
 
@@ -7,7 +7,7 @@ import { GetCollaboratorIdViewModel } from 'src/infra/http/view-models/collabora
 export class GetCollaboratorByCodeUseCase {
   constructor(
     @Inject(TOKENS.repositories.COLLABORATORS)
-    private readonly _collaboratorRepository: ICollaboratorsRepository,
+    private readonly _collaboratorRepository: ICollaboratorRepository,
   ) {}
 
   async execute({

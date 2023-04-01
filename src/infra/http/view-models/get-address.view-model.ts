@@ -1,4 +1,4 @@
-import { Address } from 'src/domain/value-object';
+import { Address } from 'src/domain/value-objects';
 
 export class GetAddressViewModel {
   static toHttp(address: Address) {

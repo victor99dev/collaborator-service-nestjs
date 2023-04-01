@@ -1,7 +1,7 @@
-import { Documents } from 'src/domain/value-object';
+import { Document } from 'src/domain/value-objects';
 
 export class GetDocumentViewModel {
-  static toHttp(documents: Documents) {
+  static toHttp(documents: Document) {
     return {
       documents_type: documents.documentsType,
       number: documents.number,

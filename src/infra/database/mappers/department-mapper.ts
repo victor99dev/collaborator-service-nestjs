@@ -1,8 +1,8 @@
-import { Departments } from 'src/domain/entities';
+import { Department } from 'src/domain/entities';
 import { Departments as RawDepartments } from '@prisma/client';
 
 export class PrismaDepartmentMapper {
-  static toPrisma(department: Departments) {
+  static toPrisma(department: Department) {
     return {
       id: department.id,
       name: department.name,
@@ -13,8 +13,8 @@ export class PrismaDepartmentMapper {
     };
   }
 
-  static toDomain(raw: RawDepartments): Departments {
-    return new Departments(
+  static toDomain(raw: RawDepartments): Department {
+    return new Department(
       {
         name: raw.name,
         description: raw.description,

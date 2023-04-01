@@ -1,8 +1,8 @@
 import { randomUUID } from 'crypto';
-import { Address, Documents } from '../value-object';
+import { Address, Document } from '../value-objects';
 import { Replace } from 'src/helpers';
 
-export interface CollaboratorsProps {
+export interface CollaboratorProps {
   name: string;
   email: string;
   age: string;
@@ -16,15 +16,15 @@ export interface CollaboratorsProps {
   updatedAt?: Date | null;
 }
 
-export class Collaborators {
+export class Collaborator {
   private _id: string;
-  private _documents: Documents;
+  private _documents: Document;
   private _address: Address;
-  private props: CollaboratorsProps;
+  private props: CollaboratorProps;
 
   constructor(
-    props: Replace<CollaboratorsProps, { createdAt?: Date }>,
-    documents?: Documents,
+    props: Replace<CollaboratorProps, { createdAt?: Date }>,
+    documents?: Document,
     address?: Address,
     id?: string,
   ) {
@@ -62,13 +62,13 @@ export class Collaborators {
     this.props.age = age;
   }
 
-  public get documents(): Documents {
+  public get documents(): Document {
     return this._documents;
   }
-  public set documents(documents: Documents) {
+  public set documents(documents: Document) {
     this._documents = documents;
   }
-  public SetDocuments(documents: Documents) {
+  public SetDocuments(documents: Document) {
     this._documents = documents;
   }
 

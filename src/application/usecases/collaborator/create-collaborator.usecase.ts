@@ -1,9 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { create } from 'domain';
-import { ICollaboratorsRepository } from 'src/application/contracts';
-import { Collaborators } from 'src/domain/entities';
-import { DocumentsType } from 'src/domain/enum';
-import { Address, Documents } from 'src/domain/value-object';
+import { ICollaboratorRepository } from 'src/application/contracts';
+import { Collaborator } from 'src/domain/entities';
+import { DocumentType } from 'src/domain/enums';
+import { Address, Document } from 'src/domain/value-objects';
 import { TOKENS } from 'src/infra/container';
 import { AddressDto, DocumentDto } from 'src/infra/http/dtos';
 
@@ -11,12 +10,12 @@ import { AddressDto, DocumentDto } from 'src/infra/http/dtos';
 export class CreateCollaboratorUseCase {
   constructor(
     @Inject(TOKENS.repositories.COLLABORATORS)
-    private readonly _collaboratorRepository: ICollaboratorsRepository,
+    private readonly _collaboratorRepository: ICollaboratorRepository,
   ) {}
 
   async execute(param: CollaboratorInput): Promise<void> {
-    const document = new Documents({
-      documentsType: param.documents.type as DocumentsType,
+    const document = new Document({
+      documentsType: param.documents.type as DocumentType,
       number: param.documents.number,
       dateOfIssue: param.documents.date_of_issue,
     });
@@ -29,7 +28,7 @@ export class CreateCollaboratorUseCase {
       country: param.address.country,
     });
 
-    const output = new Collaborators({
+    const output = new Collaborator({
       name: param.name,
       email: param.email,
       age: param.age,
@@ -71,5 +70,5 @@ export interface CollaboratorInput {
 }
 
 export type CollaboratorOutput = {
-  output: Collaborators;
+  output: Collaborator;
 };

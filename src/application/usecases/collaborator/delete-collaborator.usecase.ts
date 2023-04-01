@@ -1,12 +1,12 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ICollaboratorsRepository } from 'src/application/contracts';
+import { ICollaboratorRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
 
 @Injectable()
 export class DeleteCollaboratorUseCase {
   constructor(
     @Inject(TOKENS.repositories.COLLABORATORS)
-    private readonly _collaboratorRepository: ICollaboratorsRepository,
+    private readonly _collaboratorRepository: ICollaboratorRepository,
   ) {}
 
   async execute(code: string): Promise<void> {

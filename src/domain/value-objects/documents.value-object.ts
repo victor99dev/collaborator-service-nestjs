@@ -1,15 +1,15 @@
-import { DocumentsType } from '../enum';
+import { DocumentType } from '../enums';
 
-export interface DocumentsProps {
+export interface DocumentProps {
   number: string;
   dateOfIssue: Date;
-  documentsType: DocumentsType;
+  documentsType: DocumentType;
 }
 
-export class Documents {
-  private props: DocumentsProps;
+export class Document {
+  private props: DocumentProps;
 
-  constructor(props: DocumentsProps) {
+  constructor(props: DocumentProps) {
     this.props = { ...props };
   }
 
@@ -27,10 +27,10 @@ export class Documents {
     this.props.dateOfIssue = dateOfIssue;
   }
 
-  public get documentsType(): DocumentsType {
+  public get documentsType(): DocumentType {
     return this.props.documentsType;
   }
-  public set documentsType(DocumentsType: DocumentsType) {
+  public set documentsType(DocumentsType: DocumentType) {
     this.props.documentsType = DocumentsType;
   }
 }

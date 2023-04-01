@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { DocumentsType } from 'src/domain/enum';
+import { DocumentType } from 'src/domain/enums';
 
 export class DocumentDto {
-  @ApiProperty({ enum: DocumentsType })
+  @ApiProperty({ enum: DocumentType })
   type: string;
 
   @ApiProperty({ type: String })

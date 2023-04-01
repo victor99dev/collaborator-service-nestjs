@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts';
-import { Departments } from 'src/domain/entities';
+import { Department } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
 @Injectable()
@@ -10,7 +10,7 @@ export class UpdateDepartmentUseCase {
     private readonly _departmentRepository: IDepartmentRepository,
   ) {}
 
-  async execute(code: string, data: Departments) {
+  async execute(code: string, data: Department) {
     const codeReturn = await this._departmentRepository.findByCode(code);
 
     if (!codeReturn) throw new Error(`Not Found Department with code ${code}`);

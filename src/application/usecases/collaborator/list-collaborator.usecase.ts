@@ -1,12 +1,12 @@
 import { Inject } from '@nestjs/common';
-import { ICollaboratorsRepository } from 'src/application/contracts';
+import { ICollaboratorRepository } from 'src/application/contracts';
 import { TOKENS } from 'src/infra/container';
 import { ListCollaboratorViewModel } from 'src/infra/http/view-models/collaborator';
 
 export class ListCollaboratorUseCase {
   constructor(
     @Inject(TOKENS.repositories.COLLABORATORS)
-    private readonly _collaboratorRepository: ICollaboratorsRepository,
+    private readonly _collaboratorRepository: ICollaboratorRepository,
   ) {}
 
   async execute() {

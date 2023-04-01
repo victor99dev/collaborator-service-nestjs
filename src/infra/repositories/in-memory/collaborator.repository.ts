@@ -1,15 +1,15 @@
-import { ICollaboratorsRepository } from 'src/application/contracts';
-import { Collaborators } from 'src/domain/entities';
-import { DocumentsType } from 'src/domain/enum';
+import { ICollaboratorRepository } from 'src/application/contracts';
+import { Collaborator } from 'src/domain/entities';
+import { DocumentType } from 'src/domain/enums';
 import { UpdateCollaboratorDto } from 'src/infra/http/dtos/collaborators';
 
-export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
-  private collaboratordb: Collaborators[];
+export class IMemoryCollaboratorRepository implements ICollaboratorRepository {
+  private collaboratordb: Collaborator[];
   constructor() {
     this.collaboratordb = [];
   }
 
-  async findByLogin(login: string): Promise<Collaborators> {
+  async findByLogin(login: string): Promise<Collaborator> {
     const collaboratorByLogin = this.collaboratordb.find(
       (collaborator) => collaborator.login === login,
     );
@@ -17,7 +17,7 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     return collaboratorByLogin;
   }
 
-  async save(data: Collaborators): Promise<void> {
+  async save(data: Collaborator): Promise<void> {
     this.collaboratordb.push(data);
   }
 
@@ -37,7 +37,7 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
 
     findCollaboratorId.documents.number = data.documents.number;
     findCollaboratorId.documents.documentsType = data.documents
-      .type as DocumentsType;
+      .type as DocumentType;
     findCollaboratorId.documents.dateOfIssue = data.documents.date_of_issue;
 
     findCollaboratorId.address.city = data.address.city;
@@ -47,7 +47,7 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     findCollaboratorId.address.streetAddress = data.address.street_address;
   }
 
-  async findByCode(code: string): Promise<Collaborators> {
+  async findByCode(code: string): Promise<Collaborator> {
     const collaboratorById = this.collaboratordb.find(
       (collaborator) => collaborator.id === code,
     );
@@ -59,7 +59,7 @@ export class IMemoryCollaboratorRepository implements ICollaboratorsRepository {
     return this.collaboratordb.length;
   }
 
-  async getAll(): Promise<Collaborators[]> {
+  async getAll(): Promise<Collaborator[]> {
     return this.collaboratordb;
   }
 
