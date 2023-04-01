@@ -10,6 +10,7 @@ export class IPrismaDepartmentRepository implements IDepartmentRepository {
 
   async save(data: Departments): Promise<void> {
     const departmentMapper = PrismaDepartmentMapper.toPrisma(data);
+
     await this._prismaClient.departments.create({
       data: { ...departmentMapper },
     });
@@ -19,20 +20,32 @@ export class IPrismaDepartmentRepository implements IDepartmentRepository {
     throw new Error('Method not implemented.');
   }
 
-  findByCode(code: string): Promise<Departments> {
-    throw new Error('Method not implemented.');
+  async findByCode(code: string): Promise<Departments> {
+    const department = await this._prismaClient.departments.findUnique({
+      where: { id: code },
+    });
+    if (!department) {
+      return null;
+    } else {
+      return PrismaDepartmentMapper.toDomain(department);
+    }
   }
 
   findByLogin(login: string): Promise<Departments> {
     throw new Error('Method not implemented.');
   }
 
-  count(): Promise<number> {
-    throw new Error('Method not implemented.');
+  async count(): Promise<number> {
+    return await this._prismaClient.departments.count();
   }
 
-  getAll(): Promise<Departments[]> {
-    throw new Error('Method not implemented.');
+  async getAll(): Promise<Departments[]> {
+    const department = await this._prismaClient.departments.findMany();
+
+    const list: Departments[] = [];
+    department.map((x) => list.push(PrismaDepartmentMapper.toDomain(x)));
+
+    return list;
   }
 
   delete(code: string): Promise<void> {
