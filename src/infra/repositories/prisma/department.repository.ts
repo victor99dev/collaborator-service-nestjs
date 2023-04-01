@@ -16,8 +16,13 @@ export class IPrismaDepartmentRepository implements IDepartmentRepository {
     });
   }
 
-  update(code: string, data: any): Promise<void> {
-    throw new Error('Method not implemented.');
+  async update(code: string, data: Departments): Promise<void> {
+    const departmentMapper = PrismaDepartmentMapper.toPrisma(data);
+
+    await this._prismaClient.departments.update({
+      where: { id: code },
+      data: { ...departmentMapper },
+    });
   }
 
   async findByCode(code: string): Promise<Departments> {
@@ -48,7 +53,9 @@ export class IPrismaDepartmentRepository implements IDepartmentRepository {
     return list;
   }
 
-  delete(code: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(code: string): Promise<void> {
+    await this._prismaClient.departments.delete({
+      where: { id: code },
+    });
   }
 }
