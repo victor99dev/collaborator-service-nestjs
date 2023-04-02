@@ -1,3 +1,4 @@
+import { Department, Group } from 'src/domain/entities';
 import { randomUUID } from 'crypto';
 import { Address, Document } from '../value-objects';
 import { Replace } from 'src/helpers';
@@ -20,17 +21,23 @@ export class Collaborator {
   private _id: string;
   private _documents: Document;
   private _address: Address;
+  private _department: Department[];
+  private _group: Group;
   private props: CollaboratorProps;
 
   constructor(
     props: Replace<CollaboratorProps, { createdAt?: Date }>,
     documents?: Document,
     address?: Address,
+    department?: Department[],
+    group?: Group,
     id?: string,
   ) {
     this._id = id ?? randomUUID();
     this._documents = documents;
     this._address = address;
+    this._department = department;
+    this._group = group;
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
@@ -72,11 +79,31 @@ export class Collaborator {
     this._documents = documents;
   }
 
+  public get department(): Department[] {
+    return this._department;
+  }
+  public set department(department: Department[]) {
+    this._department = department;
+  }
+  public SetDepartment(department: Department[]) {
+    this._department = department;
+  }
+
   public get departmentId(): string[] {
     return this.props.departmentId;
   }
   public set departmentId(departmentId: string[]) {
     this.props.departmentId = departmentId;
+  }
+
+  public get group(): Group {
+    return this._group;
+  }
+  public set group(group: Group) {
+    this._group = group;
+  }
+  public SetGroup(group: Group) {
+    this._group = group;
   }
 
   public get groupId(): string {
