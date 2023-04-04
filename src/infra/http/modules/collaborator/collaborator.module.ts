@@ -11,13 +11,19 @@ import {
   ListCollaboratorUseCase,
   UpdateCollaboratorUseCase,
 } from 'src/application/usecases/collaborator';
+import { IPrismaCollaboratorRepository } from 'src/infra/repositories/prisma';
+import { connection } from 'src/infra/database';
 
 @Module({
   controllers: [CollaboratorController],
   providers: [
+    // {
+    //   provide: TOKENS.repositories.COLLABORATORS,
+    //   useFactory: () => new IMemoryCollaboratorRepository(),
+    // },
     {
-      provide: TOKENS.repositories.COLLABORATORS,
-      useFactory: () => new IMemoryCollaboratorRepository(),
+      provide: TOKENS.repositories.DEPARTMENTS,
+      useFactory: () => new IPrismaCollaboratorRepository(connection),
     },
     CollaboratorService,
     CreateCollaboratorUseCase,
