@@ -23,5 +23,3 @@ export class UpdateGroupUseCase {
     return await this._groupRepository.update(code, data);
   }
 }
-
-
