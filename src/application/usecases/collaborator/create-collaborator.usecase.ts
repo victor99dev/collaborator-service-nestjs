@@ -16,7 +16,7 @@ export class CreateCollaboratorUseCase {
 
   async execute(param: CollaboratorInput): Promise<CollaboratorOutput> {
     const document = new Document({
-      documentsType: param.documents.type as DocumentType,
+      documentType: param.documents.type as DocumentType,
       number: param.documents.number,
       dateOfIssue: param.documents.date_of_issue,
     });

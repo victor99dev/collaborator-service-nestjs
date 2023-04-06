@@ -3,7 +3,7 @@ import { DocumentType } from '../enums';
 export interface DocumentProps {
   number: string;
   dateOfIssue: Date;
-  documentsType: DocumentType;
+  documentType: DocumentType;
 }
 
 export class Document {
@@ -27,10 +27,10 @@ export class Document {
     this.props.dateOfIssue = dateOfIssue;
   }
 
-  public get documentsType(): DocumentType {
-    return this.props.documentsType;
+  public get documentType(): DocumentType {
+    return this.props.documentType;
   }
-  public set documentsType(DocumentsType: DocumentType) {
-    this.props.documentsType = DocumentsType;
+  public set documentType(DocumentsType: DocumentType) {
+    this.props.documentType = DocumentsType;
   }
 }

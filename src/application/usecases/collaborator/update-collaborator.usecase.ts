@@ -26,7 +26,7 @@ export class UpdateCollaboratorUseCase {
     data.updatedAt = new Date();
 
     data.documents.number;
-    data.documents.documentsType as DocumentType;
+    data.documents.documentType as DocumentType;
     data.documents.dateOfIssue;
 
     data.address.city;

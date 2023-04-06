@@ -36,7 +36,7 @@ export class IMemoryCollaboratorRepository implements ICollaboratorRepository {
     findCollaboratorId.updatedAt = data.updated_at;
 
     findCollaboratorId.documents.number = data.documents.number;
-    findCollaboratorId.documents.documentsType = data.documents
+    findCollaboratorId.documents.documentType = data.documents
       .type as DocumentType;
     findCollaboratorId.documents.dateOfIssue = data.documents.date_of_issue;
 
