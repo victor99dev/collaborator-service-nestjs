@@ -76,7 +76,7 @@ model Addresses {
 model Documents {
   number         String?
   date_of_issue  DateTime?
-  documents_type DocumentType @default(CPF)
+  document_type DocumentType @default(CPF)
 
   collaborator_id String        @unique
   collaborators   Collaborators @relation(fields: [collaborator_id], references: [id])
