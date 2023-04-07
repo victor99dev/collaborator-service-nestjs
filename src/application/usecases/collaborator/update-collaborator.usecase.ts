@@ -19,8 +19,8 @@ export class UpdateCollaboratorUseCase {
     data.name;
     data.email;
     data.age;
-    data.departmentId;
-    data.groupId;
+    // data.departmentId;
+    //data.groupId;
     data.description;
     data.active;
     data.updatedAt = new Date();

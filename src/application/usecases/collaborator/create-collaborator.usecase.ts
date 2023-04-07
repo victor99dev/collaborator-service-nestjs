@@ -46,11 +46,11 @@ export class CreateCollaboratorUseCase {
     output.SetDocuments(document);
     output.SetAnddress(address);
 
-    const login = await this._collaboratorRepository.findByLogin(param.login);
+    // const login = await this._collaboratorRepository.findByLogin(param.login);
 
-    if (login) {
-      throw new Error(`Login already exists: ${param.login}`);
-    }
+    // if (login) {
+    //   throw new Error(`Login already exists: ${param.login}`);
+    // }
 
     this._collaboratorRepository.save(output);
 
@@ -62,9 +62,9 @@ export interface CollaboratorInput {
   name: string;
   email: string;
   age: string;
-  documents: DocumentDto | null;
   department_id: string[];
   group_id: string;
+  documents: DocumentDto | null;
   address: AddressDto | null;
   login: string;
   password: string;

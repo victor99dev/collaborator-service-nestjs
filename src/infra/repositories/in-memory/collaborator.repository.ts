@@ -29,8 +29,8 @@ export class IMemoryCollaboratorRepository implements ICollaboratorRepository {
     findCollaboratorId.name = data.name;
     findCollaboratorId.email = data.email;
     findCollaboratorId.age = data.age;
-    findCollaboratorId.departmentId = data.department_id;
-    findCollaboratorId.groupId = data.group_id;
+    // findCollaboratorId.departmentId = data.department_id;
+    // findCollaboratorId.groupId = data.group_id;
     findCollaboratorId.description = data.description;
     findCollaboratorId.active = data.active;
     findCollaboratorId.updatedAt = data.updated_at;
