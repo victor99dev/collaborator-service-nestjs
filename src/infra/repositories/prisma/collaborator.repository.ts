@@ -16,27 +16,35 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
 
   async save(data: Collaborator): Promise<void> {
     const raw = PrismaCollaboratorMapper.toPrisma(data);
-    const rawGroups = PrismaGroupMapper.toPrisma(data.group);
-    const rawDepartments = PrismaDepartmentMapper.toPrismaList(data.department);
-    const rawAddresses = PrismaAddressMapper.toPrisma(data.address);
-    const rawDocuments = PrismaDocumentMapper.toPrisma(data.documents);
+    //const rawGroups = PrismaGroupMapper.toPrisma(data.group);
+    // const rawDepartments = PrismaDepartmentMapper.toPrismaList(data.department);
+    // const rawAddresses = PrismaAddressMapper.toPrisma(data.address);
+    // const rawDocuments = PrismaDocumentMapper.toPrisma(data.documents);
 
     await this._prismaClient.collaborators.create({
       data: {
         ...raw,
         group: {
-          create: rawGroups,
-        },
-        address: {
-          create: rawAddresses,
+          //connect: data.group,
+          create: PrismaGroupMapper.toPrisma(data.group),
         },
         department: {
-          create: rawDepartments,
+          connect: {},
+          create: data.department,
+        },
+        address: {
+          create: data.address,
         },
         document: {
-          create: rawDocuments,
+          create: PrismaDocumentMapper.toPrisma(data.documents),
         },
       },
+      // include: {
+      //   group: true,
+      //   department: true,
+      //   address: true,
+      //   document: true,
+      // },
     });
   }
 
@@ -46,6 +54,20 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
 
   findByCode(code: string): Promise<Collaborator> {
     throw new Error('Method not implemented.');
+    // const collaborator = await this._prismaClient.collaborators.findUnique({
+    //   where: { id: code },
+    //   include: {
+    //     group: true,
+    //     department: true,
+    //     address: true,
+    //     document: true,
+    //   },
+    // });
+    // if (!collaborator) {
+    //   return null;
+    // } else {
+    //   return PrismaCollaboratorMapper.toDomain(collaborator);
+    // }
   }
 
   findByLogin(login: string): Promise<Collaborator> {

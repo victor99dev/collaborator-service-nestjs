@@ -15,7 +15,6 @@ model Collaborators {
   name          String
   email         String
   age           String
-  department_id String []
   group_id      String     @unique
   login         String
   address       Addresses?

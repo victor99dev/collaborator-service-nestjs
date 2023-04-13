@@ -7,7 +7,6 @@ export interface CollaboratorProps {
   name: string;
   email: string;
   age: string;
-  departmentId: string[];
   groupId: string;
   login: string;
   password: string;
@@ -87,13 +86,6 @@ export class Collaborator {
   }
   public SetDepartment(department: Department[]) {
     this._department = department;
-  }
-
-  public get departmentId(): string[] {
-    return this.props.departmentId;
-  }
-  public set departmentId(departmentId: string[]) {
-    this.props.departmentId = departmentId;
   }
 
   public get group(): Group {
