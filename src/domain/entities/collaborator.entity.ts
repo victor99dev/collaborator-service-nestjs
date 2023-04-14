@@ -7,7 +7,8 @@ export interface CollaboratorProps {
   name: string;
   email: string;
   age: string;
-  groupId: string;
+  department?: Department[];
+  group?: Group;
   login: string;
   password: string;
   description?: string | null;
@@ -20,23 +21,23 @@ export class Collaborator {
   private _id: string;
   private _documents: Document;
   private _address: Address;
-  private _department: Department[];
-  private _group: Group;
+  // private _department: Department[];
+  // private _group: Group;
   private props: CollaboratorProps;
 
   constructor(
     props: Replace<CollaboratorProps, { createdAt?: Date }>,
     documents?: Document,
     address?: Address,
-    department?: Department[],
-    group?: Group,
+    // department?: Department[],
+    // group?: Group,
     id?: string,
   ) {
     this._id = id ?? randomUUID();
     this._documents = documents;
     this._address = address;
-    this._department = department;
-    this._group = group;
+    // this._department = department;
+    // this._group = group;
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
@@ -79,31 +80,31 @@ export class Collaborator {
   }
 
   public get department(): Department[] {
-    return this._department;
+    return this.props.department;
   }
   public set department(department: Department[]) {
-    this._department = department;
+    this.props.department = department;
   }
   public SetDepartment(department: Department[]) {
-    this._department = department;
+    this.props.department = department;
   }
 
   public get group(): Group {
-    return this._group;
+    return this.props.group;
   }
   public set group(group: Group) {
-    this._group = group;
+    this.props.group = group;
   }
   public SetGroup(group: Group) {
-    this._group = group;
+    this.props.group = group;
   }
 
-  public get groupId(): string {
-    return this.props.groupId;
-  }
-  public set groupId(groupId: string) {
-    this.props.groupId = groupId;
-  }
+  // public get groupId(): string {
+  //   return this.props.groupId;
+  // }
+  // public set groupId(groupId: string) {
+  //   this.props.groupId = groupId;
+  // }
 
   public get address(): Address {
     return this._address;

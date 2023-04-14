@@ -5,7 +5,6 @@ import { Collaborator } from 'src/domain/entities';
 import {
   PrismaAddressMapper,
   PrismaCollaboratorMapper,
-  PrismaDepartmentMapper,
   PrismaDocumentMapper,
   PrismaGroupMapper,
 } from 'src/infra/database/mappers';
@@ -14,37 +13,23 @@ import {
 export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
   constructor(private readonly _prismaClient: PrismaClient) {}
 
-  async save(data: Collaborator): Promise<void> {
+  async save(data: Collaborator) {
     const raw = PrismaCollaboratorMapper.toPrisma(data);
-    //const rawGroups = PrismaGroupMapper.toPrisma(data.group);
-    // const rawDepartments = PrismaDepartmentMapper.toPrismaList(data.department);
-    // const rawAddresses = PrismaAddressMapper.toPrisma(data.address);
-    // const rawDocuments = PrismaDocumentMapper.toPrisma(data.documents);
+    const rawAddresses = PrismaAddressMapper.toPrisma(data.address);
+    const rawGroups = PrismaGroupMapper.toPrisma(data.group);
+    const rawDocuments = PrismaDocumentMapper.toPrisma(data.documents);
 
     await this._prismaClient.collaborators.create({
       data: {
         ...raw,
-        group: {
-          //connect: data.group,
-          create: PrismaGroupMapper.toPrisma(data.group),
-        },
+
+        group: { create: raw.group },
         department: {
-          connect: {},
-          create: data.department,
+          create: raw.department,
         },
-        address: {
-          create: data.address,
-        },
-        document: {
-          create: PrismaDocumentMapper.toPrisma(data.documents),
-        },
+        address: { create: rawAddresses },
+        document: { create: rawDocuments },
       },
-      // include: {
-      //   group: true,
-      //   department: true,
-      //   address: true,
-      //   document: true,
-      // },
     });
   }
 

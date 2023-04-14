@@ -3,8 +3,10 @@ import { Collaborator, Department, Group } from 'src/domain/entities';
 import {
   Collaborators as RawCollaborators,
   Groups as rawGroups,
+  Departments as rawDepartments,
 } from '@prisma/client';
 import { PrismaGroupMapper } from './group.mapper';
+import { PrismaDepartmentMapper } from './department.mapper';
 
 export class PrismaCollaboratorMapper {
   static toPrisma(collaborator: Collaborator) {
@@ -13,7 +15,8 @@ export class PrismaCollaboratorMapper {
       name: collaborator.name,
       email: collaborator.email,
       age: collaborator.age,
-      group: collaborator.groupId,
+      department: collaborator.department,
+      group: collaborator.group,
       login: collaborator.login,
       password: collaborator.password,
       description: collaborator.description,
@@ -27,7 +30,7 @@ export class PrismaCollaboratorMapper {
     raw: RawCollaborators,
     _documents: Document,
     _address: Address,
-    _department: Department[],
+    _department: rawDepartments[],
     _group: rawGroups,
   ): Collaborator {
     return new Collaborator(
@@ -35,7 +38,8 @@ export class PrismaCollaboratorMapper {
         name: raw.name,
         email: raw.email,
         age: raw.age,
-        groupId: raw.group_id,
+        group: PrismaGroupMapper.toDomain(_group),
+        department: PrismaDepartmentMapper.toDomainList(_department),
         login: raw.login,
         password: raw.password,
         description: raw.description,
@@ -45,8 +49,6 @@ export class PrismaCollaboratorMapper {
       },
       _documents,
       _address,
-      _department,
-      PrismaGroupMapper.toDomain(_group),
       raw.id,
     );
   }

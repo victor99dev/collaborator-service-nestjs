@@ -33,8 +33,8 @@ export class CreateCollaboratorUseCase {
       name: param.name,
       email: param.email,
       age: param.age,
-      //departmentId: param.department_id,
-      groupId: param.group_id,
+      department: param.department_id,
+      group: new Group(param.group_id),
       login: param.login,
       password: param.password,
       description: param.description,
@@ -62,8 +62,8 @@ export interface CollaboratorInput {
   name: string;
   email: string;
   age: string;
-  department_id: string[];
-  group_id: string;
+  department_id: Department[];
+  group_id: Group;
   documents: DocumentDto | null;
   address: AddressDto | null;
   login: string;
