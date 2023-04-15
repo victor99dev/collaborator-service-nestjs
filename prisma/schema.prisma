@@ -11,24 +11,25 @@ datasource db {
 }
 
 model Collaborators {
-  id            String     @id @default(uuid())
-  name          String
-  email         String
-  age           String
-  group_id      String @unique
-  login         String
-  address       Addresses?
-  document      Documents?
-  password      String
-  description   String?
-  active        Boolean
-  created_at    DateTime   @default(now())
-  updated_at    DateTime?  @updatedAt
+  id          String     @id @default(uuid())
+  name        String
+  email       String
+  age         String
+  login       String
+  address     Addresses?
+  document    Documents?
+  password    String
+  description String?
+  active      Boolean
+  created_at  DateTime   @default(now())
+  updated_at  DateTime?  @updatedAt
 
   //n:n
   department Departments[]
+
   //1:1
-  group      Groups      @relation(fields: [group_id], references: [id])
+  group_id String @unique
+  group    Groups @relation(fields: [group_id], references: [id])
 
   @@map("collaborators")
 }
@@ -67,18 +68,18 @@ model Addresses {
   country        String?
 
   collaborator_id String        @unique
-  collaborator   Collaborators @relation(fields: [collaborator_id], references: [id])
+  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id])
 
   @@map("addresses")
 }
 
 model Documents {
-  number         String?
-  date_of_issue  DateTime?
+  number        String?
+  date_of_issue DateTime?
   document_type String
 
   collaborator_id String        @unique
-  collaborator   Collaborators @relation(fields: [collaborator_id], references: [id])
+  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id])
 
   @@map("documents")
 }

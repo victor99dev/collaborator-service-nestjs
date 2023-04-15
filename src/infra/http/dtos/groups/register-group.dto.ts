@@ -16,3 +16,8 @@ export class RegisterGroupDto {
   @ApiProperty({ type: Date })
   updated_at: Date;
 }
+
+export class RegisterGroupIdDto {
+  @ApiProperty({ type: String })
+  group_id: string;
+}

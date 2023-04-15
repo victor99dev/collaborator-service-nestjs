@@ -34,7 +34,7 @@ export class CreateCollaboratorUseCase {
       email: param.email,
       age: param.age,
       department: param.department_id,
-      group: new Group(param.group_id),
+      group: param.group_id,
       login: param.login,
       password: param.password,
       description: param.description,
@@ -43,7 +43,7 @@ export class CreateCollaboratorUseCase {
       updatedAt: new Date(),
     });
 
-    output.SetDocuments(document);
+    output.SetDocument(document);
     output.SetAnddress(address);
 
     // const login = await this._collaboratorRepository.findByLogin(param.login);

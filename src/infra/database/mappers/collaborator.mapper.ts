@@ -1,12 +1,15 @@
-import { Address, Document } from 'src/domain/value-objects';
-import { Collaborator, Department, Group } from 'src/domain/entities';
+import { Collaborator } from 'src/domain/entities';
 import {
   Collaborators as RawCollaborators,
-  Groups as rawGroups,
-  Departments as rawDepartments,
+  Groups as RawGroups,
+  Departments as RawDepartments,
+  Addresses as RawAddresses,
+  Documents as RawDocuments,
 } from '@prisma/client';
 import { PrismaGroupMapper } from './group.mapper';
 import { PrismaDepartmentMapper } from './department.mapper';
+import { PrismaAddressMapper } from './address.mapper';
+import { PrismaDocumentMapper } from './documents.mapper';
 
 export class PrismaCollaboratorMapper {
   static toPrisma(collaborator: Collaborator) {
@@ -17,6 +20,8 @@ export class PrismaCollaboratorMapper {
       age: collaborator.age,
       department: collaborator.department,
       group: collaborator.group,
+      address: collaborator.address,
+      document: collaborator.document,
       login: collaborator.login,
       password: collaborator.password,
       description: collaborator.description,
@@ -28,10 +33,10 @@ export class PrismaCollaboratorMapper {
 
   static toDomain(
     raw: RawCollaborators,
-    _documents: Document,
-    _address: Address,
-    _department: rawDepartments[],
-    _group: rawGroups,
+    _document: RawDocuments,
+    _address: RawAddresses,
+    _department: RawDepartments[],
+    _group: RawGroups,
   ): Collaborator {
     return new Collaborator(
       {
@@ -40,6 +45,8 @@ export class PrismaCollaboratorMapper {
         age: raw.age,
         group: PrismaGroupMapper.toDomain(_group),
         department: PrismaDepartmentMapper.toDomainList(_department),
+        address: PrismaAddressMapper.toDomain(_address),
+        document: PrismaDocumentMapper.toDomain(_document),
         login: raw.login,
         password: raw.password,
         description: raw.description,
@@ -47,8 +54,6 @@ export class PrismaCollaboratorMapper {
         createdAt: raw.created_at,
         updatedAt: raw.updated_at,
       },
-      _documents,
-      _address,
       raw.id,
     );
   }

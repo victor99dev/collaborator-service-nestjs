@@ -35,10 +35,10 @@ export class IMemoryCollaboratorRepository implements ICollaboratorRepository {
     findCollaboratorId.active = data.active;
     findCollaboratorId.updatedAt = data.updated_at;
 
-    findCollaboratorId.documents.number = data.documents.number;
-    findCollaboratorId.documents.documentType = data.documents
+    findCollaboratorId.document.number = data.document.number;
+    findCollaboratorId.document.documentType = data.document
       .type as DocumentType;
-    findCollaboratorId.documents.dateOfIssue = data.documents.date_of_issue;
+    findCollaboratorId.document.dateOfIssue = data.document.date_of_issue;
 
     findCollaboratorId.address.city = data.address.city;
     findCollaboratorId.address.country = data.address.country;
