@@ -1,20 +1,27 @@
 import { Collaborator } from 'src/domain/entities';
 import {
   Collaborators as RawCollaborators,
-  Documents as RawDocuments,
-  Addresses as RawAddresses,
-  Departments as RawDepartments,
   Groups as RawGroups,
+  Departments as RawDepartments,
+  Addresses as RawAddresses,
+  Documents as RawDocuments,
 } from '@prisma/client';
+import { PrismaGroupMapper } from './group.mapper';
+import { PrismaDepartmentMapper } from './department.mapper';
+import { PrismaAddressMapper } from './address.mapper';
+import { PrismaDocumentMapper } from './documents.mapper';
 
 export class PrismaCollaboratorMapper {
   static toPrisma(collaborator: Collaborator) {
     return {
+      id: collaborator.id,
       name: collaborator.name,
       email: collaborator.email,
       age: collaborator.age,
-      department_id: collaborator.departmentId,
-      group_id: collaborator.groupId,
+      department: collaborator.department,
+      group: collaborator.group,
+      address: collaborator.address,
+      document: collaborator.document,
       login: collaborator.login,
       password: collaborator.password,
       description: collaborator.description,
@@ -26,23 +33,28 @@ export class PrismaCollaboratorMapper {
 
   static toDomain(
     raw: RawCollaborators,
-    rawDocuments: RawDocuments,
-    rawAddresses: RawAddresses,
-    rawDepartments: RawDepartments[],
-    rawGroups: RawGroups,
+    _document: RawDocuments,
+    _address: RawAddresses,
+    _department: RawDepartments[],
+    _group: RawGroups,
   ): Collaborator {
-    return new Collaborator({
-      name: raw.name,
-      email: raw.email,
-      age: raw.age,
-      departmentId: raw.department_id,
-      groupId: raw.group_id,
-      login: raw.login,
-      password: raw.password,
-      description: raw.description,
-      active: raw.active,
-      createdAt: raw.created_at,
-      updatedAt: raw.updated_at,
-    });
+    return new Collaborator(
+      {
+        name: raw.name,
+        email: raw.email,
+        age: raw.age,
+        group: PrismaGroupMapper.toDomain(_group),
+        department: PrismaDepartmentMapper.toDomainList(_department),
+        address: PrismaAddressMapper.toDomain(_address),
+        document: PrismaDocumentMapper.toDomain(_document),
+        login: raw.login,
+        password: raw.password,
+        description: raw.description,
+        active: raw.active,
+        createdAt: raw.created_at,
+        updatedAt: raw.updated_at,
+      },
+      raw.id,
+    );
   }
 }

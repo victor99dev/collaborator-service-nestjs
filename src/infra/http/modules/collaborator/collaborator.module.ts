@@ -22,7 +22,7 @@ import { connection } from 'src/infra/database';
     //   useFactory: () => new IMemoryCollaboratorRepository(),
     // },
     {
-      provide: TOKENS.repositories.DEPARTMENTS,
+      provide: TOKENS.repositories.COLLABORATORS,
       useFactory: () => new IPrismaCollaboratorRepository(connection),
     },
     CollaboratorService,

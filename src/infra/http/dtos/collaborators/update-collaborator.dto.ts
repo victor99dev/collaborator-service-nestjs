@@ -13,7 +13,7 @@ export class UpdateCollaboratorDto {
   age: string;
 
   @ApiProperty({ type: DocumentDto })
-  documents: DocumentDto;
+  document: DocumentDto;
 
   @ApiProperty({ type: String, isArray: true })
   department_id: string[];

@@ -11,25 +11,26 @@ datasource db {
 }
 
 model Collaborators {
-  id            String     @id @default(uuid())
-  name          String
-  email         String
-  age           String
-  department_id String
-  group_id      String     @unique
-  login         String
-  address       Addresses?
-  document      Documents?
-  password      String
-  description   String?
-  active        Boolean
-  created_at    DateTime   @default(now())
-  updated_at    DateTime?  @updatedAt
+  id          String     @id @default(uuid())
+  name        String
+  email       String
+  age         String
+  login       String
+  address     Addresses?
+  document    Documents?
+  password    String
+  description String?
+  active      Boolean
+  created_at  DateTime   @default(now())
+  updated_at  DateTime?  @updatedAt
 
   //1:n
-  departments Departments @relation(fields: [department_id], references: [id])
+  department_id String
+  department Departments @relation(fields:[department_id], references: [id])
+
   //1:1
-  groups      Groups      @relation(fields: [group_id], references: [id])
+  group_id String @unique
+  group    Groups @relation(fields: [group_id], references: [id])
 
   @@map("collaborators")
 }
@@ -68,25 +69,18 @@ model Addresses {
   country        String?
 
   collaborator_id String        @unique
-  collaborators   Collaborators @relation(fields: [collaborator_id], references: [id])
+  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id])
 
   @@map("addresses")
 }
 
 model Documents {
-  number         String?
-  date_of_issue  DateTime?
-  document_type DocumentType @default(CPF)
+  number        String?
+  date_of_issue DateTime?
+  document_type String
 
   collaborator_id String        @unique
-  collaborators   Collaborators @relation(fields: [collaborator_id], references: [id])
+  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id])
 
   @@map("documents")
-}
-
-enum DocumentType {
-  CPF
-  RG
-  CNH
-  OTHERS
 }

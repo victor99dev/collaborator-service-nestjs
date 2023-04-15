@@ -27,7 +27,7 @@ export class CollaboratorController {
   constructor(private readonly _collaboratorService: CollaboratorService) {}
 
   @ApiOperation({ summary: 'Create a new Collaborator' })
-  @UseFilters(HttpExceptionExistingLogin)
+  @UseFilters()
   @Post('')
   async registerNewCollaborator(@Body() body: RegisterCollaboratorDto) {
     const create = this._collaboratorService.createCollaborator({

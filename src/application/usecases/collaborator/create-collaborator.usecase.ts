@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ICollaboratorRepository } from 'src/application/contracts';
-import { Collaborator } from 'src/domain/entities';
+import { Collaborator, Department, Group } from 'src/domain/entities';
 import { DocumentType } from 'src/domain/enums';
 import { Address, Document } from 'src/domain/value-objects';
 import { TOKENS } from 'src/infra/container';
@@ -33,8 +33,8 @@ export class CreateCollaboratorUseCase {
       name: param.name,
       email: param.email,
       age: param.age,
-      departmentId: param.department_id,
-      groupId: param.group_id,
+      department: param.department_id,
+      group: param.group_id,
       login: param.login,
       password: param.password,
       description: param.description,
@@ -43,14 +43,14 @@ export class CreateCollaboratorUseCase {
       updatedAt: new Date(),
     });
 
-    output.SetDocuments(document);
+    output.SetDocument(document);
     output.SetAnddress(address);
 
-    const login = await this._collaboratorRepository.findByLogin(param.login);
+    // const login = await this._collaboratorRepository.findByLogin(param.login);
 
-    if (login) {
-      throw new Error(`Login already exists: ${param.login}`);
-    }
+    // if (login) {
+    //   throw new Error(`Login already exists: ${param.login}`);
+    // }
 
     this._collaboratorRepository.save(output);
 
@@ -62,9 +62,9 @@ export interface CollaboratorInput {
   name: string;
   email: string;
   age: string;
+  department_id: Department[];
+  group_id: Group;
   documents: DocumentDto | null;
-  department_id: string[];
-  group_id: string;
   address: AddressDto | null;
   login: string;
   password: string;

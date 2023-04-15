@@ -19,15 +19,15 @@ export class UpdateCollaboratorUseCase {
     data.name;
     data.email;
     data.age;
-    data.departmentId;
-    data.groupId;
+    // data.departmentId;
+    //data.groupId;
     data.description;
     data.active;
     data.updatedAt = new Date();
 
-    data.documents.number;
-    data.documents.documentType as DocumentType;
-    data.documents.dateOfIssue;
+    data.document.number;
+    data.document.documentType as DocumentType;
+    data.document.dateOfIssue;
 
     data.address.city;
     data.address.country;

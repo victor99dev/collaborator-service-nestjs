@@ -7,8 +7,10 @@ export interface CollaboratorProps {
   name: string;
   email: string;
   age: string;
-  departmentId: string[];
-  groupId: string;
+  department?: Department[];
+  group?: Group;
+  document?: Document;
+  address?: Address;
   login: string;
   password: string;
   description?: string | null;
@@ -19,25 +21,13 @@ export interface CollaboratorProps {
 
 export class Collaborator {
   private _id: string;
-  private _documents: Document;
-  private _address: Address;
-  private _department: Department[];
-  private _group: Group;
   private props: CollaboratorProps;
 
   constructor(
     props: Replace<CollaboratorProps, { createdAt?: Date }>,
-    documents?: Document,
-    address?: Address,
-    department?: Department[],
-    group?: Group,
     id?: string,
   ) {
     this._id = id ?? randomUUID();
-    this._documents = documents;
-    this._address = address;
-    this._department = department;
-    this._group = group;
     this.props = {
       ...props,
       createdAt: props.createdAt ?? new Date(),
@@ -69,58 +59,44 @@ export class Collaborator {
     this.props.age = age;
   }
 
-  public get documents(): Document {
-    return this._documents;
+  public get document(): Document {
+    return this.props.document;
   }
-  public set documents(documents: Document) {
-    this._documents = documents;
+  public set document(document: Document) {
+    this.props.document = document;
   }
-  public SetDocuments(documents: Document) {
-    this._documents = documents;
+  public SetDocument(document: Document) {
+    this.props.document = document;
   }
 
   public get department(): Department[] {
-    return this._department;
+    return this.props.department;
   }
   public set department(department: Department[]) {
-    this._department = department;
+    this.props.department = department;
   }
   public SetDepartment(department: Department[]) {
-    this._department = department;
-  }
-
-  public get departmentId(): string[] {
-    return this.props.departmentId;
-  }
-  public set departmentId(departmentId: string[]) {
-    this.props.departmentId = departmentId;
+    this.props.department = department;
   }
 
   public get group(): Group {
-    return this._group;
+    return this.props.group;
   }
   public set group(group: Group) {
-    this._group = group;
+    this.props.group = group;
   }
   public SetGroup(group: Group) {
-    this._group = group;
-  }
-
-  public get groupId(): string {
-    return this.props.groupId;
-  }
-  public set groupId(groupId: string) {
-    this.props.groupId = groupId;
+    this.props.group = group;
   }
 
   public get address(): Address {
-    return this._address;
+    return this.props.address;
   }
   public set address(address: Address) {
-    this._address = address || null;
+    this.props.address = address || null;
   }
   public SetAnddress(address: Address) {
-    this._address = address;
+    this.props.address = address;
   }
 
   public get login(): string {
