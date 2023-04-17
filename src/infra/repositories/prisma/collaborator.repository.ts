@@ -16,15 +16,18 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
 
   async save(data: Collaborator) {
     const raw = PrismaCollaboratorMapper.toPrisma(data);
-    const rawDocument = PrismaDocumentMapper.toPrisma(data.document);
+    const rawDocuments = PrismaDocumentMapper.toPrisma(data.document);
+    const rawDepartments = PrismaDepartmentMapper.toPrisma(data.department);
+    const rawAddresses = PrismaAddressMapper.toPrisma(data.address);
+    const rawGroups = PrismaGroupMapper.toPrisma(data.group);
 
     await this._prismaClient.collaborators.create({
       data: {
         ...raw,
-        department: { connect: raw.department },
-        group: { create: raw.group },
-        address: { create: raw.address },
-        document: { create: rawDocument },
+        department: { connect: { id: rawDepartments.id } },
+        group: { connect: { id: rawGroups.id } },
+        address: { create: rawAddresses },
+        document: { create: rawDocuments },
       },
     });
   }
@@ -33,30 +36,36 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
     throw new Error('Method not implemented.');
   }
 
-  findByCode(code: string): Promise<Collaborator> {
-    throw new Error('Method not implemented.');
-    // const collaborator = await this._prismaClient.collaborators.findUnique({
-    //   where: { id: code },
-    //   include: {
-    //     group: true,
-    //     department: true,
-    //     address: true,
-    //     document: true,
-    //   },
-    // });
-    // if (!collaborator) {
-    //   return null;
-    // } else {
-    //   return PrismaCollaboratorMapper.toDomain(collaborator);
-    // }
+  async findByCode(code: string): Promise<Collaborator> {
+    const collaborator = await this._prismaClient.collaborators.findUnique({
+      where: { id: code },
+      include: {
+        document: true,
+        address: true,
+        department: true,
+        group: true,
+      },
+    });
+
+    if (!collaborator) {
+      return null;
+    } else {
+      return PrismaCollaboratorMapper.toDomain(
+        collaborator,
+        collaborator.document,
+        collaborator.address,
+        collaborator.department,
+        collaborator.group,
+      );
+    }
   }
 
   findByLogin(login: string): Promise<Collaborator> {
     throw new Error('Method not implemented.');
   }
 
-  count(): Promise<number> {
-    throw new Error('Method not implemented.');
+  async count(): Promise<number> {
+    return await this._prismaClient.collaborators.count();
   }
 
   getAll(): Promise<Collaborator[]> {
