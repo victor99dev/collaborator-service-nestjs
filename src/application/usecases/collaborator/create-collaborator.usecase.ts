@@ -29,12 +29,28 @@ export class CreateCollaboratorUseCase {
       country: param.address.country,
     });
 
+    //check situation for department and group existence
+    const checkDepartmentExist = await this._collaboratorRepository.findByCode(
+      param.department_id,
+    );
+
+    const checkDepartment = checkDepartmentExist.department;
+
+    const checkGroupExist = await this._collaboratorRepository.findByCode(
+      param.group_id,
+    );
+
+    const checkGroup = checkGroupExist.group;
+
     const output = new Collaborator({
       name: param.name,
       email: param.email,
       age: param.age,
-      department: param.department_id,
-      group: param.group_id,
+      department: new Department(
+        checkDepartment as Department,
+        checkDepartment.id,
+      ),
+      group: new Group(checkGroup as Group, checkGroup.id),
       login: param.login,
       password: param.password,
       description: param.description,
@@ -46,11 +62,13 @@ export class CreateCollaboratorUseCase {
     output.SetDocument(document);
     output.SetAnddress(address);
 
-    // const login = await this._collaboratorRepository.findByLogin(param.login);
+    //TODO: check login existence and return the error message
 
-    // if (login) {
-    //   throw new Error(`Login already exists: ${param.login}`);
-    // }
+    const login = await this._collaboratorRepository.findByLogin(param.login);
+
+    if (login) {
+      throw new Error(`Login already exists: ${param.login}`);
+    }
 
     this._collaboratorRepository.save(output);
 
@@ -62,8 +80,8 @@ export interface CollaboratorInput {
   name: string;
   email: string;
   age: string;
-  department_id: Department[];
-  group_id: Group;
+  department_id: string;
+  group_id: string;
   documents: DocumentDto | null;
   address: AddressDto | null;
   login: string;
