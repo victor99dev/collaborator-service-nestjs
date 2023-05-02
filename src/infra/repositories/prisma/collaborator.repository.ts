@@ -68,8 +68,30 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
     return await this._prismaClient.collaborators.count();
   }
 
-  getAll(): Promise<Collaborator[]> {
-    throw new Error('Method not implemented.');
+  async getAll(): Promise<Collaborator[]> {
+    const collaborator = await this._prismaClient.collaborators.findMany({
+      include: {
+        document: true,
+        address: true,
+        department: true,
+        group: true,
+      },
+    });
+
+    const list: Collaborator[] = [];
+    collaborator.map((collaboratorList) =>
+      list.push(
+        PrismaCollaboratorMapper.toDomain(
+          collaboratorList,
+          collaboratorList.document,
+          collaboratorList.address,
+          collaboratorList.department,
+          collaboratorList.group,
+        ),
+      ),
+    );
+
+    return list;
   }
 
   delete(code: string): Promise<void> {
