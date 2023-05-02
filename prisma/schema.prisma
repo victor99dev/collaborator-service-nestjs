@@ -28,8 +28,8 @@ model Collaborators {
   department_id String
   department Departments @relation(fields:[department_id], references: [id])
 
-  //1:1
-  group_id String @unique
+  //1:n
+  group_id String
   group    Groups @relation(fields: [group_id], references: [id])
 
   @@map("collaborators")
@@ -56,7 +56,7 @@ model Groups {
   created_at  DateTime  @default(now())
   updated_at  DateTime? @updatedAt
 
-  collaborator Collaborators?
+  collaborator Collaborators[]
 
   @@map("groups")
 }
