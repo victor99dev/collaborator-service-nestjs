@@ -1,23 +1,7 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-  Param,
-  Delete,
-  Put,
-  UseFilters,
-} from '@nestjs/common';
+import { Controller, Get, Param, UseFilters } from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import {
-  RegisterCollaboratorDto,
-  UpdateCollaboratorDto,
-} from '../../dtos/collaborators';
-import {
-  HttpExceptionExistingLogin,
-  HttpExceptionNotFound,
-} from '../../exeptions';
+import { HttpExceptionNotFound } from '../../exeptions';
 
 @ApiTags('Collaborator')
 @Controller({
@@ -26,15 +10,15 @@ import {
 export class CollaboratorController {
   constructor(private readonly _collaboratorService: CollaboratorService) {}
 
-  @ApiOperation({ summary: 'Create a new Collaborator' })
-  @UseFilters()
-  @Post('')
-  async registerNewCollaborator(@Body() body: RegisterCollaboratorDto) {
-    const create = this._collaboratorService.createCollaborator({
-      ...body,
-    });
-    return create;
-  }
+  // @ApiOperation({ summary: 'Create a new Collaborator' })
+  // @UseFilters()
+  // @Post('')
+  // async registerNewCollaborator(@Body() body: RegisterCollaboratorDto) {
+  //   const create = this._collaboratorService.createCollaborator({
+  //     ...body,
+  //   });
+  //   return create;
+  // }
 
   @ApiOperation({ summary: 'List Collaborator' })
   @Get('list')
@@ -55,38 +39,38 @@ export class CollaboratorController {
     return getCollaboratorById;
   }
 
-  @ApiOperation({ summary: 'Get Collaborator by login' })
-  @ApiParam({ name: 'login', required: true })
-  @UseFilters(HttpExceptionNotFound)
-  @Get('login/:login')
-  async findByLogin(@Param() params) {
-    const getCollaboratorByLogin = await this._collaboratorService.findByLogin({
-      login: params.login,
-    });
+  // @ApiOperation({ summary: 'Get Collaborator by login' })
+  // @ApiParam({ name: 'login', required: true })
+  // @UseFilters(HttpExceptionNotFound)
+  // @Get('login/:login')
+  // async findByLogin(@Param() params) {
+  //   const getCollaboratorByLogin = await this._collaboratorService.findByLogin({
+  //     login: params.login,
+  //   });
 
-    return getCollaboratorByLogin;
-  }
+  //   return getCollaboratorByLogin;
+  // }
 
-  @ApiOperation({ summary: 'Updated a Department' })
-  @ApiParam({ name: 'code', required: true })
-  @UseFilters(HttpExceptionNotFound)
-  @Put(':code')
-  async update(@Param() params, @Body() body: UpdateCollaboratorDto) {
-    const updateCollaborator = this._collaboratorService.update(
-      params.code,
-      body,
-    );
+  // @ApiOperation({ summary: 'Updated a Department' })
+  // @ApiParam({ name: 'code', required: true })
+  // @UseFilters(HttpExceptionNotFound)
+  // @Put(':code')
+  // async update(@Param() params, @Body() body: UpdateCollaboratorDto) {
+  //   const updateCollaborator = this._collaboratorService.update(
+  //     params.code,
+  //     body,
+  //   );
 
-    return updateCollaborator;
-  }
+  //   return updateCollaborator;
+  // }
 
-  @ApiOperation({ summary: 'Deleted a Collaborator' })
-  @ApiParam({ name: 'code', required: true })
-  @UseFilters(HttpExceptionNotFound)
-  @Delete(':code')
-  async remove(@Param() params) {
-    const deleteCollaborator = this._collaboratorService.remove(params.code);
+  // @ApiOperation({ summary: 'Deleted a Collaborator' })
+  // @ApiParam({ name: 'code', required: true })
+  // @UseFilters(HttpExceptionNotFound)
+  // @Delete(':code')
+  // async remove(@Param() params) {
+  //   const deleteCollaborator = this._collaboratorService.remove(params.code);
 
-    return deleteCollaborator;
-  }
+  //   return deleteCollaborator;
+  // }
 }
