@@ -94,7 +94,9 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
     return list;
   }
 
-  delete(code: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(code: string): Promise<void> {
+    await this._prismaClient.collaborators.delete({
+      where: { id: code },
+    });
   }
 }

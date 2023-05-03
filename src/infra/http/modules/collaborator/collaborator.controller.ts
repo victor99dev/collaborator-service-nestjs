@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseFilters } from '@nestjs/common';
+import { Controller, Delete, Get, Param, UseFilters } from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { HttpExceptionNotFound } from '../../exeptions';
@@ -64,13 +64,13 @@ export class CollaboratorController {
   //   return updateCollaborator;
   // }
 
-  // @ApiOperation({ summary: 'Deleted a Collaborator' })
-  // @ApiParam({ name: 'code', required: true })
-  // @UseFilters(HttpExceptionNotFound)
-  // @Delete(':code')
-  // async remove(@Param() params) {
-  //   const deleteCollaborator = this._collaboratorService.remove(params.code);
+  @ApiOperation({ summary: 'Deleted a Collaborator' })
+  @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionNotFound)
+  @Delete(':code')
+  async remove(@Param() params) {
+    const deleteCollaborator = this._collaboratorService.remove(params.code);
 
-  //   return deleteCollaborator;
-  // }
+    return deleteCollaborator;
+  }
 }
