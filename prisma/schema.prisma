@@ -26,7 +26,7 @@ model Collaborators {
 
   //1:n
   department_id String
-  department Departments @relation(fields:[department_id], references: [id])
+  department    Departments @relation(fields: [department_id], references: [id])
 
   //1:n
   group_id String
@@ -69,7 +69,7 @@ model Addresses {
   country        String?
 
   collaborator_id String        @unique
-  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id])
+  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@map("addresses")
 }
@@ -80,7 +80,7 @@ model Documents {
   document_type String
 
   collaborator_id String        @unique
-  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id])
+  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@map("documents")
 }
