@@ -1,6 +1,8 @@
 import { Collaborator } from 'src/domain/entities';
 import { GetAddressViewModel } from '../get-address.view-model';
 import { GetDocumentViewModel } from '../get-document.view-model';
+import { DepartmentResumeViewModel } from '../department';
+import { GroupResumeViewModel } from '../group';
 
 export class ListCollaboratorViewModel {
   static toHttpList(collaborator: Collaborator[]) {
@@ -12,8 +14,8 @@ export class ListCollaboratorViewModel {
         email: _collaborator.email,
         age: _collaborator.age,
         document: GetDocumentViewModel.toHttp(_collaborator.document),
-        department: _collaborator.department,
-        group: _collaborator.group.id,
+        department: DepartmentResumeViewModel.toHttp(_collaborator.department),
+        group: GroupResumeViewModel.toHttp(_collaborator.group),
         address: GetAddressViewModel.toHttp(_collaborator.address),
         login: _collaborator.login,
         password: _collaborator.password,

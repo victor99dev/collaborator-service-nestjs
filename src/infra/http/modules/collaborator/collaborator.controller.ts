@@ -1,23 +1,20 @@
 import {
-  Controller,
-  Post,
   Body,
+  Controller,
+  Delete,
   Get,
   Param,
-  Delete,
+  Post,
   Put,
   UseFilters,
 } from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import { HttpExceptionNotFound } from '../../exeptions';
 import {
   RegisterCollaboratorDto,
   UpdateCollaboratorDto,
 } from '../../dtos/collaborators';
-import {
-  HttpExceptionExistingLogin,
-  HttpExceptionNotFound,
-} from '../../exeptions';
 
 @ApiTags('Collaborator')
 @Controller({

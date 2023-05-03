@@ -33,20 +33,20 @@ export class PrismaCollaboratorMapper {
 
   static toDomain(
     raw: RawCollaborators,
-    _document: RawDocuments,
-    _address: RawAddresses,
-    _department: RawDepartments[],
-    _group: RawGroups,
+    document: RawDocuments,
+    address: RawAddresses,
+    department: RawDepartments,
+    group: RawGroups,
   ): Collaborator {
     return new Collaborator(
       {
         name: raw.name,
         email: raw.email,
         age: raw.age,
-        group: PrismaGroupMapper.toDomain(_group),
-        department: PrismaDepartmentMapper.toDomainList(_department),
-        address: PrismaAddressMapper.toDomain(_address),
-        document: PrismaDocumentMapper.toDomain(_document),
+        group: PrismaGroupMapper.toDomain(group),
+        department: PrismaDepartmentMapper.toDomain(department),
+        address: PrismaAddressMapper.toDomain(address),
+        document: PrismaDocumentMapper.toDomain(document),
         login: raw.login,
         password: raw.password,
         description: raw.description,

@@ -21,7 +21,7 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .setContact('Victor99dev', 'https://victor99dev.site/', '')
     .setLicense(
-      'Copyright (c) 2023, Victor99dev, Todos os direitos reservados..',
+      'Copyright (c) 2023, Victor99dev, Todos os direitos reservados.',
       'https://github.com/torugo99',
     )
     .setExternalDoc('Open Api: swagger-ui-json', '/swagger-ui-json')
