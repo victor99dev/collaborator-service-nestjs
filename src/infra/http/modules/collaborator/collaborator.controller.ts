@@ -1,7 +1,20 @@
-import { Controller, Delete, Get, Param, UseFilters } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseFilters,
+} from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 import { HttpExceptionNotFound } from '../../exeptions';
+import {
+  RegisterCollaboratorDto,
+  UpdateCollaboratorDto,
+} from '../../dtos/collaborators';
 
 @ApiTags('Collaborator')
 @Controller({
@@ -10,15 +23,15 @@ import { HttpExceptionNotFound } from '../../exeptions';
 export class CollaboratorController {
   constructor(private readonly _collaboratorService: CollaboratorService) {}
 
-  // @ApiOperation({ summary: 'Create a new Collaborator' })
-  // @UseFilters()
-  // @Post('')
-  // async registerNewCollaborator(@Body() body: RegisterCollaboratorDto) {
-  //   const create = this._collaboratorService.createCollaborator({
-  //     ...body,
-  //   });
-  //   return create;
-  // }
+  @ApiOperation({ summary: 'Create a new Collaborator' })
+  @UseFilters()
+  @Post('')
+  async registerNewCollaborator(@Body() body: RegisterCollaboratorDto) {
+    const create = this._collaboratorService.createCollaborator({
+      ...body,
+    });
+    return create;
+  }
 
   @ApiOperation({ summary: 'List Collaborator' })
   @Get('list')
@@ -51,18 +64,18 @@ export class CollaboratorController {
     return getCollaboratorByLogin;
   }
 
-  // @ApiOperation({ summary: 'Updated a Department' })
-  // @ApiParam({ name: 'code', required: true })
-  // @UseFilters(HttpExceptionNotFound)
-  // @Put(':code')
-  // async update(@Param() params, @Body() body: UpdateCollaboratorDto) {
-  //   const updateCollaborator = this._collaboratorService.update(
-  //     params.code,
-  //     body,
-  //   );
+  @ApiOperation({ summary: 'Updated a Department' })
+  @ApiParam({ name: 'code', required: true })
+  @UseFilters(HttpExceptionNotFound)
+  @Put(':code')
+  async update(@Param() params, @Body() body: UpdateCollaboratorDto) {
+    const updateCollaborator = this._collaboratorService.update(
+      params.code,
+      body,
+    );
 
-  //   return updateCollaborator;
-  // }
+    return updateCollaborator;
+  }
 
   @ApiOperation({ summary: 'Deleted a Collaborator' })
   @ApiParam({ name: 'code', required: true })
