@@ -39,17 +39,17 @@ export class CollaboratorController {
     return getCollaboratorById;
   }
 
-  // @ApiOperation({ summary: 'Get Collaborator by login' })
-  // @ApiParam({ name: 'login', required: true })
-  // @UseFilters(HttpExceptionNotFound)
-  // @Get('login/:login')
-  // async findByLogin(@Param() params) {
-  //   const getCollaboratorByLogin = await this._collaboratorService.findByLogin({
-  //     login: params.login,
-  //   });
+  @ApiOperation({ summary: 'Get Collaborator by login' })
+  @ApiParam({ name: 'login', required: true })
+  @UseFilters(HttpExceptionNotFound)
+  @Get('login/:login')
+  async findByLogin(@Param() params) {
+    const getCollaboratorByLogin = await this._collaboratorService.findByLogin({
+      login: params.login,
+    });
 
-  //   return getCollaboratorByLogin;
-  // }
+    return getCollaboratorByLogin;
+  }
 
   // @ApiOperation({ summary: 'Updated a Department' })
   // @ApiParam({ name: 'code', required: true })

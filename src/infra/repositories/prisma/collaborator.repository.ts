@@ -60,8 +60,28 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
     }
   }
 
-  findByLogin(login: string): Promise<Collaborator> {
-    throw new Error('Method not implemented.');
+  async findByLogin(login: string): Promise<Collaborator> {
+    const collaboratorLogin = await this._prismaClient.collaborators.findFirst({
+      where: { login: login },
+      include: {
+        document: true,
+        address: true,
+        department: true,
+        group: true,
+      },
+    });
+
+    if (!collaboratorLogin) {
+      return null;
+    } else {
+      return PrismaCollaboratorMapper.toDomain(
+        collaboratorLogin,
+        collaboratorLogin.document,
+        collaboratorLogin.address,
+        collaboratorLogin.department,
+        collaboratorLogin.group,
+      );
+    }
   }
 
   async count(): Promise<number> {
