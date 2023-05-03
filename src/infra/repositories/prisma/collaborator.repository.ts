@@ -2,34 +2,14 @@ import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { ICollaboratorRepository } from 'src/application/contracts';
 import { Collaborator } from 'src/domain/entities';
-import {
-  PrismaAddressMapper,
-  PrismaCollaboratorMapper,
-  PrismaDepartmentMapper,
-  PrismaDocumentMapper,
-  PrismaGroupMapper,
-} from 'src/infra/database/mappers';
+import { PrismaCollaboratorMapper } from 'src/infra/database/mappers';
 
 @Injectable()
 export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
   constructor(private readonly _prismaClient: PrismaClient) {}
 
-  async save(data: Collaborator) {
-    const raw = PrismaCollaboratorMapper.toPrisma(data);
-    const rawDocuments = PrismaDocumentMapper.toPrisma(data.document);
-    const rawDepartments = PrismaDepartmentMapper.toPrisma(data.department);
-    const rawAddresses = PrismaAddressMapper.toPrisma(data.address);
-    const rawGroups = PrismaGroupMapper.toPrisma(data.group);
-
-    await this._prismaClient.collaborators.create({
-      data: {
-        ...raw,
-        department: { connect: { id: rawDepartments.id } },
-        group: { connect: { id: rawGroups.id } },
-        address: { create: rawAddresses },
-        document: { create: rawDocuments },
-      },
-    });
+  save(data: Collaborator): Promise<void> {
+    throw new Error('Method not implemented.');
   }
 
   update(code: string, data: any): Promise<void> {
