@@ -1,15 +1,35 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { ICollaboratorRepository } from 'src/application/contracts';
-import { Collaborator } from 'src/domain/entities';
-import { PrismaCollaboratorMapper } from 'src/infra/database/mappers';
+import { Collaborator, Department, Group } from 'src/domain/entities';
+import {
+  PrismaAddressMapper,
+  PrismaCollaboratorMapper,
+  PrismaDepartmentMapper,
+  PrismaDocumentMapper,
+  PrismaGroupMapper,
+} from 'src/infra/database/mappers';
 
 @Injectable()
 export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
   constructor(private readonly _prismaClient: PrismaClient) {}
 
-  save(data: Collaborator): Promise<void> {
-    throw new Error('Method not implemented.');
+  async save(data: Collaborator): Promise<void> {
+    const collaboratorMapper = PrismaCollaboratorMapper.toPrisma(data);
+    const documentMapper = PrismaDocumentMapper.toPrisma(data.document);
+    const addressMapper = PrismaAddressMapper.toPrisma(data.address);
+    const departmentMapper = PrismaDepartmentMapper.toPrisma(data.department);
+    const prismaGroupMapper = PrismaGroupMapper.toPrisma(data.group);
+
+    await this._prismaClient.collaborators.create({
+      data: {
+        ...collaboratorMapper,
+        document: { create: { ...documentMapper } },
+        address: { create: { ...addressMapper } },
+        department: { connect: { id: departmentMapper.id } },
+        group: { connect: { id: prismaGroupMapper.id } },
+      },
+    });
   }
 
   update(code: string, data: any): Promise<void> {
@@ -98,5 +118,25 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
     await this._prismaClient.collaborators.delete({
       where: { id: code },
     });
+  }
+
+  async findDepartmentActive(departmentId: string): Promise<Department> {
+    const query = await this._prismaClient.departments.findFirst({
+      where: {
+        id: departmentId,
+      },
+    });
+
+    return query != null ? PrismaDepartmentMapper.toDomain(query) : null;
+  }
+
+  async findGroupActive(groupId: string): Promise<Group> {
+    const query = await this._prismaClient.groups.findFirst({
+      where: {
+        id: groupId,
+      },
+    });
+
+    return query != null ? PrismaGroupMapper.toDomain(query) : null;
   }
 }
