@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { IGroupRepository } from 'src/application/contracts';
-import { Group } from 'src/domain/entities';
+import { Department, Group } from 'src/domain/entities';
 import { PrismaGroupMapper } from 'src/infra/database/mappers';
 
 @Injectable()
@@ -57,5 +57,13 @@ export class IPrismaGroupRepository implements IGroupRepository {
     await this._prismaClient.groups.delete({
       where: { id: code },
     });
+  }
+
+  findDepartmentActive(id: string): Promise<Department> {
+    throw new Error('Method not implemented.');
+  }
+
+  findGroupActive(id: string): Promise<Group> {
+    throw new Error('Method not implemented.');
   }
 }

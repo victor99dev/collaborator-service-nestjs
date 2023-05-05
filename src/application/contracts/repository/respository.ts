@@ -1,3 +1,5 @@
+import { Department, Group } from 'src/domain/entities';
+
 export abstract class Repository<TEntity> {
   abstract save(data: TEntity): Promise<void>;
 
@@ -12,4 +14,8 @@ export abstract class Repository<TEntity> {
   abstract getAll(): Promise<TEntity[]>;
 
   abstract delete(code: string): Promise<void>;
+
+  abstract findDepartmentActive(id: string): Promise<Department | null>;
+
+  abstract findGroupActive(id: string): Promise<Group | null>;
 }

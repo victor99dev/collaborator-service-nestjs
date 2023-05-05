@@ -1,5 +1,5 @@
 import { IDepartmentRepository } from 'src/application/contracts';
-import { Department } from 'src/domain/entities';
+import { Department, Group } from 'src/domain/entities';
 
 export class IMemoryDepartmentRepository implements IDepartmentRepository {
   private departdb: Department[];
@@ -50,5 +50,13 @@ export class IMemoryDepartmentRepository implements IDepartmentRepository {
     this.departdb = this.departdb.filter(
       (department) => department.id !== findDepartmentId.id,
     );
+  }
+
+  findGroupActive(id: string): Promise<Group> {
+    throw new Error('Method not implemented.');
+  }
+
+  findDepartmentActive(id: string): Promise<Department> {
+    throw new Error('Method not implemented.');
   }
 }

@@ -1,5 +1,5 @@
 import { ICollaboratorRepository } from 'src/application/contracts';
-import { Collaborator } from 'src/domain/entities';
+import { Collaborator, Department, Group } from 'src/domain/entities';
 import { DocumentType } from 'src/domain/enums';
 import { UpdateCollaboratorDto } from 'src/infra/http/dtos/collaborators';
 
@@ -71,5 +71,13 @@ export class IMemoryCollaboratorRepository implements ICollaboratorRepository {
     this.collaboratordb = this.collaboratordb.filter(
       (collaborator) => collaborator.id !== findCollaboratorId.id,
     );
+  }
+
+  findGroupActive(id: string): Promise<Group> {
+    throw new Error('Method not implemented.');
+  }
+
+  findDepartmentActive(id: string): Promise<Department> {
+    throw new Error('Method not implemented.');
   }
 }

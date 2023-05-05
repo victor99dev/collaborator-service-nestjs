@@ -1,7 +1,7 @@
 import { PrismaClient } from '.prisma/client';
 import { Injectable } from '@nestjs/common';
 import { IDepartmentRepository } from 'src/application/contracts';
-import { Department } from 'src/domain/entities';
+import { Department, Group } from 'src/domain/entities';
 import { PrismaDepartmentMapper } from 'src/infra/database/mappers';
 
 @Injectable()
@@ -57,5 +57,13 @@ export class IPrismaDepartmentRepository implements IDepartmentRepository {
     await this._prismaClient.departments.delete({
       where: { id: code },
     });
+  }
+
+  findDepartmentActive(id: string): Promise<Department> {
+    throw new Error('Method not implemented.');
+  }
+
+  findGroupActive(id: string): Promise<Group> {
+    throw new Error('Method not implemented.');
   }
 }

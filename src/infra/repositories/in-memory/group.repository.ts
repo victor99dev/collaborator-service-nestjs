@@ -1,4 +1,5 @@
 import { IGroupRepository } from 'src/application/contracts';
+import { Department } from 'src/domain/entities';
 import { Group } from 'src/domain/entities/group.entity';
 
 export class IMemoryGroupRepository implements IGroupRepository {
@@ -42,5 +43,13 @@ export class IMemoryGroupRepository implements IGroupRepository {
     const findGroupId = this.groupdb.find((group) => group.id === code);
 
     this.groupdb = this.groupdb.filter((group) => group.id !== findGroupId.id);
+  }
+
+  findGroupActive(id: string): Promise<Group> {
+    throw new Error('Method not implemented.');
+  }
+
+  findDepartmentActive(id: string): Promise<Department> {
+    throw new Error('Method not implemented.');
   }
 }
