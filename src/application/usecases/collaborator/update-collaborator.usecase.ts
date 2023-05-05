@@ -1,7 +1,6 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { ICollaboratorRepository } from 'src/application/contracts';
-import { Collaborator } from 'src/domain/entities';
-import { DocumentType } from 'src/domain/enums';
+import { Collaborator, Department, Group } from 'src/domain/entities';
 import { TOKENS } from 'src/infra/container';
 
 @Injectable()
@@ -16,18 +15,39 @@ export class UpdateCollaboratorUseCase {
     if (!codeReturn)
       throw new Error(`Not Found Collaborator with code ${code}`);
 
+    const request: CollaboratorUpdateInput =
+      data as unknown as CollaboratorUpdateInput;
+
+    const { department_id, group_id } = request;
+
+    const checkDepartmentExist =
+      await this._collaboratorRepository.findDepartmentActive(department_id);
+
+    const checkDepartment = checkDepartmentExist.id;
+
+    const checkGroupExist = await this._collaboratorRepository.findGroupActive(
+      group_id,
+    );
+
+    const checkGroup = checkGroupExist.id;
+
     data.name;
     data.email;
     data.age;
-    // data.departmentId;
-    //data.groupId;
+    data.department = new Department(
+      checkDepartment as unknown as Department,
+      checkDepartment as string,
+    );
+    data.group = new Group(
+      checkGroup as unknown as Group,
+      checkGroup as string,
+    );
     data.description;
     data.active;
     data.updatedAt = new Date();
-
     data.document.number;
-    data.document.documentType as DocumentType;
-    data.document.dateOfIssue;
+    data.document.documentType;
+    data.document.dateOfIssue = new Date();
 
     data.address.city;
     data.address.country;
@@ -37,4 +57,9 @@ export class UpdateCollaboratorUseCase {
 
     return await this._collaboratorRepository.update(code, data);
   }
+}
+
+export interface CollaboratorUpdateInput {
+  department_id: string;
+  group_id: string;
 }
