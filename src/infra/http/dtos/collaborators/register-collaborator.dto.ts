@@ -21,8 +21,8 @@ export class RegisterCollaboratorDto {
   @ApiProperty({ type: DocumentDto })
   documents: DocumentDto;
 
-  @ApiProperty({ type: String, isArray: true })
-  department_id: string[];
+  @ApiProperty({ type: String })
+  department_id: string;
 
   @ApiProperty({ type: String })
   group_id: string;
