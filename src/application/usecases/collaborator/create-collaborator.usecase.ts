@@ -29,28 +29,34 @@ export class CreateCollaboratorUseCase {
       country: param.address.country,
     });
 
-    //check situation for department and group existence
-    const checkDepartmentExist = await this._collaboratorRepository.findByCode(
-      param.department_id,
-    );
+    const login = await this._collaboratorRepository.findByLogin(param.login);
 
-    const checkDepartment = checkDepartmentExist.department;
+    if (login) {
+      throw new Error(`Login already exists: ${param.login}`);
+    }
 
-    const checkGroupExist = await this._collaboratorRepository.findByCode(
+    const checkDepartmentExist =
+      await this._collaboratorRepository.findDepartmentActive(
+        param.department_id,
+      );
+
+    const checkDepartment = checkDepartmentExist.id;
+
+    const checkGroupExist = await this._collaboratorRepository.findGroupActive(
       param.group_id,
     );
 
-    const checkGroup = checkGroupExist.group;
+    const checkGroup = checkGroupExist.id;
 
     const output = new Collaborator({
       name: param.name,
       email: param.email,
       age: param.age,
       department: new Department(
-        checkDepartment as Department,
-        checkDepartment.id,
+        checkDepartment as unknown as Department,
+        checkDepartment as string,
       ),
-      group: new Group(checkGroup as Group, checkGroup.id),
+      group: new Group(checkGroup as unknown as Group, checkGroup as string),
       login: param.login,
       password: param.password,
       description: param.description,
@@ -61,14 +67,6 @@ export class CreateCollaboratorUseCase {
 
     output.SetDocument(document);
     output.SetAnddress(address);
-
-    //TODO: check login existence and return the error message
-
-    const login = await this._collaboratorRepository.findByLogin(param.login);
-
-    if (login) {
-      throw new Error(`Login already exists: ${param.login}`);
-    }
 
     this._collaboratorRepository.save(output);
 
