@@ -19,7 +19,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
     const documentMapper = PrismaDocumentMapper.toPrisma(data.document);
     const addressMapper = PrismaAddressMapper.toPrisma(data.address);
     const departmentMapper = PrismaDepartmentMapper.toPrisma(data.department);
-    const prismaGroupMapper = PrismaGroupMapper.toPrisma(data.group);
+    const groupMapper = PrismaGroupMapper.toPrisma(data.group);
 
     await this._prismaClient.collaborators.create({
       data: {
@@ -27,13 +27,28 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
         document: { create: { ...documentMapper } },
         address: { create: { ...addressMapper } },
         department: { connect: { id: departmentMapper.id } },
-        group: { connect: { id: prismaGroupMapper.id } },
+        group: { connect: { id: groupMapper.id } },
       },
     });
   }
 
-  update(code: string, data: any): Promise<void> {
-    throw new Error('Method not implemented.');
+  async update(code: string, data: Collaborator): Promise<void> {
+    const collaboratorMapper = PrismaCollaboratorMapper.toPrisma(data);
+    const documentMapper = PrismaDocumentMapper.toPrisma(data.document);
+    const addressMapper = PrismaAddressMapper.toPrisma(data.address);
+    const departmentMapper = PrismaDepartmentMapper.toPrisma(data.department);
+    const groupMapper = PrismaGroupMapper.toPrisma(data.group);
+
+    await this._prismaClient.collaborators.update({
+      where: { id: code },
+      data: {
+        ...collaboratorMapper,
+        document: { update: { ...documentMapper } },
+        address: { update: { ...addressMapper } },
+        department: { connect: { id: departmentMapper.id } },
+        group: { connect: { id: groupMapper.id } },
+      },
+    });
   }
 
   async findByCode(code: string): Promise<Collaborator> {
