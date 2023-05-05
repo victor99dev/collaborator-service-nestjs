@@ -10,7 +10,10 @@ import {
 } from '@nestjs/common';
 import { CollaboratorService } from './collaborator.service';
 import { ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
-import { HttpExceptionNotFound } from '../../exeptions';
+import {
+  HttpExceptionExistingLogin,
+  HttpExceptionNotFound,
+} from '../../Exceptions';
 import {
   RegisterCollaboratorDto,
   UpdateCollaboratorDto,
@@ -24,7 +27,7 @@ export class CollaboratorController {
   constructor(private readonly _collaboratorService: CollaboratorService) {}
 
   @ApiOperation({ summary: 'Create a new Collaborator' })
-  @UseFilters()
+  @UseFilters(HttpExceptionExistingLogin)
   @Post('')
   async registerNewCollaborator(@Body() body: RegisterCollaboratorDto) {
     const create = this._collaboratorService.createCollaborator({

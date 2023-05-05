@@ -14,7 +14,7 @@ import {
   RegisterDepartmentDto,
   UpdateDepartmentDto,
 } from '../../dtos/departments';
-import { HttpExceptionNotFound } from '../../exeptions';
+import { HttpExceptionNotFound } from '../../Exceptions';
 
 @ApiTags('Department')
 @Controller({
