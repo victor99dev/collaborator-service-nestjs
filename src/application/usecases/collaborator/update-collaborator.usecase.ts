@@ -1,7 +1,9 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ICollaboratorRepository } from 'src/application/contracts';
 import { Collaborator, Department, Group } from 'src/domain/entities';
+import { DocumentType } from 'src/domain/enums';
 import { TOKENS } from 'src/infra/container';
+import { AddressDto, DocumentDto } from 'src/infra/http/dtos';
 
 @Injectable()
 export class UpdateCollaboratorUseCase {
@@ -18,15 +20,15 @@ export class UpdateCollaboratorUseCase {
     const request: CollaboratorUpdateInput =
       data as unknown as CollaboratorUpdateInput;
 
-    const { department_id, group_id } = request;
-
     const checkDepartmentExist =
-      await this._collaboratorRepository.findDepartmentActive(department_id);
+      await this._collaboratorRepository.findDepartmentActive(
+        request.department_id,
+      );
 
     const checkDepartment = checkDepartmentExist.id;
 
     const checkGroupExist = await this._collaboratorRepository.findGroupActive(
-      group_id,
+      request.group_id,
     );
 
     const checkGroup = checkGroupExist.id;
@@ -46,14 +48,14 @@ export class UpdateCollaboratorUseCase {
     data.active;
     data.updatedAt = new Date();
     data.document.number;
-    data.document.documentType;
+    data.document.documentType = request.document.type as DocumentType;
     data.document.dateOfIssue = new Date();
 
     data.address.city;
     data.address.country;
     data.address.number;
     data.address.state;
-    data.address.streetAddress;
+    data.address.streetAddress = request.address.street_address;
 
     return await this._collaboratorRepository.update(code, data);
   }
@@ -62,4 +64,6 @@ export class UpdateCollaboratorUseCase {
 export interface CollaboratorUpdateInput {
   department_id: string;
   group_id: string;
+  document: DocumentDto;
+  address: AddressDto;
 }
