@@ -46,7 +46,6 @@ export class Group {
   public get updatedAt(): Date {
     return this.props.updatedAt;
   }
-
   public set updatedAt(updatedAt: Date) {
     this.props.updatedAt = updatedAt;
   }

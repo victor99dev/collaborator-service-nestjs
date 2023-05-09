@@ -24,11 +24,9 @@ model Collaborators {
   created_at  DateTime   @default(now())
   updated_at  DateTime?  @updatedAt
 
-  //1:n
   department_id String
   department    Departments @relation(fields: [department_id], references: [id])
 
-  //1:n
   group_id String
   group    Groups @relation(fields: [group_id], references: [id])
 

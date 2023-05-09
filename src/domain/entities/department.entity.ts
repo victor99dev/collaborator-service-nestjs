@@ -38,7 +38,6 @@ export class Department {
   public get description(): string {
     return this.props.description;
   }
-
   public set description(description: string) {
     this.props.description = description;
   }
@@ -50,7 +49,6 @@ export class Department {
   public get updatedAt(): Date {
     return this.props.updatedAt;
   }
-
   public set updatedAt(updatedAt: Date) {
     this.props.updatedAt = updatedAt;
   }
@@ -58,7 +56,6 @@ export class Department {
   public get active(): boolean {
     return this.props.active;
   }
-
   public set active(active: boolean) {
     this.props.active = active;
   }
