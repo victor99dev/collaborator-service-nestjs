@@ -1,7 +1,0 @@
-"id","name","email","age","login","password","description","active","created_at","updated_at","department_id","group_id"
-fdb5b9be-8aca-41f3-8a40-1b3ad161534d,victor hugo,victor@gmail.com,"24",user1235,"125",teste for collaborator,true,2023-05-02 18:43:54.920,2023-05-02 18:44:01.849,d8b18986-156c-44f9-b10f-a195b6a8ae43,"73add944-22bb-46a8-8b45-010aa9ce634e"
-"80fd579b-2248-4491-ae28-44e136eeaf40",kioshigue,kio@gmail.com,"24",user8546,"358",,true,2023-05-02 18:49:37.412,2023-05-02 18:49:40.137,d8b18986-156c-44f9-b10f-a195b6a8ae43,"7942af00-e70b-4cb5-a64a-b1089c322025"
-f8326c93-60bc-4958-98f5-66031374c5f8,update,update@gmail.com,"24",user2156156,"358","116546515",true,2023-05-02 18:49:37.412,2023-05-02 18:49:40.137,d8b18986-156c-44f9-b10f-a195b6a8ae43,"7942af00-e70b-4cb5-a64a-b1089c322025"
-"477db861-1ab4-4817-98e7-1f286e67fac5",Luan,luan@gmail.com,"25",string,"12344",Fala muito,true,2023-05-05 01:35:10.263,2023-05-05 01:35:10.263,d8b18986-156c-44f9-b10f-a195b6a8ae43,"7942af00-e70b-4cb5-a64a-b1089c322025"
-"9b9d3525-82ca-4732-9172-73ae741fb7c1",Maria,maria@gmail.com,"25",user845165,"98456",Maria nova funcionária,true,2023-05-05 02:35:55.216,2023-05-05 02:35:55.216,"5702eabe-8d57-4f7d-9454-c7fa8bac1fdf","48fd1e32-2640-4641-9e2d-13572ffba425"
-"245261a8-6a12-4a5b-a8c9-9e1b72a7f19c",karlos,karlos@gmail.com,"20",user15656,"5571",...,true,2023-05-02 18:56:36.857,2023-05-09 18:56:42.469,d8b18986-156c-44f9-b10f-a195b6a8ae43,"73add944-22bb-46a8-8b45-010aa9ce634e"
