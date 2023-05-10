@@ -1,12 +1,12 @@
 import { Department, Group } from 'src/domain/entities';
 import { randomUUID } from 'crypto';
-import { Address, Document } from '../value-objects';
+import { Address, Contact, Document } from '../value-objects';
 import { Replace } from 'src/helpers';
 
 export interface CollaboratorProps {
   name: string;
-  email: string;
   age: string;
+  contact?: Contact;
   department?: Department;
   group?: Group;
   document?: Document;
@@ -45,18 +45,21 @@ export class Collaborator {
     this.props.name = name;
   }
 
-  public get email(): string {
-    return this.props.email;
-  }
-  public set email(email: string) {
-    this.props.email = email;
-  }
-
   public get age(): string {
     return this.props.age;
   }
   public set age(age: string) {
     this.props.age = age;
+  }
+
+  public get contact(): Contact {
+    return this.props.contact;
+  }
+  public set contact(contact: Contact) {
+    this.props.contact = contact;
+  }
+  public SetContact(contact: Contact) {
+    this.props.contact = contact;
   }
 
   public get document(): Document {
