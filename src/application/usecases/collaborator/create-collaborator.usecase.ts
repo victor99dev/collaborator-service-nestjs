@@ -15,10 +15,16 @@ export class CreateCollaboratorUseCase {
   ) {}
 
   async execute(param: CollaboratorInput): Promise<CollaboratorOutput> {
+    const contact = new Contact({
+      email: param.contact.email,
+      telephone: param.contact.telephone,
+      socialNetwork: param.contact.social_network,
+    });
+
     const document = new Document({
-      documentType: param.documents.type as DocumentType,
-      number: param.documents.number,
-      dateOfIssue: param.documents.date_of_issue,
+      documentType: param.document.type as DocumentType,
+      number: param.document.number,
+      dateOfIssue: param.document.date_of_issue,
     });
 
     const address = new Address({
@@ -27,12 +33,6 @@ export class CreateCollaboratorUseCase {
       city: param.address.city,
       state: param.address.state,
       country: param.address.country,
-    });
-
-    const contact = new Contact({
-      email: param.contact.email,
-      telephone: param.contact.telephone,
-      socialNetwork: param.contact.social_network,
     });
 
     const login = await this._collaboratorRepository.findByLogin(param.login);
@@ -86,7 +86,7 @@ export interface CollaboratorInput {
   contact: ContactDto | null;
   department_id: string;
   group_id: string;
-  documents: DocumentDto | null;
+  document: DocumentDto | null;
   address: AddressDto | null;
   login: string;
   password: string;
