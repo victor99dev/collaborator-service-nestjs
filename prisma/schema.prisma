@@ -13,7 +13,7 @@ datasource db {
 model Collaborators {
   id          String     @id @default(uuid())
   name        String
-  email       String
+  contact     Contacts?
   age         String
   login       String
   address     Addresses?
@@ -81,4 +81,15 @@ model Documents {
   collaborator    Collaborators @relation(fields: [collaborator_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
 
   @@map("documents")
+}
+
+model Contacts {
+  email          String?
+  telephone      String?
+  social_network String?
+
+  collaborator_id String        @unique
+  collaborator    Collaborators @relation(fields: [collaborator_id], references: [id], onUpdate: Cascade, onDelete: Cascade)
+
+  @@map("contacts")
 }
