@@ -27,11 +27,13 @@ export class IMemoryCollaboratorRepository implements ICollaboratorRepository {
     );
 
     findCollaboratorId.name = data.name;
-    findCollaboratorId.email = data.email;
     findCollaboratorId.age = data.age;
     findCollaboratorId.description = data.description;
     findCollaboratorId.active = data.active;
     findCollaboratorId.updatedAt = data.updated_at;
+    findCollaboratorId.contact.email = data.contact.email;
+    findCollaboratorId.contact.telephone = data.contact.telephone;
+    findCollaboratorId.contact.socialNetwork = data.contact.social_network;
     findCollaboratorId.document.number = data.document.number;
     findCollaboratorId.document.documentType = data.document
       .type as DocumentType;
