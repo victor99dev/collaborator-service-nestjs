@@ -3,7 +3,7 @@ import { ICollaboratorRepository } from 'src/application/contracts';
 import { Collaborator, Department, Group } from 'src/domain/entities';
 import { DocumentType } from 'src/domain/enums';
 import { TOKENS } from 'src/infra/container';
-import { AddressDto, DocumentDto } from 'src/infra/http/dtos';
+import { AddressDto, ContactDto, DocumentDto } from 'src/infra/http/dtos';
 
 @Injectable()
 export class UpdateCollaboratorUseCase {
@@ -34,8 +34,10 @@ export class UpdateCollaboratorUseCase {
     const checkGroup = checkGroupExist.id;
 
     data.name;
-    data.email;
     data.age;
+    data.contact.email;
+    data.contact.socialNetwork = request.contact.social_network;
+    data.contact.telephone;
     data.department = new Department(
       checkDepartment as unknown as Department,
       checkDepartment as string,
@@ -50,7 +52,6 @@ export class UpdateCollaboratorUseCase {
     data.document.number;
     data.document.documentType = request.document.type as DocumentType;
     data.document.dateOfIssue = new Date();
-
     data.address.city;
     data.address.country;
     data.address.number;
@@ -64,6 +65,7 @@ export class UpdateCollaboratorUseCase {
 export interface CollaboratorUpdateInput {
   department_id: string;
   group_id: string;
+  contact: ContactDto;
   document: DocumentDto;
   address: AddressDto;
 }

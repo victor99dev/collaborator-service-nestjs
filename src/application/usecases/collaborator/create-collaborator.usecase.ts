@@ -2,9 +2,9 @@ import { Inject, Injectable } from '@nestjs/common';
 import { ICollaboratorRepository } from 'src/application/contracts';
 import { Collaborator, Department, Group } from 'src/domain/entities';
 import { DocumentType } from 'src/domain/enums';
-import { Address, Document } from 'src/domain/value-objects';
+import { Address, Contact, Document } from 'src/domain/value-objects';
 import { TOKENS } from 'src/infra/container';
-import { AddressDto, DocumentDto } from 'src/infra/http/dtos';
+import { AddressDto, ContactDto, DocumentDto } from 'src/infra/http/dtos';
 import { CollaboratorViewModel } from 'src/infra/http/view-models/collaborator';
 
 @Injectable()
@@ -29,6 +29,12 @@ export class CreateCollaboratorUseCase {
       country: param.address.country,
     });
 
+    const contact = new Contact({
+      email: param.contact.email,
+      telephone: param.contact.telephone,
+      socialNetwork: param.contact.social_network,
+    });
+
     const login = await this._collaboratorRepository.findByLogin(param.login);
 
     if (login) {
@@ -50,7 +56,6 @@ export class CreateCollaboratorUseCase {
 
     const output = new Collaborator({
       name: param.name,
-      email: param.email,
       age: param.age,
       department: new Department(
         checkDepartment as unknown as Department,
@@ -65,6 +70,7 @@ export class CreateCollaboratorUseCase {
       updatedAt: new Date(),
     });
 
+    output.SetContact(contact);
     output.SetDocument(document);
     output.SetAnddress(address);
 
@@ -76,8 +82,8 @@ export class CreateCollaboratorUseCase {
 
 export interface CollaboratorInput {
   name: string;
-  email: string;
   age: string;
+  contact: ContactDto | null;
   department_id: string;
   group_id: string;
   documents: DocumentDto | null;
