@@ -1,16 +1,17 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { DocumentDto } from '../document.dto';
 import { AddressDto } from '../address.dto';
+import { ContactDto } from '../contact.dto';
 
 export class UpdateCollaboratorDto {
   @ApiProperty({ type: String })
   name: string;
 
   @ApiProperty({ type: String })
-  email: string;
-
-  @ApiProperty({ type: String })
   age: string;
+
+  @ApiProperty({ type: ContactDto })
+  contact: ContactDto;
 
   @ApiProperty({ type: DocumentDto })
   document: DocumentDto;

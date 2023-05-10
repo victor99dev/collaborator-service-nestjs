@@ -1,13 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { DocumentDto } from '../document.dto';
 import { AddressDto } from '../address.dto';
+import { ContactDto } from '../contact.dto';
 
 export class RegisterCollaboratorDto {
   @ApiProperty({ type: String })
   name: string;
-
-  @ApiProperty({ type: String })
-  email: string;
 
   @ApiProperty({ type: String })
   login: string;
@@ -18,8 +16,11 @@ export class RegisterCollaboratorDto {
   @ApiProperty({ type: String })
   age: string;
 
+  @ApiProperty({ type: ContactDto })
+  contact: ContactDto;
+
   @ApiProperty({ type: DocumentDto })
-  documents: DocumentDto;
+  document: DocumentDto;
 
   @ApiProperty({ type: String })
   department_id: string;
