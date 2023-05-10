@@ -3,16 +3,17 @@ import { GetDocumentViewModel } from '../get-document.view-model';
 import { GetAddressViewModel } from '../get-address.view-model';
 import { DepartmentResumeViewModel } from '../department';
 import { GroupResumeViewModel } from '../group';
+import { GetContactViewModel } from '../get-contact.view-model';
 
 export class CollaboratorViewModel {
   static toHttp(collaborator: Collaborator) {
     return {
       id: collaborator.id,
       name: collaborator.name,
-      email: collaborator.email,
       age: collaborator.age,
-      documents: GetDocumentViewModel.toHttp(collaborator.document),
-      departments: DepartmentResumeViewModel.toHttp(collaborator.department),
+      contact: GetContactViewModel.toHttp(collaborator.contact),
+      document: GetDocumentViewModel.toHttp(collaborator.document),
+      department: DepartmentResumeViewModel.toHttp(collaborator.department),
       group: GroupResumeViewModel.toHttp(collaborator.group),
       address: GetAddressViewModel.toHttp(collaborator.address),
       login: collaborator.login,

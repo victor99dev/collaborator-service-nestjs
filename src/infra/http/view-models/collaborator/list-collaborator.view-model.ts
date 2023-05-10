@@ -3,6 +3,7 @@ import { GetAddressViewModel } from '../get-address.view-model';
 import { GetDocumentViewModel } from '../get-document.view-model';
 import { DepartmentResumeViewModel } from '../department';
 import { GroupResumeViewModel } from '../group';
+import { GetContactViewModel } from '../get-contact.view-model';
 
 export class ListCollaboratorViewModel {
   static toHttpList(collaborator: Collaborator[]) {
@@ -11,8 +12,8 @@ export class ListCollaboratorViewModel {
       const viewModel = {
         id: _collaborator.id,
         name: _collaborator.name,
-        email: _collaborator.email,
         age: _collaborator.age,
+        contact: GetContactViewModel.toHttp(_collaborator.contact),
         document: GetDocumentViewModel.toHttp(_collaborator.document),
         department: DepartmentResumeViewModel.toHttp(_collaborator.department),
         group: GroupResumeViewModel.toHttp(_collaborator.group),
