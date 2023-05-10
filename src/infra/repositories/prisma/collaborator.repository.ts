@@ -5,6 +5,7 @@ import { Collaborator, Department, Group } from 'src/domain/entities';
 import {
   PrismaAddressMapper,
   PrismaCollaboratorMapper,
+  PrismaContactMapper,
   PrismaDepartmentMapper,
   PrismaDocumentMapper,
   PrismaGroupMapper,
@@ -16,6 +17,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
 
   async save(data: Collaborator): Promise<void> {
     const collaboratorMapper = PrismaCollaboratorMapper.toPrisma(data);
+    const contactMapper = PrismaContactMapper.toPrisma(data.contact);
     const documentMapper = PrismaDocumentMapper.toPrisma(data.document);
     const addressMapper = PrismaAddressMapper.toPrisma(data.address);
     const departmentMapper = PrismaDepartmentMapper.toPrisma(data.department);
@@ -24,6 +26,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
     await this._prismaClient.collaborators.create({
       data: {
         ...collaboratorMapper,
+        contact: { create: { ...contactMapper } },
         document: { create: { ...documentMapper } },
         address: { create: { ...addressMapper } },
         department: { connect: { id: departmentMapper.id } },
@@ -34,6 +37,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
 
   async update(code: string, data: Collaborator): Promise<void> {
     const collaboratorMapper = PrismaCollaboratorMapper.toPrisma(data);
+    const contactMapper = PrismaContactMapper.toPrisma(data.contact);
     const documentMapper = PrismaDocumentMapper.toPrisma(data.document);
     const addressMapper = PrismaAddressMapper.toPrisma(data.address);
     const departmentMapper = PrismaDepartmentMapper.toPrisma(data.department);
@@ -43,6 +47,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
       where: { id: code },
       data: {
         ...collaboratorMapper,
+        contact: { update: { ...contactMapper } },
         document: { update: { ...documentMapper } },
         address: { update: { ...addressMapper } },
         department: { connect: { id: departmentMapper.id } },
@@ -59,6 +64,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
         address: true,
         department: true,
         group: true,
+        contact: true,
       },
     });
 
@@ -71,6 +77,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
         collaborator.address,
         collaborator.department,
         collaborator.group,
+        collaborator.contact,
       );
     }
   }
@@ -83,6 +90,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
         address: true,
         department: true,
         group: true,
+        contact: true,
       },
     });
 
@@ -95,6 +103,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
         collaboratorLogin.address,
         collaboratorLogin.department,
         collaboratorLogin.group,
+        collaboratorLogin.contact,
       );
     }
   }
@@ -110,6 +119,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
         address: true,
         department: true,
         group: true,
+        contact: true,
       },
     });
 
@@ -122,6 +132,7 @@ export class IPrismaCollaboratorRepository implements ICollaboratorRepository {
           collaboratorList.address,
           collaboratorList.department,
           collaboratorList.group,
+          collaboratorList.contact,
         ),
       ),
     );
