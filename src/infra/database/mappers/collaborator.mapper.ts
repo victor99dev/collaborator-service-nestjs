@@ -5,19 +5,21 @@ import {
   Departments as RawDepartments,
   Addresses as RawAddresses,
   Documents as RawDocuments,
+  Contacts as RawContacts,
 } from '@prisma/client';
 import { PrismaGroupMapper } from './group.mapper';
 import { PrismaDepartmentMapper } from './department.mapper';
 import { PrismaAddressMapper } from './address.mapper';
 import { PrismaDocumentMapper } from './documents.mapper';
+import { PrismaContactMapper } from './contact.mappper';
 
 export class PrismaCollaboratorMapper {
   static toPrisma(collaborator: Collaborator) {
     return {
       id: collaborator.id,
       name: collaborator.name,
-      email: collaborator.email,
       age: collaborator.age,
+      contact: collaborator.contact,
       department: collaborator.department,
       group: collaborator.group,
       address: collaborator.address,
@@ -37,12 +39,13 @@ export class PrismaCollaboratorMapper {
     address: RawAddresses,
     department: RawDepartments,
     group: RawGroups,
+    contact: RawContacts,
   ): Collaborator {
     return new Collaborator(
       {
         name: raw.name,
-        email: raw.email,
         age: raw.age,
+        contact: PrismaContactMapper.toDomain(contact),
         group: PrismaGroupMapper.toDomain(group),
         department: PrismaDepartmentMapper.toDomain(department),
         address: PrismaAddressMapper.toDomain(address),
