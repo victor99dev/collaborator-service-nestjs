@@ -259,7 +259,7 @@ After this mini tutorial, the next endpoints follow the same flow, just remember
 
 <b>Follow the list of commits to check what was implemented and changed! I use the Conventional Commits Pattern to help and detail the context of each commit made.</b>
 
-## 👩‍💻 Meus Links:
+## 👩‍💻 My Links:
 
 - Github: [Victor Hugo.](https://github.com/torugo99)
 - LinkedIn: [Victor Hugo.](https://www.linkedin.com/in/victor-hugo99/)
