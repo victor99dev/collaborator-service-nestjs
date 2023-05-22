@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsBoolean, IsNotEmpty, Length } from 'class-validator';
 
 export class RegisterGroupDto {
-  @IsNotEmpty({ message: 'Name is required' })
+  @IsNotEmpty({ message: 'Group name is required' })
   @ApiProperty({ type: String })
   name: string;
 
