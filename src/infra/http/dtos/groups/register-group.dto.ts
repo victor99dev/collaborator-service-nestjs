@@ -17,6 +17,7 @@ export class RegisterGroupDto {
   @ApiProperty({ type: Boolean })
   active: boolean;
 
+  @IsNotEmpty()
   @ApiProperty({ type: Date })
   created_at: Date;
 
