@@ -18,7 +18,7 @@ async function main() {
       contact: {
         create: {
           email: 'brce@gmail.com',
-          telephone: '+00 00 000000000',
+          telephone: '+0000000000000',
           social_network: '@bruceTech',
         },
       },
@@ -38,7 +38,7 @@ async function main() {
         create: {
           document_type: 'cpf',
           date_of_issue: new Date(),
-          number: '000.000.000-00',
+          number: '00000000000',
         },
       },
       login: 'bruce.wayne',
