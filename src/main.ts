@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './infra/http/app.module';
-import { VersioningType } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 import {
   DocumentBuilder,
   SwaggerDocumentOptions,
@@ -9,6 +9,8 @@ import {
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
+  app.useGlobalPipes(new ValidationPipe());
 
   app.enableVersioning({
     type: VersioningType.URI,
@@ -19,7 +21,7 @@ async function bootstrap() {
     .setTitle('collaborator-service')
     .setDescription('employee creation service')
     .setVersion('1.0.0')
-    .setContact('Victor99dev', 'https://victor99dev.site/', '')
+    .setContact('Victor99dev', 'https://github.com/torugo99', '')
     .setLicense(
       'Copyright (c) 2023, Victor99dev, Todos os direitos reservados.',
       'https://github.com/torugo99',
