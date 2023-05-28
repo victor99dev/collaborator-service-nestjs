@@ -117,7 +117,7 @@ Visualização do Swagger:
 ![preview3 img](/docs/img/swagger-ui.png)
 
 ### 🌐 | Endpoints:
-Os endpoint esperados estão funcinando perfeitamente.
+Os endpoint esperados estão funcionando perfeitamente.
 
 <details><summary>Endpoints de Collaborator</summary>
 <p>
