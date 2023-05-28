@@ -163,7 +163,7 @@ The expected endpoints are working perfectly.
 </p>
 </details>
 
-The schema (template) of the endpoints are used to pass the mandatory fields like in POST and PUT verbs.
+The schema (model) of the endpoints are used to pass the mandatory fields like in POST and PUT verbs.
 
 All requests like GET, POST, PUT and DELETE that correspond to CREATE, READ, UPDATE and DELETE (CRUD) are working.
 
